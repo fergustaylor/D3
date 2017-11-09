@@ -1,0 +1,41 @@
+---
+title: "R Notebook"
+---
+
+```{r, warning=FALSE, message=FALSE}
+#https://github.com/garthtarr/edgebundleR
+#devtools::install_github("garthtarr/edgebundleR")
+library(edgebundleR)
+library(tidyr)
+library(igraph)
+```
+
+```{r}
+??edgebundleR
+```
+
+```{r}
+drugs <- data.frame(cbind(Drugs = mastersheet$Title, Interactions = mastersheet$Interactions))
+
+drugs$Drugs <- drugs$Drugs %>%
+  unlist()
+
+drugs <- unnest(drugs, Interactions)
+```
+
+```{r}
+r <- graph_from_data_frame(drugs, vertices=mastersheet$Title)
+
+g1 <- edgebundle(r, width = 1000, fontsize = 3)
+saveEdgebundle(g1,file = "d3-1.html")
+```
+
+```{r}
+g2 <- edgebundle(r, width = 1000, tension = 1, fontsize = 3)
+saveEdgebundle(g2,file = "d3-2.html")
+```
+
+```{r}
+g3 <- edgebundle(r, width = 1000, tension = 0, fontsize = 3)
+saveEdgebundle(g3,file = "d3-3.html")
+```

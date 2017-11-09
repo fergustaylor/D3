@@ -1,0 +1,167 @@
+---
+title: "R Notebook"
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(rvest)
+library(magrittr)
+library(stringr)
+library(stringi)
+library(tidyverse)
+```
+
+Creating the drugs look-up.
+```{r}
+#Get a list of links to test
+drugs_list <- readLines("https://bnf.nice.org.uk/interaction/") %>%
+  str_match_all("<a href=\"(.*?)\"><span>(.*?)</span>") %>%
+  unlist() %>%
+  data.frame()
+
+#Replace odd characters
+#drugs_list$. <- str_replace(drugs_list$., "%C3%A9", replacement = "é")
+drugs_list$. <- str_replace(drugs_list$., "&#233;", replacement = "é")
+
+#Create a dataframe from it.
+drugs_list <-  drugs_list %>%
+  data.frame(cbind(observation = rep(1:(nrow(drugs_list)/3), each=3))) %>%
+  data.frame(cbind(class = c("String", "Link", "Title"))) %>%
+  rename(value = '.') %>%
+  spread(key=class, value=value)
+
+#Remove non-drug links
+drugs_list <- drugs_list %>%
+  filter(stri_detect_fixed(drugs_list$Link, "title=") == FALSE)
+
+#Remove defunct columns
+drugs_list <- drugs_list %>%
+    select(-observation) %>%
+    select(-String)
+
+#Remove some leftover tags
+drugs_list$Title <- str_replace(drugs_list$Title, "<sub>", replacement = "")
+drugs_list$Title <- str_replace(drugs_list$Title, "</sub>", replacement = "")
+
+#Add a string column
+drugs_list <- cbind(drugs_list, 
+                    string = str_replace(drugs_list$Link, ".html", replacement = ""))
+
+#Add CSS tag and URL columns
+drugs_list <- cbind(drugs_list, 
+                    url = str_c("https://bnf.nice.org.uk/interaction/", 
+                                drugs_list$string, ".html"))
+drugs_list <- cbind(drugs_list, css_string = str_c("#", drugs_list$string, " .interactant span"))
+
+#Convert to character classes
+drugs_list[] <- lapply(drugs_list, as.character)
+```
+
+```{r, echo=FALSE}
+head(drugs_list, 5)
+```
+
+Constructing the interactions database.
+```{r, cache=TRUE}
+#Data
+data <- sapply(drugs_list$url, function(x)
+               read_html(x) %>%
+               list())
+#Title
+example_dataframe <- data.frame(Title = drugs_list$Title)
+
+##Interactions
+alli <- lapply(data,
+                function(url){
+                    url %>% 
+                    html_nodes(css = ".interactant span") %>%
+                    html_text()
+                })
+##Severity
+severityi <- lapply(data,
+                function(url){
+                    url %>% 
+                    html_nodes(css = "dd:nth-child(2)") %>%
+                    html_text()
+                })
+#Mild#Moderate#Severe#Unknown
+##Not working yet - doesn't always feature
+
+##Evidence
+evidencei <- lapply(data,
+                function(url){
+                    url %>% 
+                    html_nodes(css = "dd~ dd") %>%
+                    html_text()
+                })
+#Study#Anecdotal#Theoretical
+##Not working yet - doesn't always feature
+
+#Interactions
+infoi <- lapply(data,
+                function(url){
+                    url %>% 
+                    html_nodes(css = ".interaction-message div") %>%
+                    html_text() %>%
+                    str_replace_all("\n", replacement="") %>%
+                    str_trim()
+                })
+#Bind columns
+example_dataframe <- cbind(example_dataframe, 
+                           data_frame(alli), 
+                           data_frame(severityi),
+                           data_frame(evidencei),
+                           data_frame(infoi))
+#Rename columns
+example_dataframe <-  example_dataframe %>%
+  rename(Interactions = 'alli',
+         Severity = 'severityi', 
+         Evidence = 'evidencei',
+         'Interactions Info' = 'infoi')
+rm(alli)
+rm(severityi)
+rm(evidencei)
+rm(infoi)
+```
+
+E.g 
+```{r, echo=FALSE}
+head(example_dataframe, 5)
+```
+
+< img src="/blogimages/BNFdataframe.png" > 
+
+Interactions works for now.
+```{r}
+master <- example_dataframe %>%
+  select('Title', 'Interactions') %>%
+  rename(name = 'Title',
+         imports = 'Interactions')
+
+master$name <- str_c("BNF.", master$name, ".", master$name) %>%
+  str_replace_all(pattern=" ", replacement="")
+
+node.parent.child <- function(x) {
+  example <- master[x,] %>%
+    select('imports') %>%
+    unlist() %>%
+    as.character() 
+  
+  example <- str_c(".", example) %>%
+  str_dup(times=2)
+  
+  example <- str_c("BNF", example) %>%
+    str_replace_all(pattern=" ", replacement="")
+  return(as.vector(example))
+}
+
+x <- 1:1017
+master$imports <- lapply(x, node.parent.child)
+```
+
+```{r}
+master %>%
+  jsonlite::toJSON() %>%
+  write(file="flare.json")
+```
+
+

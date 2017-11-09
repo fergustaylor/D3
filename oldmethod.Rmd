@@ -1,0 +1,72 @@
+---
+title: "R Notebook"
+---
+
+```{r, cache=TRUE}
+#Data
+data <- sapply(drugs_list$url, function(x)
+               read_html(x) %>%
+               list())
+
+#Title
+example_dataframe <- data.frame(Title = drugs_list$Title)
+
+#Class
+class <- lapply(data,
+                function(url){
+                    url %>%
+                    html_nodes(css = ".unstyled .interactant span") %>%
+                    html_text()
+                })
+example_dataframe <- cbind(example_dataframe, data_frame(class))
+
+
+#Mild, moderate, severe, unknown
+#Evidence: Study, Anecdotal, Theoretical
+
+#Dangerous Interactions
+dangerousi <- lapply(data,
+                function(url){
+                    url %>% 
+                    html_nodes(css = ".High .interactant span") %>%
+                    html_text()
+                })
+example_dataframe <- cbind(example_dataframe, data_frame(dangerousi))
+
+#Interactions
+interactions <- mapply(url = data, css = drugs_list$css_string, 
+                       function(url, css){
+                          url %>%
+                          html_nodes(css) %>%
+                          html_text()
+                        })
+example_dataframe <- cbind(example_dataframe, data_frame(interactions))
+
+#Interactions Information
+interactionsinfo <- lapply(data,
+                function(url){
+                    url %>% 
+                    html_nodes(css = ".span9 div") %>%
+                    html_text() %>%
+                    str_replace_all("\n                 ", replacement="") %>%
+                    str_replace_all("\n", replacement="") %>%
+                    str_replace_all("                  ", replacement=" ") %>%
+                    str_replace_all("     ", replacement=" ") %>%
+                    str_replace_all("    ", replacement=" ") %>%
+                    str_replace_all("  ", replacement=" ") %>%
+                    str_trim()
+                })
+example_dataframe <- cbind(example_dataframe, data_frame(interactionsinfo))
+
+#Rename columns
+example_dataframe <-  example_dataframe %>%
+  rename(Class = 'class',
+         'Dangerous Interactions' = 'dangerousi',
+         Interactions = 'interactions', 'Interactions Info' = 'interactionsinfo')
+#rm(data)
+
+#rm(class)
+#rm(dangerousi)
+#rm(interactions)
+#rm(interactionsinfo)
+```
