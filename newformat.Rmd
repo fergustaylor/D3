@@ -211,7 +211,7 @@ node.parent.child2 <- function(x) {
   example <- top100[x,] %>%
     select('imports') %>%
     unlist() %>%
-    as.character() 
+    as.character()
   
   example <- str_c(".", example) %>%
   str_dup(times=2)
