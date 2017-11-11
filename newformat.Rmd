@@ -195,16 +195,15 @@ top100 <- master %>%
   filter(title %in% top100$X1)
 ```
 
-#top100 <- top100[,1:2]
-#turn imports into just the names 
-
 ```{r}
 subsetting <- function(x) {
   top100$imports2[[x]] <- top100$imports2[[x]][top100$imports2[[x]] %in% top100$title == TRUE]
 }
 top100$imports2 <- lapply(1:nrow(top100), subsetting) 
 top100$imports <- top100$imports2 
+
 top100 <- top100[,1:2]
+master <- master[,1:2]
 ```
 
 ```{r}
