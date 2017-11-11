@@ -56,6 +56,11 @@ drugs_list <- cbind(drugs_list, css_string = str_c("#", drugs_list$string, " .in
 drugs_list[] <- lapply(drugs_list, as.character)
 ```
 
+Export Drugs_List
+```{r, eval=FALSE}
+write.csv(drugs_list, "drugs_list.csv")
+```
+
 ```{r, echo=FALSE}
 head(drugs_list, 5)
 ```
@@ -123,6 +128,17 @@ rm(evidencei)
 rm(infoi)
 ```
 
+Export Database
+```{r, eval=FALSE}
+example_dataframe2 <- example_dataframe
+example_dataframe2$Interactions <- vapply(example_dataframe2$Interactions, paste, collapse = ", ", character(1L))
+example_dataframe2$Severity <- vapply(example_dataframe2$Severity, paste, collapse = ", ", character(1L))
+example_dataframe2$Evidence <- vapply(example_dataframe2$Evidence, paste, collapse = ", ", character(1L))
+example_dataframe2$`Interactions Info` <- vapply(example_dataframe2$`Interactions Info`, paste, collapse = ", ", character(1L))
+write.csv(example_dataframe2, "interactionsdata.csv")
+rm(example_dataframe2)
+```
+
 E.g 
 ```{r, echo=FALSE}
 head(example_dataframe, 5)
@@ -154,8 +170,7 @@ node.parent.child <- function(x) {
   return(as.vector(example))
 }
 
-x <- 1:1017
-master$imports <- lapply(x, node.parent.child)
+master$imports <- lapply(1:1017, node.parent.child) 
 ```
 
 ```{r}
@@ -164,4 +179,78 @@ master %>%
   write(file="flare.json")
 ```
 
+make a shortlist.
+
+```{r}
+url <- "https://nursingnotes.co.uk/the-100-most-common-medications-in-uk-hospitals/"
+
+master$title <- example_dataframe$Title %>%
+  str_trim()
+master$imports2 <- example_dataframe$Interactions
+```
+
+
+master$name <- as.character(master$name)
+
+top100 <- url %>%
+  read_html() %>%
+  html_nodes(css = "#content li") %>%
+  html_text() %>%
+  data_frame()
+  
+```{r}
+top100 <- read_csv("~/Dropbox/D3/top100.csv", col_names = FALSE)
+top100 <- master %>%
+  filter(title %in% top100$X1)
+#top100 <- top100[,1:2]
+#turn imports into just the names 
+```
+
+```{r}
+top100 %>%
+  jsonlite::toJSON() %>%
+  write(file="flare2.json")
+```
+
+#remove list elements from top100$imports2 if not in top100$title
+
+```{r}
+subsetting <- function(x) {
+  top100$imports2[[x]] <- top100$imports2[[x]][top100$imports2[[x]] %in% top100$title == TRUE]
+}
+top100$imports2 <- lapply(1:nrow(top100), subsetting) 
+top100$imports <- top100$imports2 
+top100 <- top100[,1:2]
+```
+
+```{r}
+node.parent.child2 <- function(x) {
+  example <- top100[x,] %>%
+    select('imports') %>%
+    unlist() %>%
+    as.character() 
+  
+  example <- str_c(".", example) %>%
+  str_dup(times=2)
+  
+  example <- str_c("BNF", example) %>%
+    str_replace_all(pattern=" ", replacement="")
+  return(as.vector(example))
+}
+top100$imports <- lapply(1:89, node.parent.child2)
+```
+
+```{r}
+top100 %>%
+  jsonlite::toJSON() %>%
+  write(file="flare2.json")
+```
+
+```{r}
+top101 <- top100
+top101 <- top101[-c(22, 48, 55, 57, 64), ]
+top101 %>%
+  jsonlite::toJSON() %>%
+  write(file="flare2.json")
+```
 
