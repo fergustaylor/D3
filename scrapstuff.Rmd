@@ -1,0 +1,19 @@
+---
+title: "R Notebook"
+---
+
+```{r}
+top101 <- top100
+top101 <- top101[-c(22, 48, 55, 57, 64), ]
+top101 %>%
+  jsonlite::toJSON() %>%
+  write(file="flare2.json")
+```
+
+Can convert into webscraping.
+top100 <- url %>%
+  read_html() %>%
+  html_nodes(css = "#content li") %>%
+  html_text() %>%
+  data_frame()
+ 

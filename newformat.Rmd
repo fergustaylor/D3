@@ -19,7 +19,6 @@ drugs_list <- readLines("https://bnf.nice.org.uk/interaction/") %>%
   data.frame()
 
 #Replace odd characters
-#drugs_list$. <- str_replace(drugs_list$., "%C3%A9", replacement = "é")
 drugs_list$. <- str_replace(drugs_list$., "&#233;", replacement = "é")
 
 #Create a dataframe from it.
@@ -171,6 +170,7 @@ node.parent.child <- function(x) {
 }
 
 master$imports <- lapply(1:1017, node.parent.child) 
+#nrow(master)
 ```
 
 ```{r}
@@ -188,31 +188,15 @@ master$title <- example_dataframe$Title %>%
   str_trim()
 master$imports2 <- example_dataframe$Interactions
 ```
-
-
-master$name <- as.character(master$name)
-
-top100 <- url %>%
-  read_html() %>%
-  html_nodes(css = "#content li") %>%
-  html_text() %>%
-  data_frame()
-  
-```{r}
+ 
+```{r, message=FALSE}
 top100 <- read_csv("~/Dropbox/D3/top100.csv", col_names = FALSE)
 top100 <- master %>%
   filter(title %in% top100$X1)
+```
+
 #top100 <- top100[,1:2]
 #turn imports into just the names 
-```
-
-```{r}
-top100 %>%
-  jsonlite::toJSON() %>%
-  write(file="flare2.json")
-```
-
-#remove list elements from top100$imports2 if not in top100$title
 
 ```{r}
 subsetting <- function(x) {
@@ -238,19 +222,13 @@ node.parent.child2 <- function(x) {
   return(as.vector(example))
 }
 top100$imports <- lapply(1:89, node.parent.child2)
+#nrow(top100)
 ```
 
 ```{r}
+top100$imports[c(22, 48, 55, 57, 64)] <- ""
+#switch to a filter according to "BNF.." in interactions
 top100 %>%
   jsonlite::toJSON() %>%
-  write(file="flare2.json")
+  write(file="docs/flare2.json")
 ```
-
-```{r}
-top101 <- top100
-top101 <- top101[-c(22, 48, 55, 57, 64), ]
-top101 %>%
-  jsonlite::toJSON() %>%
-  write(file="flare2.json")
-```
-
