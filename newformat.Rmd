@@ -147,14 +147,20 @@ head(example_dataframe, 5)
 
 Interactions works for now.
 ```{r}
+#Create a new database
 master <- example_dataframe %>%
   select('Title', 'Interactions') %>%
   rename(name = 'Title',
          imports = 'Interactions')
-
+master$title <- master$name
+#Relabel 'name'
 master$name <- str_c("BNF.", master$name, ".", master$name) %>%
   str_replace_all(pattern=" ", replacement="")
 
+###You can add a second import column here.
+master$imports2 <- master$imports
+
+#Relabel 'imports'
 node.parent.child <- function(x) {
   example <- master[x,] %>%
     select('imports') %>%
@@ -162,15 +168,13 @@ node.parent.child <- function(x) {
     as.character() 
   
   example <- str_c(".", example) %>%
-  str_dup(times=2)
+    str_dup(times=2)
   
   example <- str_c("BNF", example) %>%
     str_replace_all(pattern=" ", replacement="")
   return(as.vector(example))
 }
-
-master$imports <- lapply(1:1017, node.parent.child) 
-#nrow(master)
+master$imports <- lapply(1:nrow(master), node.parent.child)
 ```
 
 ```{r}
@@ -179,52 +183,46 @@ master %>%
   write(file="flare.json")
 ```
 
-make a shortlist.
-
-```{r}
-url <- "https://nursingnotes.co.uk/the-100-most-common-medications-in-uk-hospitals/"
-
-master$title <- example_dataframe$Title %>%
-  str_trim()
-master$imports2 <- example_dataframe$Interactions
-```
- 
+make a shortlist
+###BLEURGH. now the filter doesn't work.
 ```{r, message=FALSE}
 top100 <- read_csv("~/Dropbox/D3/top100.csv", col_names = FALSE)
+
 top100 <- master %>%
-  filter(title %in% top100$X1)
+  dplyr::filter('title' %in% top100$X1)
 ```
 
+Remove interactions not plotted as nodes
 ```{r}
 subsetting <- function(x) {
   top100$imports2[[x]] <- top100$imports2[[x]][top100$imports2[[x]] %in% top100$title == TRUE]
 }
-top100$imports2 <- lapply(1:nrow(top100), subsetting) 
-top100$imports <- top100$imports2 
-
-top100 <- top100[,1:2]
-master <- master[,1:2]
+top100$imports <- lapply(1:nrow(top100), subsetting)
+#top100 <- top100[,1:2]
+#master <- master[,1:2]
 ```
 
-```{r}
+///
+
+Write grandfather.parent.child
+##Take from master (Already formed earlier)
+```{r, eval=FALSE}
 node.parent.child2 <- function(x) {
   example <- top100[x,] %>%
     select('imports') %>%
     unlist() %>%
     as.character()
-  
   example <- str_c(".", example) %>%
   str_dup(times=2)
-  
   example <- str_c("BNF", example) %>%
     str_replace_all(pattern=" ", replacement="")
   return(as.vector(example))
 }
-top100$imports <- lapply(1:89, node.parent.child2)
-#nrow(top100)
+top100$imports <- lapply(1:nrow(top100), node.parent.child2)
 ```
 
-```{r}
+Clean-up rows without interactions
+```{r, eval=FALSE}
 top100$imports[c(22, 48, 55, 57, 64)] <- ""
 #switch to a filter according to "BNF.." in interactions
 top100 %>%
