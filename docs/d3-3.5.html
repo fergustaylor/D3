@@ -192,7 +192,45 @@ function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1];
 }
 
-var re = "";
+function title(d) {
+  return d.parentNode ? (title(d.parentNode) + "." + d.nodeName) : d.nodeName;
+}
+
+var re = "",
+    color = pv.Colors.category19().by(function(d) d.parentNode.nodeName)
+    node = pv.dom(bla3).root("flare3.json").node();
+
+var vis = new pv.Panel()
+    .width(860)
+    .height(568);
+
+cluster.bundle.add(pv.Panel)
+    .fillStyle(function(d) color(d).alpha(title(d).match(re) ? 1 : .2))
+    .strokeStyle("#fff")
+    .lineWidth(1)
+    .antialias(false);
+
+cluster.bundle.add(pv.Label)
+    .textStyle(function(d) pv.rgb(0, 0, 0, title(d).match(re) ? 1 : .2));
+
+vis.render();
+
+/** Counts the number of matching classes, updating the title element. */
+function count() {
+  var classes = 0, bytes = 0, total = 0;
+  for (var i = 0; i < node.length; i++) {
+    var n = node[i];
+    if(n.firstChild) continue;
+    total += n.nodeValue;
+    if (title(n).match(re)) {
+      classes++;
+      bytes += n.nodeValue;
+    }
+  }
+  var percent = bytes / total * 100;
+  document.getElementById("title").innerHTML
+      = classes + " classes found "+n;
+}
     
 function update(query) {
   if (query != re) {
