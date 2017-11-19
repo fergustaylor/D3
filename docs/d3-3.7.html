@@ -67,12 +67,14 @@ input {
 </style>
 
 <body>
-  <div id="center"><div id="fig">
-    <div id="title"></div>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<div id="center">
+<div id="fig">
+  
+<div id="title"></div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
 <script>
-
 var diameter = 800,
     radius = diameter / 2,
     innerRadius = radius - 160;
@@ -214,14 +216,16 @@ function update(query) {
       d3.selectAll(matching[0]).style("fill",'#DE3378');
   }
 }
-
 </script>
- <div id="footer">
-      <label for="search">search: </label>
-      <input type="text" id="search" onkeyup="update(this.value)">
+ 
+<div id="footer">
+<label for="search">search: </label>
+<input type="text" id="search" onkeyup="update(this.value)">
 </div>
   
 </div>
 </div>
+
 </body>
+
 </html>
