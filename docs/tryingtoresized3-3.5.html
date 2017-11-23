@@ -2,8 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript" src="https://mbostock.github.io/protovis/protovis-r3.2.js"></script>
 <!-- JavaScript Libraries //-->
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -28,38 +26,10 @@ input[type=text] {
 input[type=text]:focus {
     width: 40%;
 }
-mySidebar {
-  }
 </style>
 </head>
 
 <body>
-<div class="w3-sidebar w3-bar-block w3-collapse w3-animate-right" style="width:300px; right:0; opacity: 0.75; color: grey" id="mySidebar">
-  <div style="width:280px; position: fixed; top: 0; right: 0; opacity: 1; margin-right: 20px;">
-    <button class="w3-button w3-white w3-xlarge w3-left w3-hide-large" onclick="w3_close()">&#9776;</button>
-    <br>
-    <br>
-    <br>
-    <h1 style="margin-left: 20px;">'Drug name'</h1>
-    <div class="w3-button">
-      <h5>'Interaction Drug'</h5>
-      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
-    <div class="w3-button">
-      <h5>'Interaction Drug2'</h5>
-      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
-    <div class="w3-button">
-      <h5>'Interaction Drug2'</h5>
-      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
-  </div>
-  <div style="width:260px; position: fixed; bottom: 0; right: 0; margin-right: 20px; margin-left: 20px; text-align: center;">
-    <h4 style="font-weight: bold; text-align:justify; text-align: center;"> X Interactions Listed</h4>
-    <h5>X Severe | X Moderate | X Mild</h5>
-  </div>
-</div>
-
-<button class="w3-button w3-white w3-xlarge w3-right w3-hide-large" onclick="w3_open()">&#9776;</button>
-
-<!-- Main Section //-->
 <h2><a href="https://nursingnotes.co.uk/the-100-most-common-medications-in-uk-hospitals/">"the 100 most common medications.."</a></h2>
 <div id="footer" style="position:relative;top:0;">
   <input type="text" id="search" onkeyup="update(this.value)" placeholder="Search..">
@@ -74,8 +44,8 @@ tension: <input style="position:relative;top:3px;" type="range" min="0" max="100
 <script src="packages.js"></script>
 
 <script>
-var w = 1280,
-    h = 800,
+var w = screen.width,
+    h = screen.height,
     rx = w / 2,
     ry = h / 2,
     m0,
@@ -222,17 +192,7 @@ function cross(a, b) {
 function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1];
 }
+
 </script>
-<!-- The Main Section //-->
-
-<script>
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-}
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-}
-</script> 
-
 </body>
 </html>
