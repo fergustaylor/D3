@@ -6,8 +6,8 @@
 <!-- JavaScript Libraries //-->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <!-- CSS Style //-->
-<link rel="stylesheet" type="text/css" href="https://mbostock.github.io/protovis/ex/ex.css?3.2"/>
 <link href="style.css" rel="stylesheet" type="text/css">
+
 <style>
 input[type=text] {
     width: 130px;
@@ -26,61 +26,6 @@ input[type=text] {
 input[type=text]:focus {
     width: 40%;
 }
-
-///
-.node {
-  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  fill: #bbb;
-}
-
-.node:hover {
-  fill: #000;
-}
-
-.link {
-  stroke: steelblue;
-  stroke-opacity: 0.4;
-  fill: none;
-  pointer-events: none;
-}
-
-.node:hover,
-.node--source,
-.node--target {
-  font-weight: 700;
-}
-
-.node--source {
-  fill: #2ca02c;
-}
-
-.node--target {
-  fill: #d62728;
-}
-
-.link--source,
-.link--target {
-  stroke-opacity: 1;
-  stroke-width: 2px;
-}
-
-.link--source {
-  stroke: #d62728;
-}
-
-.link--target {
-  stroke: #2ca02c;
-}
-
-input {
-  font: 24pt helvetica neue;
-  background: none;
-  border: none;
-  outline: 0;
-}
-
-///
-
 </style>
 </head>
 
@@ -265,6 +210,7 @@ function update(query) {
       // do something with the links
   }
 }
+
 </script>
 
 <div style="position:relative;top:0;">
