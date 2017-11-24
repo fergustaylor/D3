@@ -1,0 +1,7 @@
+//
+d3.json("flare4.json", function(classes) {
+  var nodes = cluster.nodes(packages.root(classes)),
+      links = packages.imports(nodes),
+      splines = bundle(links);
+//
+use flare4.json and d3-2

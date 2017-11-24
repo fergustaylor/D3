@@ -1,49 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<script type="text/javascript" src="https://mbostock.github.io/protovis/protovis-r3.2.js"></script>
-<!-- JavaScript Libraries //-->
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<!-- CSS Style //-->
-<link rel="stylesheet" type="text/css" href="https://mbostock.github.io/protovis/ex/ex.css?3.2"/>
-<link href="style.css" rel="stylesheet" type="text/css">
-<style>
-input[type=text] {
-    width: 130px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-input[type=text]:focus {
-    width: 40%;
-}
-</style>
-</head>
-
-<body>
-<h2 style="position:fixed;bottom:0;right:0;padding-right:20px;padding-bottom:20px;"><a href="https://nursingnotes.co.uk/the-100-most-common-medications-in-uk-hospitals/">"the 100 most common medications.."</a></h2>
-<div id="footer" style="position:fixed;top:0;left:0;padding-left:20px;padding-top:20px;">
-  <input type="text" id="search" onkeyup="update(this.value)" placeholder="Search..">
-</div>
-
-<div style="position:fixed;bottom:0;left:0;font-size:18px;padding-left:20px;padding-bottom:20px;">
-tension: <input style="position:relative;top:3px;" type="range" min="0" max="100" value="85">
-</div>
-
-<script src="d3/d3.js"></script>
-<script src="d3/d3.layout.js"></script>
-<script src="packages.js"></script>
-
-<script>
 var w = screen.width,
     h = screen.height,
     rx = w / 2,
@@ -84,7 +38,7 @@ svg.append("svg:path")
     .attr("d", d3.svg.arc().outerRadius(ry - 120).innerRadius(0).startAngle(0).endAngle(2 * Math.PI))
     .on("mousedown", mousedown);
 
-d3.json("flare3.json", function(classes) {
+d3.json("flare.json", function(classes) {
   var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes),
       splines = bundle(links);
@@ -192,7 +146,3 @@ function cross(a, b) {
 function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1];
 }
-
-</script>
-</body>
-</html>
