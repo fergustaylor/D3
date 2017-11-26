@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script type="text/javascript" src="https://mbostock.github.io/protovis/protovis-r3.2.js"></script>
+<!-- JavaScript Libraries //-->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<!-- CSS Style //-->
+<link rel="stylesheet" type="text/css" href="https://mbostock.github.io/protovis/ex/ex.css?3.2"/>
+<style>
+path.arc {
+  cursor: move;
+  fill: #fff;
+}
+
+.node {
+font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: #bbb;
+}
+
+.node:hover {
+  fill: #1f77b4;
+}
+
+.link {
+  fill: none;
+  stroke: #1f77b4;
+  stroke-opacity: .4;
+  pointer-events: none;
+}
+
+.link.source, .link.target {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.node.target {
+  fill: #d62728 !important;
+}
+
+.link.source {
+  stroke: #d62728;
+}
+
+.node.source {
+  fill: #2ca02c;
+}
+
+.link.target {
+  stroke: #2ca02c;
+}
+
+body {
+  font: 300 36px "Helvetica Neue";
+  height: 640px;
+  margin: 80px 160px 80px 160px;
+  overflow: hidden;
+  position: relative;
+  width: 960px;
+}
+
+a:link, a:visited {
+  color: #777;
+    text-decoration: none;
+}
+
+a:hover {
+  color: #666;
+}
+
+blockquote {
+  margin: 0;
+}
+
+blockquote:before {
+  content: "â€œ";
+  position: absolute;
+  left: -.4em;
+}
+
+blockquote:after {
+  content: "â€";
+  position: absolute;
+}
+
+body > ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 64px;
+}
+
+h1, h2, h3 {
+  font-weight: inherit;
+  margin: 0;
+}
+
+h2, h3 {
+  text-align: right;
+  font-size: inherit;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+h2 {
+  font-size: 24px;
+  position: absolute;
+}
+
+h3 {
+  bottom: -20px;
+  font-size: 18px;
+}
+
+.invert {
+  background: #1f1f1f;
+    color: #dcdccc;
+}
+
+.invert h2, .invert h3 {
+  color: #7f9f7f;
+}
+
+.string, .regexp {
+  color: #f39;
+}
+
+.keyword {
+  color: #00c;
+}
+
+.comment {
+  color: #777;
+    font-style: oblique;
+}
+
+.number {
+  color: #369;
+}
+
+.class, .special {
+  color: #1181B8;
+}
+
+body > svg {
+  position: absolute;
+  top: -80px;
+  left: -160px;
+}
+</style>
+<link href="searchbar.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<button class="w3-button w3-white w3-xlarge w3-right w3-hide-large" onclick="open()">&#9776;</button>
+
+<h2 style="position:fixed;bottom:0;right:0;padding-right:20px;padding-bottom:20px;"><a href="https://nursingnotes.co.uk/the-100-most-common-medications-in-uk-hospitals/">"the 100 most common medications.."</a></h2>
+
+<div style="position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;">
+tension: <input style="position:relative;top:3px;" type="range" min="0" max="100" value="85"></div>
+
+<div id="footer" style="position:relative;top:0;left:0;padding-left:20px;padding-top:20px;">
+  <input type="text" id="search" onkeyup="update(this.value)" placeholder="Search..">
+</div>
+
+<script src="d3/d3.js"></script>
+<script src="d3/d3.layout.js"></script>
+<script src="packages.js"></script>
+
+<script src="d3-2textscript.js"></script>
+
+<div class="w3-sidebar w3-bar-block w3-collapse w3-animate-right" style="width:300px; right:0; opacity: 0.75; color: grey" id="mySidebar">
+  <div style="width:280px; position: fixed; top: 0; right: 0; opacity: 1; margin-right: 20px;">
+    <button class="w3-button w3-white w3-xlarge w3-left w3-hide-large" onclick="close()">&#9776;</button>
+    <br>
+    <br>
+    <br>
+    <h1 style="margin-left: 20px;">'Drug name'</h1>
+    <div class="w3-button">
+      <h5>'Interaction Drug'</h5>
+      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
+    <div class="w3-button">
+      <h5>'Interaction Drug2'</h5>
+      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
+    <div class="w3-button">
+      <h5>'Interaction Drug2'</h5>
+      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
+  </div>
+  <div style="width:260px; position: fixed; bottom: 0; right: 0; margin-right: 20px; margin-left: 20px; text-align: center;">
+    <h4 style="font-weight: bold; text-align:justify; text-align: center;"> X Interactions Listed</h4>
+    <h5>X Severe | X Moderate | X Mild</h5>
+  </div>
+</div>
+
+<script>
+function open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+function close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script> 
+
+</body>
+</html>
