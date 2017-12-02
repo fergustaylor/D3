@@ -1,5 +1,5 @@
-html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
-html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
+html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit;}
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0}
 body
 button,input,select,textarea{font:inherit;margin:0}optgroup{font-weight:bold}
 button,input{overflow:visible}button,select{text-transform:none}
