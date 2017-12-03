@@ -20,8 +20,8 @@ var line = d3.svg.line.radial()
     .angle(function(d) { return d.x / 180 * Math.PI; });
 
 var div = d3.select("body").insert("div", "h2")
-    .style("top", "-80px")
-    .style("left", "-160px")
+//.style("top", "-80px")
+//.style("left", "-160px")
     .style("width", w + "px")
     .style("height", h + "px")
     .style("position", "absolute")
@@ -104,7 +104,7 @@ function mouseup() {
     div.style("-webkit-transform", null);
 
     svg
-        .attr("transform", "translate(" + rx + "," + ry + ")rotate(" + rotate + ")")
+      .attr("transform", "translate(" + rx + "," + ry + ")rotate(" + rotate + ")")
       .selectAll("g.node text")
         .attr("dx", function(d) { return (d.x + rotate) % 360 < 180 ? 8 : -8; })
         .attr("text-anchor", function(d) { return (d.x + rotate) % 360 < 180 ? "start" : "end"; })
