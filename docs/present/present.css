@@ -2,7 +2,10 @@ body {
   /* position: relative; */
   width: 100%;
   height: 100%;
-  margin: none;
+  margin-top: unset;
+  margin-bottom: unset;
+  margin-left: unset;
+  margin-right: unset;
   overflow: hidden;
 }
 

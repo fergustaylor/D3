@@ -53,7 +53,7 @@
   });
 
   function resize() {
-    d3.select("body").style("margin-top", (window.innerHeight - 800) / 3 + "px");
+    //d3.select("body").style("margin-top", (window.innerHeight - 800) / 3 + "px");//
   }
 
   function step(delta) {
