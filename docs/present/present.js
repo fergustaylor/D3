@@ -7,7 +7,7 @@
       currentIndex = +location.hash.substring(1) || 0,
       nextIndex;
 
-  resize();
+  // resize();
   step(0);
 
   d3.selectAll("iframe").on("load", function() {
@@ -53,7 +53,7 @@
   });
 
   function resize() {
-    //d3.select("body").style("margin-top", (window.innerHeight - 800) / 3 + "px");//
+    //d3.select("body").style("margin-top", (window.innerHeight - 800) / 3 + "px");
   }
 
   function step(delta) {
