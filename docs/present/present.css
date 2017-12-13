@@ -6,7 +6,7 @@ body {
   margin-bottom: unset;
   margin-left: unset;
   margin-right: unset;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 iframe {
