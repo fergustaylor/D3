@@ -44,9 +44,9 @@ font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
   stroke: #2ca02c;
 }
 
-body {
+body:not(.sidebar) {
   font: 300 36px "Helvetica Neue";
-  position: relative;
+  /* position: relative; */
 }
 
 a:link, a:visited {
@@ -78,16 +78,16 @@ body > ul {
   padding: 0;
 }
 
-h1 {
+h1:not(.sidebar) {
   font-size: 64px;
 }
 
-h1, h2, h3 {
+h1:not(.sidebar), h2:not(.sidebar), h3:not(.sidebar) {
   font-weight: inherit;
   margin: 0;
 }
 
-h2, h3 {
+h2:not(.sidebar), h3:not(.sidebar) {
   text-align: right;
   font-size: inherit;
   position: absolute;
@@ -95,12 +95,12 @@ h2, h3 {
   right: 0;
 }
 
-h2 {
+h2:not(.sidebar) {
   font-size: 24px;
   position: absolute;
 }
 
-h3 {
+h3:not(.sidebar) {
   bottom: -20px;
   font-size: 18px;
 }
