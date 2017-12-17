@@ -50,14 +50,7 @@ BNFSections <- rbind(c("BNF",""), BNFSections)
 
 BNFSections$id <- BNFSectionsCoded$id
 
-///
-
 BNFSpending$value <- str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`, ".", BNFSpending$NAME)
-
-
-
-
-
 
 id <- as.data.frame(str_c("BNF"))
 id2 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`)))
@@ -72,6 +65,7 @@ names(id4)[1] <- "id"
 names(id5)[1] <- "id"
 
 MyData <- rbind(id, id2, id3, id4, id5)
+MyData$value <- ""
 ```
 
 ```{r}
