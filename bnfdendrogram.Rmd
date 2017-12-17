@@ -47,5 +47,35 @@ str_replace_all(pattern="/", replacement="")
 
 #Add the starting label
 BNFSections <- rbind(c("BNF",""), BNFSections)
+
+BNFSections$id <- BNFSectionsCoded$id
+
+///
+
+BNFSpending$value <- str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`, ".", BNFSpending$NAME)
+
+
+
+
+
+
+id <- as.data.frame(str_c("BNF"))
+id2 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`)))
+id3 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`)))
+id4 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`)))
+id5 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`, ".", BNFSpending$NAME)))
+
+names(id)[1] <- "id"
+names(id2)[1] <- "id"
+names(id3)[1] <- "id"
+names(id4)[1] <- "id"
+names(id5)[1] <- "id"
+
+MyData <- rbind(id, id2, id3, id4, id5)
+```
+
+```{r}
+write.csv(MyData[1], file = "docs/bnfsections/MyData.csv")
+#might have to edit in excel to remove extra column
 ```
 
