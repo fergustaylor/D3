@@ -14,12 +14,6 @@ BNFSpending <- subset(BNFSpending, select = -c(X4))
 ```
 
 ```{r}
-BNFSpending$`BNF Section` <- substr(BNFSpending$`CHEM SUB`, start = 1, stop = 2)
-BNFSpending$`BNF Section 2` <- substr(BNFSpending$`CHEM SUB`, start = 3, stop = 4)
-BNFSpending$`BNF Section 3` <- substr(BNFSpending$`CHEM SUB`, start = 5, stop = 6)
-```
-
-```{r}
 library(readr)
 BNFSectionsCoded <- read_csv("~/Dropbox/D3/docs/bnfsections/flare.csv")
 ```
@@ -48,7 +42,12 @@ str_replace_all(pattern="/", replacement="")
 #Add the starting label
 BNFSections <- rbind(c("BNF",""), BNFSections)
 
+
 BNFSections$id <- BNFSectionsCoded$id
+
+BNFSpending$`BNF Section` <- substr(BNFSpending$`CHEM SUB`, start = 1, stop = 2)
+BNFSpending$`BNF Section 2` <- substr(BNFSpending$`CHEM SUB`, start = 3, stop = 4)
+BNFSpending$`BNF Section 3` <- substr(BNFSpending$`CHEM SUB`, start = 5, stop = 6)
 
 BNFSpending$value <- str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`, ".", BNFSpending$NAME)
 
@@ -57,7 +56,6 @@ id2 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`)))
 id3 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`)))
 id4 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`)))
 id5 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`, ".", BNFSpending$NAME)))
-
 names(id)[1] <- "id"
 names(id2)[1] <- "id"
 names(id3)[1] <- "id"
@@ -65,10 +63,29 @@ names(id4)[1] <- "id"
 names(id5)[1] <- "id"
 
 MyData <- rbind(id, id2, id3, id4, id5)
-MyData$value <- ""
+```
+#remove ..
+#remove '.' from names
+#add empty, 'value' column
+#check ',' between values
+
+```{r}
+library(readr)
+bnfinteractions <- read_csv("~/Dropbox/D3/bnfinteractions.csv", 
+    col_names = FALSE)
 ```
 
 ```{r}
+BNFSpending$NAME
+
+BNFInteractions <- dplyr::filter(BNFSpending, NAME %in% bnfinteractions$X1)
+
+Rest <- dplyr::filter(BNFSpending, NAME %in% bnfinteractions$X1)
+
+bnfinteractions
+```
+
+
 write.csv(MyData[1], file = "docs/bnfsections/MyData.csv")
 #might have to edit in excel to remove extra column
 ```

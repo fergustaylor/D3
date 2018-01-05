@@ -178,22 +178,34 @@ $(document).ready(function () {
 <pre class="r"><code>library(readr)
 library(tidyverse)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyB0aWR5dmVyc2U6IGdncGxvdDJcbkxvYWRpbmcgdGlkeXZlcnNlOiB0aWJibGVcbkxvYWRpbmcgdGlkeXZlcnNlOiB0aWR5clxuTG9hZGluZyB0aWR5dmVyc2U6IHB1cnJyXG5Mb2FkaW5nIHRpZHl2ZXJzZTogZHBseXJcbnBhY2thZ2Ug4oCYdGliYmxl4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gMy40LjFwYWNrYWdlIOKAmHRpZHly4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gMy40LjFwYWNrYWdlIOKAmHB1cnJy4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gMy40LjFwYWNrYWdlIOKAmGRwbHly4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gMy40LjFDb25mbGljdHMgd2l0aCB0aWR5IHBhY2thZ2VzIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5maWx0ZXIoKTogZHBseXIsIHN0YXRzXG5sYWcoKTogICAgZHBseXIsIHN0YXRzXG4ifQ== -->
+<pre><code>Loading tidyverse: ggplot2
+Loading tidyverse: tibble
+Loading tidyverse: tidyr
+Loading tidyverse: purrr
+Loading tidyverse: dplyr
+package ‘tibble’ was built under R version 3.4.1package ‘tidyr’ was built under R version 3.4.1package ‘purrr’ was built under R version 3.4.1package ‘dplyr’ was built under R version 3.4.1Conflicts with tidy packages --------------------------------------------------------
+filter(): dplyr, stats
+lag():    dplyr, stats</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQk5GU3BlbmRpbmcgPC0gcmVhZF9jc3YoXCJ+L0Ryb3Bib3gvRDMvVDIwMTExMENIRU0gU1VCUy5DU1ZcIilcbkJORlNwZW5kaW5nIDwtIHN1YnNldChCTkZTcGVuZGluZywgc2VsZWN0ID0gLWMoWDQpKVxuYGBgIn0= -->
-<pre class="r"><code>BNFSpending &lt;- read_csv(&quot;~/Dropbox/D3/T201110CHEM SUBS.CSV&quot;)
-BNFSpending &lt;- subset(BNFSpending, select = -c(X4))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQk5GU3BlbmRpbmcgPC0gcmVhZF9jc3YoXCJ+L0Ryb3Bib3gvRDMvVDIwMTExMENIRU0gU1VCUy5DU1ZcIilcbmBgYCJ9 -->
+<pre class="r"><code>BNFSpending &lt;- read_csv(&quot;~/Dropbox/D3/T201110CHEM SUBS.CSV&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uYCA8LSBzdWJzdHIoQk5GU3BlbmRpbmckYENIRU0gU1VCYCwgc3RhcnQgPSAxLCBzdG9wID0gMilcbkJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCA8LSBzdWJzdHIoQk5GU3BlbmRpbmckYENIRU0gU1VCYCwgc3RhcnQgPSAzLCBzdG9wID0gNClcbkJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAzYCA8LSBzdWJzdHIoQk5GU3BlbmRpbmckYENIRU0gU1VCYCwgc3RhcnQgPSA1LCBzdG9wID0gNilcbmBgYCJ9 -->
-<pre class="r"><code>BNFSpending$`BNF Section` &lt;- substr(BNFSpending$`CHEM SUB`, start = 1, stop = 2)
-BNFSpending$`BNF Section 2` &lt;- substr(BNFSpending$`CHEM SUB`, start = 3, stop = 4)
-BNFSpending$`BNF Section 3` &lt;- substr(BNFSpending$`CHEM SUB`, start = 5, stop = 6)</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiTWlzc2luZyBjb2x1bW4gbmFtZXMgZmlsbGVkIGluOiAnWDQnIFs0XVBhcnNlZCB3aXRoIGNvbHVtbiBzcGVjaWZpY2F0aW9uOlxuY29scyhcbiAgYENIRU0gU1VCYCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgTkFNRSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgYEJORiBTZWN0aW9uYCA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgWDQgPSBjb2xfY2hhcmFjdGVyKClcbilcbiJ9 -->
+<pre><code>Missing column names filled in: 'X4' [4]Parsed with column specification:
+cols(
+  `CHEM SUB` = col_character(),
+  NAME = col_character(),
+  `BNF Section` = col_character(),
+  X4 = col_character()
+)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQk5GU3BlbmRpbmcgPC0gc3Vic2V0KEJORlNwZW5kaW5nLCBzZWxlY3QgPSAtYyhYNCkpXG5gYGAifQ== -->
+<pre class="r"><code>BNFSpending &lt;- subset(BNFSpending, select = -c(X4))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -236,17 +248,27 @@ links &lt;- html_nodes(url, &quot;#all-results a&quot;) %&gt;%
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzdHJpbmdyKVxuQk5GU2VjdGlvbnMgPC0gYXNfZGF0YV9mcmFtZSh0aXRsZXMpXG5CTkZTZWN0aW9ucyRsaW5rcyA8LSBhcy5kYXRhLmZyYW1lKGxpbmtzKVxuQk5GU2VjdGlvbnMkbGlua3MgPC0gQk5GU2VjdGlvbnMkbGlua3NbLDFdICU+JVxuc3RyX3JlcGxhY2VfYWxsKHBhdHRlcm49XCIvYm5mL1wiLCByZXBsYWNlbWVudD1cIlwiKSAlPiVcbnN0cl9yZXBsYWNlX2FsbChwYXR0ZXJuPVwiL1wiLCByZXBsYWNlbWVudD1cIlwiKVxuI0FkZCB0aGUgc3RhcnRpbmcgbGFiZWxcbkJORlNlY3Rpb25zIDwtIHJiaW5kKGMoXCJCTkZcIixcIlwiKSwgQk5GU2VjdGlvbnMpXG5CTkZTZWN0aW9ucyRpZCA8LSBCTkZTZWN0aW9uc0NvZGVkJGlkXG5CTkZTcGVuZGluZyR2YWx1ZSA8LSBzdHJfYyhcIkJORi5cIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uYCwgXCIuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCwgXCIuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAzYCwgXCIuXCIsIEJORlNwZW5kaW5nJE5BTUUpXG5pZCA8LSBhcy5kYXRhLmZyYW1lKHN0cl9jKFwiQk5GXCIpKVxuaWQyIDwtIHVuaXF1ZShhcy5kYXRhLmZyYW1lKHN0cl9jKFwiQk5GLlwiLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gKSkpXG5pZDMgPC0gdW5pcXVlKGFzLmRhdGEuZnJhbWUoc3RyX2MoXCJCTkYuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbmAsIFwiLlwiLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gMmApKSlcbmlkNCA8LSB1bmlxdWUoYXMuZGF0YS5mcmFtZShzdHJfYyhcIkJORi5cIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uYCwgXCIuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCwgXCIuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAzYCkpKVxuaWQ1IDwtIHVuaXF1ZShhcy5kYXRhLmZyYW1lKHN0cl9jKFwiQk5GLlwiLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gLCBcIi5cIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDJgLCBcIi5cIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDNgLCBcIi5cIiwgQk5GU3BlbmRpbmckTkFNRSkpKVxubmFtZXMoaWQpWzFdIDwtIFwiaWRcIlxubmFtZXMoaWQyKVsxXSA8LSBcImlkXCJcbm5hbWVzKGlkMylbMV0gPC0gXCJpZFwiXG5uYW1lcyhpZDQpWzFdIDwtIFwiaWRcIlxubmFtZXMoaWQ1KVsxXSA8LSBcImlkXCJcbk15RGF0YSA8LSByYmluZChpZCwgaWQyLCBpZDMsIGlkNCwgaWQ1KVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShzdHJpbmdyKVxuQk5GU2VjdGlvbnMgPC0gYXNfZGF0YV9mcmFtZSh0aXRsZXMpXG5CTkZTZWN0aW9ucyRsaW5rcyA8LSBhcy5kYXRhLmZyYW1lKGxpbmtzKVxuXG5CTkZTZWN0aW9ucyRsaW5rcyA8LSBCTkZTZWN0aW9ucyRsaW5rc1ssMV0gJT4lXG5zdHJfcmVwbGFjZV9hbGwocGF0dGVybj1cIi9ibmYvXCIsIHJlcGxhY2VtZW50PVwiXCIpICU+JVxuc3RyX3JlcGxhY2VfYWxsKHBhdHRlcm49XCIvXCIsIHJlcGxhY2VtZW50PVwiXCIpXG5cbiNBZGQgdGhlIHN0YXJ0aW5nIGxhYmVsXG5CTkZTZWN0aW9ucyA8LSByYmluZChjKFwiQk5GXCIsXCJcIiksIEJORlNlY3Rpb25zKVxuXG5cbkJORlNlY3Rpb25zJGlkIDwtIEJORlNlY3Rpb25zQ29kZWQkaWRcblxuQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uYCA8LSBzdWJzdHIoQk5GU3BlbmRpbmckYENIRU0gU1VCYCwgc3RhcnQgPSAxLCBzdG9wID0gMilcbkJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCA8LSBzdWJzdHIoQk5GU3BlbmRpbmckYENIRU0gU1VCYCwgc3RhcnQgPSAzLCBzdG9wID0gNClcbkJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAzYCA8LSBzdWJzdHIoQk5GU3BlbmRpbmckYENIRU0gU1VCYCwgc3RhcnQgPSA1LCBzdG9wID0gNilcblxuQk5GU3BlbmRpbmckdmFsdWUgPC0gc3RyX2MoXCJCTkYuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbmAsIFwiLlwiLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gMmAsIFwiLlwiLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gM2AsIFwiLlwiLCBCTkZTcGVuZGluZyROQU1FKVxuXG5pZCA8LSBhcy5kYXRhLmZyYW1lKHN0cl9jKFwiQk5GXCIpKVxuaWQyIDwtIHVuaXF1ZShhcy5kYXRhLmZyYW1lKHN0cl9jKFwiQk5GLlwiLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gKSkpXG5pZDMgPC0gdW5pcXVlKGFzLmRhdGEuZnJhbWUoc3RyX2MoXCJCTkYuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbmAsIFwiLlwiLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gMmApKSlcbmlkNCA8LSB1bmlxdWUoYXMuZGF0YS5mcmFtZShzdHJfYyhcIkJORi5cIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uYCwgXCIuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCwgXCIuXCIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAzYCkpKVxuaWQ1IDwtIHVuaXF1ZShhcy5kYXRhLmZyYW1lKHN0cl9jKFwiQk5GLlwiLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gLCBcIi5cIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDJgLCBcIi5cIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDNgLCBcIi5cIiwgQk5GU3BlbmRpbmckTkFNRSkpKVxubmFtZXMoaWQpWzFdIDwtIFwiaWRcIlxubmFtZXMoaWQyKVsxXSA8LSBcImlkXCJcbm5hbWVzKGlkMylbMV0gPC0gXCJpZFwiXG5uYW1lcyhpZDQpWzFdIDwtIFwiaWRcIlxubmFtZXMoaWQ1KVsxXSA8LSBcImlkXCJcblxuTXlEYXRhIDwtIHJiaW5kKGlkLCBpZDIsIGlkMywgaWQ0LCBpZDUpXG5gYGAifQ== -->
 <pre class="r"><code>library(stringr)
 BNFSections &lt;- as_data_frame(titles)
 BNFSections$links &lt;- as.data.frame(links)
+
 BNFSections$links &lt;- BNFSections$links[,1] %&gt;%
 str_replace_all(pattern=&quot;/bnf/&quot;, replacement=&quot;&quot;) %&gt;%
 str_replace_all(pattern=&quot;/&quot;, replacement=&quot;&quot;)
+
 #Add the starting label
 BNFSections &lt;- rbind(c(&quot;BNF&quot;,&quot;&quot;), BNFSections)
+
+
 BNFSections$id &lt;- BNFSectionsCoded$id
+
+BNFSpending$`BNF Section` &lt;- substr(BNFSpending$`CHEM SUB`, start = 1, stop = 2)
+BNFSpending$`BNF Section 2` &lt;- substr(BNFSpending$`CHEM SUB`, start = 3, stop = 4)
+BNFSpending$`BNF Section 3` &lt;- substr(BNFSpending$`CHEM SUB`, start = 5, stop = 6)
+
 BNFSpending$value &lt;- str_c(&quot;BNF.&quot;, BNFSpending$`BNF Section`, &quot;.&quot;, BNFSpending$`BNF Section 2`, &quot;.&quot;, BNFSpending$`BNF Section 3`, &quot;.&quot;, BNFSpending$NAME)
+
 id &lt;- as.data.frame(str_c(&quot;BNF&quot;))
 id2 &lt;- unique(as.data.frame(str_c(&quot;BNF.&quot;, BNFSpending$`BNF Section`)))
 id3 &lt;- unique(as.data.frame(str_c(&quot;BNF.&quot;, BNFSpending$`BNF Section`, &quot;.&quot;, BNFSpending$`BNF Section 2`)))
@@ -257,17 +279,47 @@ names(id2)[1] &lt;- &quot;id&quot;
 names(id3)[1] &lt;- &quot;id&quot;
 names(id4)[1] &lt;- &quot;id&quot;
 names(id5)[1] &lt;- &quot;id&quot;
+
 MyData &lt;- rbind(id, id2, id3, id4, id5)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="remove-.." class="section level1">
+<h1>remove ..</h1>
+</div>
+<div id="remove-.-from-names" class="section level1">
+<h1>remove ‘.’ from names</h1>
+</div>
+<div id="add-empty-value-column" class="section level1">
+<h1>add empty, ‘value’ column</h1>
+</div>
+<div id="check-between-values" class="section level1">
+<h1>check ‘,’ between values</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZWFkcilcbmJuZmludGVyYWN0aW9ucyA8LSByZWFkX2NzdihcIn4vRHJvcGJveC9EMy9ibmZpbnRlcmFjdGlvbnMuY3N2XCIsIFxuICAgIGNvbF9uYW1lcyA9IEZBTFNFKVxuYGBgIn0= -->
+<pre class="r"><code>library(readr)
+bnfinteractions &lt;- read_csv(&quot;~/Dropbox/D3/bnfinteractions.csv&quot;, 
+    col_names = FALSE)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZHBseXI6OmZpbHRlcihCTkZTcGVuZGluZywgTkFNRSAhJWluJSBibmZpbnRlcmFjdGlvbnMkWDEpXG5cbmBgYCJ9 -->
+<pre class="r"><code>dplyr::filter(BNFSpending, NAME !%in% bnfinteractions$X1)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHVuZXhwZWN0ZWQgJyEnIGluIFwiZHBseXI6OmZpbHRlcihCTkZTcGVuZGluZywgTkFNRSAhXCJcbiJ9 -->
+<pre><code>Error: unexpected '!' in &quot;dplyr::filter(BNFSpending, NAME !&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>write.csv(MyData[1], file = “docs/bnfsections/MyData.csv”) #might have to edit in excel to remove extra column ```</p>
 <!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkocmVhZHIpCmxpYnJhcnkodGlkeXZlcnNlKQpgYGAKCmBgYHtyfQpCTkZTcGVuZGluZyA8LSByZWFkX2Nzdigifi9Ecm9wYm94L0QzL1QyMDExMTBDSEVNIFNVQlMuQ1NWIikKQk5GU3BlbmRpbmcgPC0gc3Vic2V0KEJORlNwZW5kaW5nLCBzZWxlY3QgPSAtYyhYNCkpCmBgYAoKYGBge3J9CkJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbmAgPC0gc3Vic3RyKEJORlNwZW5kaW5nJGBDSEVNIFNVQmAsIHN0YXJ0ID0gMSwgc3RvcCA9IDIpCkJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCA8LSBzdWJzdHIoQk5GU3BlbmRpbmckYENIRU0gU1VCYCwgc3RhcnQgPSAzLCBzdG9wID0gNCkKQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDNgIDwtIHN1YnN0cihCTkZTcGVuZGluZyRgQ0hFTSBTVUJgLCBzdGFydCA9IDUsIHN0b3AgPSA2KQpgYGAKCmBgYHtyfQpsaWJyYXJ5KHJlYWRyKQpCTkZTZWN0aW9uc0NvZGVkIDwtIHJlYWRfY3N2KCJ+L0Ryb3Bib3gvRDMvZG9jcy9ibmZzZWN0aW9ucy9mbGFyZS5jc3YiKQpgYGAKCmBgYHtyfQpsaWJyYXJ5KHJ2ZXN0KQpsaWJyYXJ5KHB1cnJyKQoKdXJsIDwtIHJlYWRfaHRtbCgiaHR0cHM6Ly9vcGVucHJlc2NyaWJpbmcubmV0L2JuZi8iKQpkYXRhIDwtIGh0bWxfbm9kZXModXJsLCBjc3M9IiNhbGwtcmVzdWx0cyBhIikKdGl0bGVzIDwtIGh0bWxfdGV4dChkYXRhKQpsaW5rcyA8LSBodG1sX25vZGVzKHVybCwgIiNhbGwtcmVzdWx0cyBhIikgJT4lIAogIG1hcCh4bWxfYXR0cnMpICU+JSAKICBtYXBfZGYofmFzLmxpc3QoLikpCmBgYAoKYGBge3J9CmxpYnJhcnkoc3RyaW5ncikKQk5GU2VjdGlvbnMgPC0gYXNfZGF0YV9mcmFtZSh0aXRsZXMpCkJORlNlY3Rpb25zJGxpbmtzIDwtIGFzLmRhdGEuZnJhbWUobGlua3MpCgpCTkZTZWN0aW9ucyRsaW5rcyA8LSBCTkZTZWN0aW9ucyRsaW5rc1ssMV0gJT4lCnN0cl9yZXBsYWNlX2FsbChwYXR0ZXJuPSIvYm5mLyIsIHJlcGxhY2VtZW50PSIiKSAlPiUKc3RyX3JlcGxhY2VfYWxsKHBhdHRlcm49Ii8iLCByZXBsYWNlbWVudD0iIikKCiNBZGQgdGhlIHN0YXJ0aW5nIGxhYmVsCkJORlNlY3Rpb25zIDwtIHJiaW5kKGMoIkJORiIsIiIpLCBCTkZTZWN0aW9ucykKCkJORlNlY3Rpb25zJGlkIDwtIEJORlNlY3Rpb25zQ29kZWQkaWQKCkJORlNwZW5kaW5nJHZhbHVlIDwtIHN0cl9jKCJCTkYuIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uYCwgIi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gMmAsICIuIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDNgLCAiLiIsIEJORlNwZW5kaW5nJE5BTUUpCgppZCA8LSBhcy5kYXRhLmZyYW1lKHN0cl9jKCJCTkYiKSkKaWQyIDwtIHVuaXF1ZShhcy5kYXRhLmZyYW1lKHN0cl9jKCJCTkYuIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uYCkpKQppZDMgPC0gdW5pcXVlKGFzLmRhdGEuZnJhbWUoc3RyX2MoIkJORi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gLCAiLiIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCkpKQppZDQgPC0gdW5pcXVlKGFzLmRhdGEuZnJhbWUoc3RyX2MoIkJORi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gLCAiLiIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCwgIi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gM2ApKSkKaWQ1IDwtIHVuaXF1ZShhcy5kYXRhLmZyYW1lKHN0cl9jKCJCTkYuIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uYCwgIi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gMmAsICIuIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDNgLCAiLiIsIEJORlNwZW5kaW5nJE5BTUUpKSkKCm5hbWVzKGlkKVsxXSA8LSAiaWQiCm5hbWVzKGlkMilbMV0gPC0gImlkIgpuYW1lcyhpZDMpWzFdIDwtICJpZCIKbmFtZXMoaWQ0KVsxXSA8LSAiaWQiCm5hbWVzKGlkNSlbMV0gPC0gImlkIgoKTXlEYXRhIDwtIHJiaW5kKGlkLCBpZDIsIGlkMywgaWQ0LCBpZDUpCk15RGF0YSR2YWx1ZSA8LSAiIgpgYGAKCmBgYHtyfQp3cml0ZS5jc3YoTXlEYXRhWzFdLCBmaWxlID0gImRvY3MvYm5mc2VjdGlvbnMvTXlEYXRhLmNzdiIpCiNtaWdodCBoYXZlIHRvIGVkaXQgaW4gZXhjZWwgdG8gcmVtb3ZlIGV4dHJhIGNvbHVtbgpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkocmVhZHIpCmxpYnJhcnkodGlkeXZlcnNlKQpgYGAKCmBgYHtyfQpCTkZTcGVuZGluZyA8LSByZWFkX2Nzdigifi9Ecm9wYm94L0QzL1QyMDExMTBDSEVNIFNVQlMuQ1NWIikKQk5GU3BlbmRpbmcgPC0gc3Vic2V0KEJORlNwZW5kaW5nLCBzZWxlY3QgPSAtYyhYNCkpCmBgYAoKYGBge3J9CmxpYnJhcnkocmVhZHIpCkJORlNlY3Rpb25zQ29kZWQgPC0gcmVhZF9jc3YoIn4vRHJvcGJveC9EMy9kb2NzL2JuZnNlY3Rpb25zL2ZsYXJlLmNzdiIpCmBgYAoKYGBge3J9CmxpYnJhcnkocnZlc3QpCmxpYnJhcnkocHVycnIpCgp1cmwgPC0gcmVhZF9odG1sKCJodHRwczovL29wZW5wcmVzY3JpYmluZy5uZXQvYm5mLyIpCmRhdGEgPC0gaHRtbF9ub2Rlcyh1cmwsIGNzcz0iI2FsbC1yZXN1bHRzIGEiKQp0aXRsZXMgPC0gaHRtbF90ZXh0KGRhdGEpCmxpbmtzIDwtIGh0bWxfbm9kZXModXJsLCAiI2FsbC1yZXN1bHRzIGEiKSAlPiUgCiAgbWFwKHhtbF9hdHRycykgJT4lIAogIG1hcF9kZih+YXMubGlzdCguKSkKYGBgCgpgYGB7cn0KbGlicmFyeShzdHJpbmdyKQpCTkZTZWN0aW9ucyA8LSBhc19kYXRhX2ZyYW1lKHRpdGxlcykKQk5GU2VjdGlvbnMkbGlua3MgPC0gYXMuZGF0YS5mcmFtZShsaW5rcykKCkJORlNlY3Rpb25zJGxpbmtzIDwtIEJORlNlY3Rpb25zJGxpbmtzWywxXSAlPiUKc3RyX3JlcGxhY2VfYWxsKHBhdHRlcm49Ii9ibmYvIiwgcmVwbGFjZW1lbnQ9IiIpICU+JQpzdHJfcmVwbGFjZV9hbGwocGF0dGVybj0iLyIsIHJlcGxhY2VtZW50PSIiKQoKI0FkZCB0aGUgc3RhcnRpbmcgbGFiZWwKQk5GU2VjdGlvbnMgPC0gcmJpbmQoYygiQk5GIiwiIiksIEJORlNlY3Rpb25zKQoKCkJORlNlY3Rpb25zJGlkIDwtIEJORlNlY3Rpb25zQ29kZWQkaWQKCkJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbmAgPC0gc3Vic3RyKEJORlNwZW5kaW5nJGBDSEVNIFNVQmAsIHN0YXJ0ID0gMSwgc3RvcCA9IDIpCkJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCA8LSBzdWJzdHIoQk5GU3BlbmRpbmckYENIRU0gU1VCYCwgc3RhcnQgPSAzLCBzdG9wID0gNCkKQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDNgIDwtIHN1YnN0cihCTkZTcGVuZGluZyRgQ0hFTSBTVUJgLCBzdGFydCA9IDUsIHN0b3AgPSA2KQoKQk5GU3BlbmRpbmckdmFsdWUgPC0gc3RyX2MoIkJORi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gLCAiLiIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCwgIi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gM2AsICIuIiwgQk5GU3BlbmRpbmckTkFNRSkKCmlkIDwtIGFzLmRhdGEuZnJhbWUoc3RyX2MoIkJORiIpKQppZDIgPC0gdW5pcXVlKGFzLmRhdGEuZnJhbWUoc3RyX2MoIkJORi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gKSkpCmlkMyA8LSB1bmlxdWUoYXMuZGF0YS5mcmFtZShzdHJfYygiQk5GLiIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbmAsICIuIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDJgKSkpCmlkNCA8LSB1bmlxdWUoYXMuZGF0YS5mcmFtZShzdHJfYygiQk5GLiIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbmAsICIuIiwgQk5GU3BlbmRpbmckYEJORiBTZWN0aW9uIDJgLCAiLiIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAzYCkpKQppZDUgPC0gdW5pcXVlKGFzLmRhdGEuZnJhbWUoc3RyX2MoIkJORi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb25gLCAiLiIsIEJORlNwZW5kaW5nJGBCTkYgU2VjdGlvbiAyYCwgIi4iLCBCTkZTcGVuZGluZyRgQk5GIFNlY3Rpb24gM2AsICIuIiwgQk5GU3BlbmRpbmckTkFNRSkpKQpuYW1lcyhpZClbMV0gPC0gImlkIgpuYW1lcyhpZDIpWzFdIDwtICJpZCIKbmFtZXMoaWQzKVsxXSA8LSAiaWQiCm5hbWVzKGlkNClbMV0gPC0gImlkIgpuYW1lcyhpZDUpWzFdIDwtICJpZCIKCk15RGF0YSA8LSByYmluZChpZCwgaWQyLCBpZDMsIGlkNCwgaWQ1KQpgYGAKI3JlbW92ZSAuLgojcmVtb3ZlICcuJyBmcm9tIG5hbWVzCiNhZGQgZW1wdHksICd2YWx1ZScgY29sdW1uCiNjaGVjayAnLCcgYmV0d2VlbiB2YWx1ZXMKCmBgYHtyfQpsaWJyYXJ5KHJlYWRyKQpibmZpbnRlcmFjdGlvbnMgPC0gcmVhZF9jc3YoIn4vRHJvcGJveC9EMy9ibmZpbnRlcmFjdGlvbnMuY3N2IiwgCiAgICBjb2xfbmFtZXMgPSBGQUxTRSkKYGBgCgpgYGB7cn0KQk5GU3BlbmRpbmckTkFNRQoKQk5GSW50ZXJhY3Rpb25zIDwtIGRwbHlyOjpmaWx0ZXIoQk5GU3BlbmRpbmcsIE5BTUUgJWluJSBibmZpbnRlcmFjdGlvbnMkWDEpCgpSZXN0IDwtIGRwbHlyOjpmaWx0ZXIoQk5GU3BlbmRpbmcsIE5BTUUgJWluJSBibmZpbnRlcmFjdGlvbnMkWDEpCgpibmZpbnRlcmFjdGlvbnMKYGBgCgoKd3JpdGUuY3N2KE15RGF0YVsxXSwgZmlsZSA9ICJkb2NzL2JuZnNlY3Rpb25zL015RGF0YS5jc3YiKQojbWlnaHQgaGF2ZSB0byBlZGl0IGluIGV4Y2VsIHRvIHJlbW92ZSBleHRyYSBjb2x1bW4KYGBgCgo=</div>
 
 
 
