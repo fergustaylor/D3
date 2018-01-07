@@ -10,20 +10,20 @@
 <link rel="stylesheet" type="text/css" href="w3.css"/>
 <div class="w3-sidebar w3-bar-block w3-collapse w3-animate-right" style="width:300px; right:0; opacity: 0.75; color: grey;" id="mySidebar">
   <div style="width:280px; position: fixed; top: 0; right: 0; opacity: 1; margin-right: 20px;">
-    <button class="w3-button w3-white w3-xlarge w3-left w3-hide-large" onclick="w3_close()">&#9776;</button>
+    <button class="w3-button w3-white w3-xlarge w3-left w3-hide-large" onclick="close()">&#9776;</button>
     <br>
     <br>
     <br>
     <h1 style="margin-left: 20px;">'Drug name'</h1>
-    <div class="w3-button">
+    <div class="w3-button" onclick="show()">
       <h5>'Interaction Drug'</h5>
-      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
-    <div class="w3-button">
+      <h7 style="text-indent:25px;display:none">'Interaction Info'</h7></div>
+    <div class="w3-button" onclick="show()">
       <h5>'Interaction Drug2'</h5>
-      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
-    <div class="w3-button">
+      <h7 style="text-indent:25px;display:none">'Interaction Info'</h7></div>
+    <div class="w3-button" onclick="show()">
       <h5>'Interaction Drug2'</h5>
-      <h7 style="text-indent: 25px;">'Interaction Info'</h7></div>
+      <h7 style="text-indent:25px;display:none">'Interaction Info'</h7></div>
   </div>
   <div style="width:260px; position: fixed; bottom: 0; right: 0; margin-right: 20px; margin-left: 20px; text-align: center;">
     <h4 style="font-weight: bold; text-align:justify; text-align: center;"> X Interactions Listed</h4>
@@ -32,14 +32,22 @@
 </div>
 </div>
 
-<button class="w3-button w3-white w3-xlarge w3-right w3-hide-large" onclick="w3_open()">&#9776;</button>
+<button class="w3-button w3-white w3-xlarge w3-right w3-hide-large" onclick="open()">&#9776;</button>
 
 <script>
-function w3_open() {
+function open() {
     document.getElementById("mySidebar").style.display = "block";
 }
-function w3_close() {
+function close() {
     document.getElementById("mySidebar").style.display = "none";
+}
+function show() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
 }
 </script> 
 
