@@ -102,6 +102,12 @@ font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
   stroke: #d62728;
 }
 
+.link.source2 {
+  stroke: #026559;
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
 .node.source {
   fill: #2ca02c;
 }

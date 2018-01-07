@@ -62,7 +62,12 @@ d3.json("https://fergustaylor.github.io/D3/flare2.json", function(classes) {
       .attr("transform", function(d) { return d.x < 180 ? null : "rotate(180)"; })
       .text(function(d) { return d.key; })
       .on("mouseover", mouseover)
-      .on("mouseout", mouseout);
+      .on("mouseout", mouseout)
+      .on("mousedown", click)
+      //.on("mouseup", clickup)
+      .on("dblclick", clear);
+      //cfvnbm,.sdvjd
+      //
 
   d3.select("input[type=range]").on("change", function() {
     line.tension(this.value / 100);
@@ -82,6 +87,77 @@ function mousedown() {
   m0 = mouse(d3.event);
   d3.event.preventDefault();
 }
+
+//function click(d) {
+//  //clear all previous on mousedown?
+//  svg.selectAll("path.link.target-" + d.key)
+//      .classed("target2", true)
+//
+//  svg.selectAll("path.link.source-" + d.key)
+//      .classed("source2", true)
+//      //
+//}
+
+var drugselected;
+
+var drugtotal;
+
+var druginteractions;
+
+var druginfo = []; 
+
+function click(d) {
+  //clear all previous on mousedown?
+  svg.selectAll("path")
+      .classed("source2", false)
+
+  svg.selectAll("path")
+      .classed("target2", false)
+  //then colour the new selection.
+  svg.selectAll("path.link.target-" + d.key)
+      .classed("target2", true)
+
+  svg.selectAll("path.link.source-" + d.key)
+      .classed("source2", true)
+      //
+  drugselected = d.key;
+  document.getElementById('title').innerHTML = drugselected;
+
+  druginteractions = svg.selectAll("path.link.source-" + d.key);
+
+  drugtotal = druginteractions[0].length;
+
+  document.getElementById('drugstotal').innerHTML = drugtotal + " Interactions Listed";
+// drugstotal will list 1, if 0 interactions, since a path to BNF exists.
+
+  druginfo
+
+
+}
+
+//function clickup(d) {
+//}
+
+function clear(d) {
+  svg.selectAll("path")
+      .classed("source2", false)
+
+  svg.selectAll("path")
+      .classed("target2", false)
+
+  var drugselected = null;
+  document.getElementById('title').innerHTML = "Click on a drug to get started..";
+  document.getElementById('drugstotal').innerHTML = "X Interactions Listed";
+//change ^ to 'click a drug to get started'
+}
+
+//function clickup(d) {
+//  svg.selectAll("path.link.source-" + d.key)
+//      .classed("source2", false)
+//
+//  svg.selectAll("path.link.target-" + d.key)
+//      .classed("target2", false)
+//}
 
 function mousemove() {
   if (m0) {
