@@ -1,0 +1,18 @@
+//var div = document.getElementById('drug')
+//                  .insertBefore(document.createElement("a"), document.getElementById("drug").childNodes[0])
+//          document.getElementById('drug')
+//                  .insertBefore(document.createElement("br"), document.getElementById("drug").childNodes[0]);
+
+//for (i = 0; i < druginfo.length; i++) {
+//div
+//div.innerHTML = druginfo[i];
+//}
+
+//  var  a = document.createElement("a").innerHTML="dfghj";
+
+//  document.getElementById('drug').appendChild(a);
+
+document.getElementById('drug')
+                  .insertBefore(document.createElement("a").innerHTML = druginfo, document.getElementById("drug").childNodes[0])
+document.getElementById('drug')
+                 .insertBefore(document.createElement("br"), document.getElementById("drug").childNodes[0]);

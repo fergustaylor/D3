@@ -107,12 +107,17 @@ var druginteractions;
 var druginfo = []; 
 
 function click(d) {
-  //clear all previous on mousedown?
+  //clear all previous
   svg.selectAll("path")
       .classed("source2", false)
 
   svg.selectAll("path")
       .classed("target2", false)
+
+  //clear drug
+  var myNode = document.getElementById("drug");
+  myNode.innerHTML = '';
+
   //then colour the new selection.
   svg.selectAll("path.link.target-" + d.key)
       .classed("target2", true)
@@ -127,23 +132,77 @@ function click(d) {
 
   drugtotal = druginteractions[0].length;
 
+//create druginfo
+  druginfo = [];
+
+  for (i = 0; i < druginteractions[0].length; i++) {
+  druginfo.push(druginteractions[0][i].__data__.target.key);
+}
+//
+druginfo.forEach(function(druginfo){
+  div2 = document.getElementById('drug');
+  div = document.createElement("a");
+  div.appendChild(document.createTextNode(druginfo));
+  div2.appendChild(div).classList.add("showSingle","sidebar2");
+  div2.appendChild(div);
+  div3 = document.createElement("br");
+  div2.appendChild(div3);
+});
+
+// add list all, hide all, line
+div2 = document.getElementById('drug');
+
+//add a break between drugs and the list all/hide all
+div3 = document.createElement("br");
+div2.appendChild(div3);
+
+//create list all
+div = document.createElement("a");
+div.appendChild(document.createTextNode("List All"));
+div.id = "showall";
+div2.appendChild(div).classList.add("sidebar2");
+
+//add break
+div3 = document.createElement("br");
+div2.appendChild(div3);
+
+//create hide all
+div = document.createElement("a");
+div.appendChild(document.createTextNode("Hide All"));
+div.id = "hideall";
+div2.appendChild(div).classList.add("sidebar2");
+
+//add break
+div3 = document.createElement("br");
+div2.appendChild(div3);
+
+//create line
+div = document.createElement("hr");
+div2.appendChild(div).classList.add("sidebar2");
+
+//add break
+div3 = document.createElement("br");
+div2.appendChild(div3);
+
+//Bottom
   document.getElementById('drugstotal').innerHTML = drugtotal + " Interactions Listed";
 // drugstotal will list 1, if 0 interactions, since a path to BNF exists.
-
-  druginfo
-
-
 }
 
 //function clickup(d) {
 //}
 
+//clear everythin on doubleclick
 function clear(d) {
   svg.selectAll("path")
       .classed("source2", false)
 
   svg.selectAll("path")
       .classed("target2", false)
+
+  //clear drug
+  var myNode = document.getElementById("drug");
+  myNode.innerHTML = '';
 
   var drugselected = null;
   document.getElementById('title').innerHTML = "Click on a drug to get started..";
