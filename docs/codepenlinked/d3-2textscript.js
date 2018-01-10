@@ -38,7 +38,7 @@ svg.append("svg:path")
     .attr("d", d3.svg.arc().outerRadius(ry - 120).innerRadius(0).startAngle(0).endAngle(2 * Math.PI))
     .on("mousedown", mousedown);
 
-d3.json("https://fergustaylor.github.io/D3/flare2.json", function(classes) {
+d3.json("https://fergustaylor.github.io/D3/dev/flare3.json", function(classes) {
   var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes),
       splines = bundle(links);
@@ -106,6 +106,8 @@ var druginteractions;
 
 var druginfo = []; 
 
+var druginteractionsinfo = []; 
+
 function click(d) {
   //clear all previous
   svg.selectAll("path")
@@ -116,6 +118,10 @@ function click(d) {
 
   //clear drug
   var myNode = document.getElementById("drug");
+  myNode.innerHTML = '';
+
+  //clear div
+  var myNode = document.getElementById("div");
   myNode.innerHTML = '';
 
   //then colour the new selection.
@@ -138,13 +144,14 @@ function click(d) {
   for (i = 0; i < druginteractions[0].length; i++) {
   druginfo.push(druginteractions[0][i].__data__.target.key);
 }
+
 //
 druginfo.forEach(function(druginfo){
   div2 = document.getElementById('drug');
   div = document.createElement("a");
   div.appendChild(document.createTextNode(druginfo));
   div2.appendChild(div).classList.add("showSingle","sidebar2");
-  div2.appendChild(div);
+  //not sure if I need this line - div2.appendChild(div);
   div3 = document.createElement("br");
   div2.appendChild(div3);
 });
@@ -187,6 +194,39 @@ div2.appendChild(div3);
 //Bottom
   document.getElementById('drugstotal').innerHTML = drugtotal + " Interactions Listed";
 // drugstotal will list 1, if 0 interactions, since a path to BNF exists.
+
+//create druginteractionsinfo
+druginteractionsinfo = [];
+
+// use drugselected to find all interactions
+
+//load interactionsinfo based off click
+d3.json("https://fergustaylor.github.io/D3/dev/flare3.json", function(data) {
+
+for (i = 0; i < data.length; i++) {
+if (data[i].name == "BNF."+drugselected+"."+drugselected) {
+console.log(data[i].interactioninfo)
+/// add div code
+druginteractionsinfo = data[i].interactioninfo
+//create divs based off druginteractionsinfo
+$(document).ready(function() {
+for (i = 0; i < druginteractionsinfo.length; i++) {
+  var dav2 = document.getElementById('div');
+  var dav = document.createElement("div");
+  dav.appendChild(document.createTextNode(druginteractionsinfo[i]));
+  dav2.appendChild(dav).classList.add("targetDiv","sidebar2");
+  //dav2.appendChild(dav);
+  var dav3 = document.createElement("br");
+  dav2.appendChild(dav3);
+  dav.id = "Div"+(i+1);
+};
+});
+}
+}
+
+});
+
+//end of click function
 }
 
 //function clickup(d) {
