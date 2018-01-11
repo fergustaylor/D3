@@ -54,9 +54,6 @@ div.menu {
    background-color: #000 !important;
 }
 
-:not(.sidebar2) {
-}
-
 /* --- */
 
 body {
@@ -104,9 +101,18 @@ font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .link.source2 {
-  stroke: #026559;
+  stroke: #5405c1;
   stroke-opacity: 1;
   stroke-width: 2px;
+}
+
+.node.targetnode {
+fill: #5405c1 !important;
+}
+
+.node.targetnode.target {
+fill: #d62728 !important;
+text-decoration: overline underline !important;
 }
 
 .node.source {

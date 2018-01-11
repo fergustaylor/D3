@@ -104,7 +104,10 @@ function click(d) {
       .classed("source2", false)
 
   svg.selectAll("path")
-      .classed("target2", false)
+     .classed("target2", false)
+
+  svg.selectAll("g.node")
+     .classed("targetnode", false)
 
   //clear drug
   var myNode = document.getElementById("drug");
@@ -120,7 +123,12 @@ function click(d) {
 
   svg.selectAll("path.link.source-" + d.key)
       .classed("source2", true)
-      //
+
+  // colour text also
+  svg.selectAll("g.node.target")
+      .classed("targetnode", true)
+
+  // label sidebar
   drugselected = d.key;
   document.getElementById('title').innerHTML = drugselected;
 
@@ -244,6 +252,9 @@ function clear(d) {
 
   svg.selectAll("path")
       .classed("target2", false)
+
+  svg.selectAll("g.node")
+     .classed("targetnode", false)
 
   //clear drug
   var myNode = document.getElementById("drug");
