@@ -167,35 +167,35 @@ div2 = document.getElementById('drug');
 
 //add a break between drugs and the list all/hide all
 div3 = document.createElement("br");
-div2.appendChild(div3);
+//div2.appendChild(div3);
 
 //create list all
-div = document.createElement("a");
-div.appendChild(document.createTextNode("List All"));
-div.id = "showall";
-div2.appendChild(div).classList.add("sidebar2");
+//div = document.createElement("a");
+//div.appendChild(document.createTextNode("List All"));
+//div.id = "showall";
+//div2.appendChild(div).classList.add("sidebar2");
 
 //add break
-div3 = document.createElement("br");
-div2.appendChild(div3);
+//div3 = document.createElement("br");
+//div2.appendChild(div3);
 
 //create hide all
-div = document.createElement("a");
-div.appendChild(document.createTextNode("Hide All"));
-div.id = "hideall";
-div2.appendChild(div).classList.add("sidebar2");
+//div = document.createElement("a");
+//div.appendChild(document.createTextNode("Hide All"));
+//div.id = "hideall";
+//div2.appendChild(div).classList.add("sidebar2");
 
 //add break
 div3 = document.createElement("br");
-div2.appendChild(div3);
+//div2.appendChild(div3);
 
 //create line
 div = document.createElement("hr");
-div2.appendChild(div).classList.add("sidebar2");
+//div2.appendChild(div).classList.add("sidebar2");
 
 //add break
-div3 = document.createElement("br");
-div2.appendChild(div3);
+//div3 = document.createElement("br");
+//div2.appendChild(div3);
 
 //Bottom
 document.getElementById('drugstotal').innerHTML = drugtotal + " Interactions Listed";
@@ -229,7 +229,6 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
 });
 }
 }
-
 });
 
 //open sidebar
@@ -237,9 +236,6 @@ jQuery('.sidebar').show();
 
 //end of click function
 }
-
-//function clickup(d) {
-//}
 
 //clear everythin on doubleclick
 function clear(d) {
@@ -269,14 +265,6 @@ function clear(d) {
   myNode.innerHTML = '';
 }
 
-//function clickup(d) {
-//  svg.selectAll("path.link.source-" + d.key)
-//      .classed("source2", false)
-//
-//  svg.selectAll("path.link.target-" + d.key)
-//      .classed("target2", false)
-//}
-
 function mousemove() {
   if (m0) {
     var m1 = mouse(d3.event),
@@ -305,6 +293,7 @@ function mouseup() {
         .attr("transform", function(d) { return (d.x + rotate) % 360 < 180 ? null : "rotate(180)"; });
   }
 }
+var hovering;
 
 function mouseover(d) {
   svg.selectAll("path.link.target-" + d.key)
@@ -314,7 +303,46 @@ function mouseover(d) {
   svg.selectAll("path.link.source-" + d.key)
       .classed("source", true)
       .each(updateNodes("target", true));
+
+      //clear close2
+      var myNode = document.getElementById('close2');
+      myNode.innerHTML = '';
+
+      //add <a> for on:hover
+    var hovering = document.querySelectorAll(".node:hover");
+
+      //var newinteractions = document.querySelectorAll(".node:hover");
+
+      var includedinteractions = document.querySelectorAll(".node.targetnode.target");
+
+
+var hoverinteractions = document.querySelectorAll(".link.source");
+
+      var dov2 = document.getElementById('close2');
+      var dov = document.createElement("a");
+
+      dov.appendChild(document.createTextNode("You're hovering over "+hovering[0].__data__.key));
+      dov.appendChild(document.createElement("br"));
+      dov.appendChild(document.createTextNode("It has "+hoverinteractions.length+" interactions."));
+      dov.appendChild(document.createElement("br"))
+    //  if (drugselected == undefined) {
+    //        drugselected = "itself";
+    //    }
+      dov.appendChild(document.createTextNode("It shares "+includedinteractions.length+" interaction(s) with "+drugselected+"."));
+      dov.appendChild(document.createElement("br"));
+      dov.appendChild(document.createElement("br"));
+
+      //
+      for (i = 0; i < includedinteractions.length; i++) {
+      dov.appendChild(document.createElement("li").appendChild(document.createTextNode("- "+includedinteractions[i].__data__.key)));
+      dov.appendChild(document.createElement("br"));
+      }
+
+      dov2.appendChild(dov);
 }
+//.createTextNode("ghellf");
+//document.createTextNode("You're hovering over "+hovering));
+
 
 function mouseout(d) {
   svg.selectAll("path.link.source-" + d.key)
@@ -324,6 +352,8 @@ function mouseout(d) {
   svg.selectAll("path.link.target-" + d.key)
       .classed("target", false)
       .each(updateNodes("source", false));
+  var myNode = document.getElementById('close2');
+  myNode.innerHTML = '';
 }
 
 function updateNodes(name, value) {

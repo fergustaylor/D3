@@ -1,4 +1,5 @@
 .sidebar {
+   display: none;
    font-family: "Segoe UI", Arial, sans-serif;
    width: 300px;
    position: fixed;
@@ -8,7 +9,9 @@
    background: white;
    padding: 2%;
    height: 100%;
-   overflow-y: auto
+   overflow-y: auto;
+   padding-top: 26px;
+
 }
 
 #title {
@@ -44,7 +47,7 @@ div.menu {
 }
 
 #open:hover,#close:hover,.showSingle:hover,
-#showall:hover {
+#showall:hover, #hoveroverlap:hover {
    color: #000 !important;
    background-color: #ccc !important;
 }
@@ -130,13 +133,26 @@ body {
 
 a:link, a:visited {
   color: #777;
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
+  /*color: #666; */
   color: #666;
 }
 
+/* */
+div.hoveroverlap {
+    padding: 2%;
+}
+
+div .hoveroverlap a:hover {
+    background-color: #ccc;
+    color: #000 !important;
+    font-weight: 500;
+}
+
+/* */
 blockquote {
   margin: 0;
 }
