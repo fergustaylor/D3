@@ -8,6 +8,7 @@
    background: white;
    padding: 2%;
    height: 100%;
+   overflow-y: auto
 }
 
 #title {
