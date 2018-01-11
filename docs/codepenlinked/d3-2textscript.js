@@ -88,16 +88,6 @@ function mousedown() {
   d3.event.preventDefault();
 }
 
-//function click(d) {
-//  //clear all previous on mousedown?
-//  svg.selectAll("path.link.target-" + d.key)
-//      .classed("target2", true)
-//
-//  svg.selectAll("path.link.source-" + d.key)
-//      .classed("source2", true)
-//      //
-//}
-
 var drugselected;
 
 var drugtotal;
@@ -145,16 +135,24 @@ function click(d) {
   druginfo.push(druginteractions[0][i].__data__.target.key);
 }
 
-//
-druginfo.forEach(function(druginfo){
+for (i = 0; i < druginfo.length; i++) {
   div2 = document.getElementById('drug');
+  var att = document.createAttribute("target");
+  att.value = i+1;
   div = document.createElement("a");
-  div.appendChild(document.createTextNode(druginfo));
+  var blep = druginfo[i];
+  //if (druginfo[0] == undefined && druginfo.length=1) {
+  if (druginfo[0] == undefined) {
+        blep = "This drug has no interactions with the other drugs listed in this graph.";
+    }
+  div.appendChild(document.createTextNode(blep));
   div2.appendChild(div).classList.add("showSingle","sidebar2");
+  div2.appendChild(div).setAttributeNode(att);
   //not sure if I need this line - div2.appendChild(div);
   div3 = document.createElement("br");
   div2.appendChild(div3);
-});
+}
+
 
 // add list all, hide all, line
 div2 = document.getElementById('drug');
@@ -192,7 +190,7 @@ div3 = document.createElement("br");
 div2.appendChild(div3);
 
 //Bottom
-  document.getElementById('drugstotal').innerHTML = drugtotal + " Interactions Listed";
+document.getElementById('drugstotal').innerHTML = drugtotal + " Interactions Listed";
 // drugstotal will list 1, if 0 interactions, since a path to BNF exists.
 
 //create druginteractionsinfo
@@ -218,13 +216,16 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
   //dav2.appendChild(dav);
   var dav3 = document.createElement("br");
   dav2.appendChild(dav3);
-  dav.id = "Div"+(i+1);
+  dav.id = "div"+(i+1);
 };
 });
 }
 }
 
 });
+
+//open sidebar
+jQuery('.sidebar').show();
 
 //end of click function
 }
@@ -234,6 +235,10 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
 
 //clear everythin on doubleclick
 function clear(d) {
+
+  //hide sidebar
+  jQuery('.sidebar').hide();
+
   svg.selectAll("path")
       .classed("source2", false)
 
@@ -247,7 +252,10 @@ function clear(d) {
   var drugselected = null;
   document.getElementById('title').innerHTML = "Click on a drug to get started..";
   document.getElementById('drugstotal').innerHTML = "X Interactions Listed";
-//change ^ to 'click a drug to get started'
+
+  //clear div
+  var myNode = document.getElementById("div");
+  myNode.innerHTML = '';
 }
 
 //function clickup(d) {
