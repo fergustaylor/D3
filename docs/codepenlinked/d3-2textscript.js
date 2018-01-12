@@ -107,6 +107,11 @@ function click(d) {
   svg.selectAll("g.node")
      .classed("targetnode", false)
 
+  //clear close2
+  var myNode = document.getElementById('close2');
+  myNode.innerHTML = '';
+//show "show addition information by hovering.."
+jQuery('#shownotice').show();
   //clear drug
   var myNode = document.getElementById("drug");
   myNode.innerHTML = '';
