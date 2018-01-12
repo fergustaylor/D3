@@ -30,6 +30,8 @@ var div = d3.select("body").insert("div", "h2")
 var svg = div.append("svg:svg")
     .attr("width", w)
     .attr("height", h)
+    //make class flexbox
+    .attr("class", "flex-container")
   .append("svg:g")
     .attr("transform", "translate(" + rx + "," + ry + ")");
 

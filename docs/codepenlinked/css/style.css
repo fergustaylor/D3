@@ -13,6 +13,12 @@
    padding-top: 26px;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .hoveroverlap {
   display: none;
 }
@@ -240,5 +246,9 @@ h3 {
 }
 
 body > svg {
-  position: absolute;
+  /*position: absolute; */
+  display: flex;
+  /*height: 300px;*/
+  justify-content: center;
+  align-items: center;
 }
