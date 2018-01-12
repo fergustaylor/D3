@@ -64,9 +64,7 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare3.json", function(classes) {
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
       .on("mousedown", click)
-      //.on("mouseup", clickup)
       .on("dblclick", clear);
-      //cfvnbm,.sdvjd
       //
 
   d3.select("input[type=range]").on("change", function() {
@@ -161,7 +159,6 @@ for (i = 0; i < druginfo.length; i++) {
   div2.appendChild(div3);
 }
 
-
 // add list all, hide all, line
 div2 = document.getElementById('drug');
 
@@ -204,12 +201,11 @@ document.getElementById('drugstotal').innerHTML = drugtotal + " Interactions Lis
 //create druginteractionsinfo
 druginteractionsinfo = [];
 
-// use drugselected to find all interactions
-
 //load interactionsinfo based off click
 d3.json("https://fergustaylor.github.io/D3/dev/flare3.json", function(data) {
 
 for (i = 0; i < data.length; i++) {
+  /// will need to change the below when I add classes
 if (data[i].name == "BNF."+drugselected+"."+drugselected) {
 console.log(data[i].interactioninfo)
 /// add div code
@@ -233,7 +229,8 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
 
 //open sidebar
 jQuery('.sidebar').show();
-
+jQuery('.hoveroverlap').show();
+//
 //end of click function
 }
 
@@ -251,6 +248,8 @@ function clear(d) {
 
   svg.selectAll("g.node")
      .classed("targetnode", false)
+
+  jQuery('.hoveroverlap').hide();
 
   //clear drug
   var myNode = document.getElementById("drug");
@@ -293,7 +292,7 @@ function mouseup() {
         .attr("transform", function(d) { return (d.x + rotate) % 360 < 180 ? null : "rotate(180)"; });
   }
 }
-var hovering;
+//var hovering;
 
 function mouseover(d) {
   svg.selectAll("path.link.target-" + d.key)
@@ -308,41 +307,44 @@ function mouseover(d) {
       var myNode = document.getElementById('close2');
       myNode.innerHTML = '';
 
+      //clear notice
+      //document.getElementById('notice').innerHTML = ""
+
       //add <a> for on:hover
-    var hovering = document.querySelectorAll(".node:hover");
+    var hovering = document.querySelectorAll(".node:hover")[0].__data__.key;
 
-      //var newinteractions = document.querySelectorAll(".node:hover");
+//not sure why drugselected was the previous drug selected. so I'm setting it from the header which always seems to be correct.
+    //var drugselected = document.getElementById('title').innerHTML
+    //var newinteractions = document.querySelectorAll(".node:hover");
 
-      var includedinteractions = document.querySelectorAll(".node.targetnode.target");
+    var includedinteractions = document.querySelectorAll(".node.targetnode.target");
 
+    var hoverinteractions = document.querySelectorAll(".link.source");
 
-var hoverinteractions = document.querySelectorAll(".link.source");
+    var dov2 = document.getElementById('close2');
+    var dov = document.createElement("a");
 
-      var dov2 = document.getElementById('close2');
-      var dov = document.createElement("a");
-
-      dov.appendChild(document.createTextNode("You're hovering over "+hovering[0].__data__.key));
+    if (hovering == document.getElementById('title').innerHTML) {
+    dov.appendChild(document.createTextNode("You're hovering over the selected drug, ("+drugselected+"), try moving the mouse over another drug to compare the two."));
+    dov2.appendChild(dov);
+    }
+    else {
+      dov.appendChild(document.createTextNode("You're hovering over "+hovering+"."));
       dov.appendChild(document.createElement("br"));
       dov.appendChild(document.createTextNode("It has "+hoverinteractions.length+" interactions."));
       dov.appendChild(document.createElement("br"))
-    //  if (drugselected == undefined) {
-    //        drugselected = "itself";
-    //    }
       dov.appendChild(document.createTextNode("It shares "+includedinteractions.length+" interaction(s) with "+drugselected+"."));
       dov.appendChild(document.createElement("br"));
       dov.appendChild(document.createElement("br"));
-
       //
       for (i = 0; i < includedinteractions.length; i++) {
       dov.appendChild(document.createElement("li").appendChild(document.createTextNode("- "+includedinteractions[i].__data__.key)));
       dov.appendChild(document.createElement("br"));
       }
-
       dov2.appendChild(dov);
+    }
+    jQuery('#shownotice').hide();
 }
-//.createTextNode("ghellf");
-//document.createTextNode("You're hovering over "+hovering));
-
 
 function mouseout(d) {
   svg.selectAll("path.link.source-" + d.key)
@@ -354,6 +356,8 @@ function mouseout(d) {
       .each(updateNodes("source", false));
   var myNode = document.getElementById('close2');
   myNode.innerHTML = '';
+  var hovering = "";
+  jQuery('#shownotice').show();
 }
 
 function updateNodes(name, value) {
