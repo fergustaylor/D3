@@ -171,23 +171,23 @@ div2 = document.getElementById('drug');
 
 //add a break between drugs and the list all/hide all
 div3 = document.createElement("br");
-//div2.appendChild(div3);
+div2.appendChild(div3);
 
 //create list all
-//div = document.createElement("a");
-//div.appendChild(document.createTextNode("List All"));
-//div.id = "showall";
-//div2.appendChild(div).classList.add("sidebar2");
+div = document.createElement("a");
+div.appendChild(document.createTextNode("List All"));
+div.id = "showall";
+div2.appendChild(div).classList.add("sidebar2");
 
 //add break
-//div3 = document.createElement("br");
-//div2.appendChild(div3);
+div3 = document.createElement("br");
+div2.appendChild(div3);
 
 //create hide all
-//div = document.createElement("a");
-//div.appendChild(document.createTextNode("Hide All"));
-//div.id = "hideall";
-//div2.appendChild(div).classList.add("sidebar2");
+div = document.createElement("a");
+div.appendChild(document.createTextNode("Hide All"));
+div.id = "hideall";
+div2.appendChild(div).classList.add("sidebar2");
 
 //add break
 div3 = document.createElement("br");
@@ -221,14 +221,17 @@ druginteractionsinfo = data[i].interactioninfo
 $(document).ready(function() {
 for (i = 0; i < druginteractionsinfo.length; i++) {
   var dav2 = document.getElementById('div');
-  var dav = document.createElement("div");
+  var dav = document.createElement("span");
   dav.appendChild(document.createTextNode(druginteractionsinfo[i]));
   dav2.appendChild(dav).classList.add("targetDiv","sidebar2");
   //dav2.appendChild(dav);
-  var dav3 = document.createElement("br");
-  dav2.appendChild(dav3);
+  //var dav3 = document.createElement("br");
+  //dav2.appendChild(dav3);
   dav.id = "div"+(i+1);
 };
+//var dav2 = document.getElementById('div');
+//var dav = document.createElement("br");
+//dav2.appendChild(dav);
 });
 }
 }
@@ -239,6 +242,18 @@ jQuery('.sidebar').show();
 jQuery('.hoveroverlap').show();
 //
 //end of click function
+jQuery('#showall').click(function(){
+  jQuery('.targetDiv').show();
+        });
+
+jQuery('#hideall').click(function(){
+  jQuery('.targetDiv').hide();
+        });
+
+jQuery('.showSingle').click(function(){
+  jQuery('.targetDiv').hide();
+  jQuery('#div'+$(this).attr('target')).show();
+        });
 }
 
 //clear everythin on doubleclick

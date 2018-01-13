@@ -19,6 +19,10 @@
   align-items: center;
 }
 
+section#div > span {
+    float: left;
+}
+
 .hoveroverlap {
   display: none;
 }
@@ -60,9 +64,13 @@ div.menu {
    text-align: center;
    font-weight: bold;
 }
+section#div {
+    margin-bottom: 100px;
+    overflow: scroll;
+}
 
 #open:hover,#close:hover,.showSingle:hover,
-#showall:hover, #hoveroverlap:hover {
+#showall:hover, #hoveroverlap:hover, section#div > span:hover {
    color: #000 !important;
    background-color: #ccc !important;
 }
@@ -73,10 +81,6 @@ div.menu {
 }
 
 /* --- */
-
-body {
-  margin:0;
-}
 
 path.arc {
   cursor: move;
@@ -142,8 +146,9 @@ text-decoration: overline underline !important;
 }
 
 body {
-  /*font: 300 36px "Helvetica Neue"; */
-  /* position: relative; */
+  position: relative;
+  margin:0;
+  overflow: hidden;
 }
 
 a:link, a:visited {
@@ -246,9 +251,17 @@ h3 {
 }
 
 body > svg {
-  /*position: absolute; */
+  position: absolute;
   display: flex;
   /*height: 300px;*/
   justify-content: center;
   align-items: center;
 }
+
+/* width media
+@media screen and (min-width: 480px) {
+    body {
+        background-color: lightgreen;
+    }
+}
+*/

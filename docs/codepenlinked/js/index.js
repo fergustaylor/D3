@@ -11,6 +11,7 @@ jQuery('#open').click(function(){
 jQuery('#showall').click(function(){
   jQuery('.targetDiv').show();
         });
+        
 jQuery('#hideall').click(function(){
   jQuery('.targetDiv').hide();
         });
