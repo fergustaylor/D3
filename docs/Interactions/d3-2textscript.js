@@ -307,7 +307,7 @@ jQuery('.showSingle').click(function(){
   //create span based off class.
         });
 
-        $(document).ready(function() {
+$(document).ready(function() {
         for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
         document.querySelectorAll(".showSingle")[i]
         .classList.add(severityinfo[i]);
