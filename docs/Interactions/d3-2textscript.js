@@ -313,7 +313,7 @@ $(document).ready(function() {
         .classList.add(severityinfo[i]);
         };
         });
-}
+};
 
 //clear everythin on doubleclick
 function clear(d) {
