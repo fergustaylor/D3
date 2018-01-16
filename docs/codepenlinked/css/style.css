@@ -13,6 +13,10 @@
    padding-top: 26px;
 }
 
+#notstated {
+  font-size: 12px;
+}
+
 #tensionbar {
   display: none;
 }
