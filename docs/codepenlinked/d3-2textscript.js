@@ -140,6 +140,7 @@ jQuery('#shownotice').show();
   var myNode = document.getElementById("notstated");
   myNode.innerHTML = '';
 
+/////////
 
   //then colour the new selection.
   svg.selectAll("path.link.target-" + d.key)
@@ -160,7 +161,7 @@ jQuery('#shownotice').show();
 
   drugtotal = druginteractions[0].length;
 
-//create druginfo
+  //create druginfo
   druginfo = [];
 
   for (i = 0; i < druginteractions[0].length; i++) {
@@ -180,7 +181,6 @@ for (i = 0; i < druginfo.length; i++) {
   div.appendChild(document.createTextNode(blep));
   div2.appendChild(div).classList.add("showSingle","sidebar2");
   div2.appendChild(div).setAttributeNode(att);
-  //not sure if I need this line - div2.appendChild(div);
   div3 = document.createElement("br");
   div2.appendChild(div3);
 }
@@ -214,11 +214,6 @@ div3 = document.createElement("br");
 
 //create line
 div = document.createElement("hr");
-//div2.appendChild(div).classList.add("sidebar2");
-
-//add break
-//div3 = document.createElement("br");
-//div2.appendChild(div3);
 
 //create druginteractionsinfo
 druginteractionsinfo = [];
@@ -232,8 +227,8 @@ if (data[i].name == "BNF."+drugselected+"."+drugselected) {
 /// console.log(data[i]['Interactions Info'])
 /// add div code
 druginteractionsinfo = data[i]['Interactions Info']
-evidenceinfo = data[i].Severity
-severityinfo = data[i].Evidence
+evidenceinfo = data[i].Evidence
+severityinfo = data[i].Severity
 
 /// add severity totals
 mildtotal = data[i].mildtot
@@ -281,6 +276,14 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
 });
 }
 }
+});
+
+$(document).ready(function() {
+for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
+document.querySelectorAll(".showSingle")[i]
+.classList
+.add(severityinfo[i]);
+};
 });
 
 //open sidebar

@@ -13,6 +13,17 @@
    padding-top: 26px;
 }
 
+.Severe {
+    background-color: crimson !important;
+    color: #000 !important;
+}
+
+
+span[severity="Severe"] {
+    background-color: crimson !important;
+    color: #000 !important;
+}
+
 #notstated {
   font-size: 12px;
 }
@@ -53,7 +64,7 @@ div.menu {
 span {
    margin-bottom: 10px;
  }
- 
+
 .cnt {
    margin-left: 15px;
    font-size: 14px;
