@@ -20,8 +20,6 @@ var line = d3.svg.line.radial()
     .angle(function(d) { return d.x / 180 * Math.PI; });
 
 var div = d3.select("body").insert("div", "h2")
-//.style("top", "-80px")
-//.style("left", "-160px")
     .style("width", w + "px")
     .style("height", h + "px")
     .style("position", "absolute")
@@ -29,7 +27,7 @@ var div = d3.select("body").insert("div", "h2")
 
 var svg = div.append("svg:svg")
     .attr("width", w)
-    .attr("height", h)
+    .attr("height", w)
     //make class flexbox
     .attr("class", "flex-container")
   .append("svg:g")
@@ -307,11 +305,11 @@ function mouseup() {
     div.style("-webkit-transform", null);
 
     svg
-      .attr("transform", "translate(" + rx + "," + ry + ")rotate(" + rotate + ")")
-      .selectAll("g.node text")
-        .attr("dx", function(d) { return (d.x + rotate) % 360 < 180 ? 8 : -8; })
-        .attr("text-anchor", function(d) { return (d.x + rotate) % 360 < 180 ? "start" : "end"; })
-        .attr("transform", function(d) { return (d.x + rotate) % 360 < 180 ? null : "rotate(180)"; });
+    .attr("transform", "translate(" + rx + "," + ry + ")rotate(" + rotate + ")")
+    .selectAll("g.node text")
+    .attr("dx", function(d) { return (d.x + rotate) % 360 < 180 ? 8 : -8; })
+    .attr("text-anchor", function(d) { return (d.x + rotate) % 360 < 180 ? "start" : "end"; })
+    .attr("transform", function(d) { return (d.x + rotate) % 360 < 180 ? null : "rotate(180)"; })
   }
 }
 //var hovering;
@@ -396,3 +394,6 @@ function cross(a, b) {
 function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1];
 }
+
+//trying to recentre any rotations. not sure how I broke it originally.
+///document.querySelector("body > div:nth-child(1) > svg").style.transformOrigin = rx+"px"+" "+rx+"px";

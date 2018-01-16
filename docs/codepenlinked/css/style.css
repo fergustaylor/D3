@@ -13,6 +13,10 @@
    padding-top: 26px;
 }
 
+#tensionbar {
+  display: none;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;

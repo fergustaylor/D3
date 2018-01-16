@@ -1,0 +1,42 @@
+make a shortlist
+
+Remove interactions not plotted as nodes
+```{r}
+subsetting <- function(x) {
+  top100$imports2[[x]] <- top100$imports2[[x]][top100$imports2[[x]] %in% top100$title == TRUE]
+}
+top100$imports <- lapply(1:nrow(top100), subsetting)
+#top100 <- top100[,1:2]
+#master <- master[,1:2]
+```
+
+Remove interaction info // severity // evidence
+Relating to 
+
+///
+
+Write grandfather.parent.child
+##Take from master (Already formed earlier)
+```{r, eval=FALSE}
+node.parent.child2 <- function(x) {
+  example <- top100[x,] %>%
+    select('imports') %>%
+    unlist() %>%
+    as.character()
+  example <- str_c(".", example) %>%
+  str_dup(times=2)
+  example <- str_c("BNF", example) %>%
+    str_replace_all(pattern=" ", replacement="")
+  return(as.vector(example))
+}
+top100$imports <- lapply(1:nrow(top100), node.parent.child2)
+```
+
+Clean-up rows without interactions
+```{r, eval=FALSE}
+top100$imports[c(22, 48, 55, 57, 64)] <- ""
+#switch to a filter according to "BNF.." in interactions
+top100 %>%
+  jsonlite::toJSON() %>%
+  write(file="docs/flare2.json")
+```

@@ -1,0 +1,369 @@
+---
+title: "Plotting BNF Interactions"
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(rvest)
+library(magrittr)
+library(stringr)
+library(stringi)
+library(tidyverse)
+```
+
+Creating the drugs look-up.
+```{r}
+#Get a list of links to test
+drugs_list <- readLines("https://bnf.nice.org.uk/interaction/") %>%
+  str_match_all("<a href=\"(.*?)\"><span>(.*?)</span>") %>%
+  unlist() %>%
+  data.frame()
+
+#Replace odd characters
+drugs_list$. <- str_replace(drugs_list$., "&#233;", replacement = "é")
+
+#Create a dataframe from it.
+drugs_list <-  drugs_list %>%
+  data.frame(cbind(observation = rep(1:(nrow(drugs_list)/3), each=3))) %>%
+  data.frame(cbind(class = c("String", "Link", "Title"))) %>%
+  rename(value = '.') %>%
+  spread(key=class, value=value)
+
+#Remove non-drug links
+drugs_list <- drugs_list %>%
+  filter(stri_detect_fixed(drugs_list$Link, "title=") == FALSE)
+
+#Remove defunct columns
+drugs_list <- drugs_list %>%
+    select(-observation) %>%
+    select(-String)
+
+#Remove some leftover tags
+drugs_list$Title <- str_replace(drugs_list$Title, "<sub>", replacement = "")
+drugs_list$Title <- str_replace(drugs_list$Title, "</sub>", replacement = "")
+
+#Add a string column
+drugs_list <- cbind(drugs_list, 
+                    string = str_replace(drugs_list$Link, ".html", replacement = ""))
+
+#Add CSS tag and URL columns
+drugs_list <- cbind(drugs_list, 
+                    url = str_c("https://bnf.nice.org.uk/interaction/", 
+                                drugs_list$string, ".html"))
+drugs_list <- cbind(drugs_list, css_string = str_c("#", drugs_list$string, " .interactant span"))
+
+#Convert to character classes
+drugs_list[] <- lapply(drugs_list, as.character)
+
+#Set a timestamp for the data collection
+drugs_listDatestamp <- Sys.Date()
+```
+
+Export Drugs_List
+```{r, eval=FALSE}
+drugs_listName <- str_c("archive/", drugs_listDatestamp) %>%
+str_replace_all(" ", "") %>%
+str_c("drugs_list.csv")
+
+write.csv(drugs_list, drugs_listName)
+```
+
+```{r, echo=FALSE}
+head(drugs_list, 5)
+```
+
+Scrape Data.
+```{r}
+#Data
+data <- sapply(drugs_list$url, function(x)
+               read_html(x) %>%
+               list())
+
+#Set a timestamp for the data collection
+Timestamp <- Sys.time()
+Datestamp <- Sys.Date()
+```
+
+Constructing the interactions database.
+//Create blank spaces for not listed ()
+```{r}
+##Title
+dataframe <- data.frame(Title = drugs_list$Title)
+
+##Interactions
+alli <- lapply(data,
+                function(url){
+                    url %>% 
+                    html_nodes(css = ".interactant span") %>%
+                    html_text()
+                })
+
+##All Severity
+##severityi <- lapply(data,
+##                function(url){
+##                    url %>% 
+##                    html_nodes(css = "div.span9.interaction-messages > div") %>%
+##                    html_attr("class") %>%
+##                    str_replace_all("interaction-message  ", "")
+##                })
+
+#Set ordinal factor for severity
+severity <- c("NotSet", "Unknown", "Mild", "Moderate", "Severe")
+severity <- factor(severity, levels=c("NotSet", "Unknown", "Mild", "Moderate", "Severe"), ordered=TRUE)
+
+#All Severity
+severityi2 <- lapply(1:length(data), function(x) {
+sections <- html_nodes(data[[x]], "div.span9.interaction-messages")
+lapply(1:length(sections), function(x1, x){
+#Returns Max value in multiples.
+if (length(sections[[x1]]) > 1) {
+  sections[[x1]] %>% 
+    html_children() %>% 
+    html_attr("class") %>% 
+    str_replace_all("interaction-message  ", "") %>% 
+    max()
+  } else {
+  sections[[x1]] %>% 
+     html_children() %>% 
+     html_attr("class") %>%
+     str_replace_all("interaction-message  ", "")
+  }
+  }
+) %>%
+unlist()
+})
+
+data[[52]] %>%
+  html_nodes("div.span9.interaction-messages")
+
+##Evidence
+#evidencei <- lapply(data,
+#                function(url){
+#                    url %>% 
+#                    html_nodes(css = "dd~ dd") %>%
+#                    html_text()
+#                })
+
+#All Evidence
+evidencei2 <- lapply(1:length(data), function(x) {
+sections <- html_nodes(data[[x]], "div.span9.interaction-messages")
+
+lapply(1:length(sections), function(x1, x){
+#Returns Max value in multiples.
+if (length(sections[[x1]] %>% 
+    html_nodes("dd~ dd")) > 0) {
+  sections[[x1]] %>% 
+    html_nodes("dd~ dd") %>%
+    html_text() %>%
+    min()
+  } else {
+  as.character("NotSet")
+  }
+  }
+) %>%
+unlist()
+})
+
+##Interactions Info
+#infoi <- lapply(data,
+#                function(url){
+#                    url %>% 
+#                    html_nodes(css = ".interaction-message div") %>%
+#                    html_text() %>%
+#                    str_replace_all("\n", replacement="") %>%
+#                    str_trim()
+#                })
+
+#Combine multiple divs under one interaction
+infoi2 <- lapply(1:length(data), function(x) {
+sections <- html_nodes(data[[x]], "div.span9.interaction-messages")
+
+lapply(1:length(sections), function(x1, x){
+#Returns Max value in multiples.
+if (length(sections[[x1]]) > 1) {
+  sections[[x1]] %>% 
+    html_nodes(css = ".interaction-message div") %>% 
+    html_text() %>% 
+    str_replace_all("\n", replacement="") %>% 
+    str_trim() %>% 
+    paste(sep="", collapse="")
+  } else {
+  sections[[x1]] %>% 
+    html_nodes(css = ".interaction-message div") %>% 
+    html_text() %>% 
+    str_replace_all("\n", replacement="") %>% 
+    str_trim()
+  }
+  }
+) %>%
+unlist()
+})
+
+#Bind columns
+dataframe <- cbind(dataframe, 
+                           data_frame(alli), 
+                           data_frame(severityi2),
+                           data_frame(evidencei2),
+                           data_frame(infoi2))
+#Rename columns
+dataframe <-  dataframe %>%
+  rename(Interactions = 'alli',
+         Severity = 'severityi2', 
+         Evidence = 'evidencei2',
+         'Interactions Info' = 'infoi2')
+
+##Totals
+dataframe$'Interaction Total' <- lapply(1:nrow(dataframe), function(x){
+                    unlist(length(alli[[x]]))
+                })
+dataframe$'Severity Total' <- lapply(1:nrow(dataframe), function(x){
+                    unlist(length(dataframe$Severity[[x]]))
+                })
+dataframe$'Evidence Total' <- lapply(1:nrow(dataframe), function(x){
+                    unlist(length(dataframe$Evidence[[x]]))
+                })
+dataframe$'Interactions Info Total' <- lapply(1:nrow(dataframe), function(x){
+                    unlist(length(dataframe$'Interactions Info'[[x]]))
+                })
+#rm(alli)
+#rm(severityi)
+#rm(evidencei)
+#rm(infoi)
+
+#rm(dataframe)
+```
+
+#Incomplete Data
+```{r}
+dataframe$'Complete Severity' <- lapply(1:1006, function(x){
+                    if (dataframe$`Interaction Total`[[x]] == dataframe$`Severity Total`[[x]])
+                    {TRUE} else {FALSE}
+})
+#Count True/False
+unlist(dataframe$'Complete Severity') %>%
+  summary()
+```
+
+```{r}
+dataframe$'Complete Interactions Info' <- lapply(1:1006, function(x){
+                    if (dataframe$`Interaction Total`[[x]] == dataframe$`Interactions Info Total`[[x]])
+                    {TRUE} else {FALSE}
+})
+unlist(dataframe$'Complete Interactions Info') %>%
+  summary()
+```
+
+Evidence.
+```{r}
+dataframe$`Complete Evidence Info` <- lapply(1:1006, function(x){
+                    if (dataframe$`Interaction Total`[[x]] == dataframe$`Evidence Total`[[x]])
+                    {TRUE} else {FALSE}
+})
+unlist(dataframe$`Complete Evidence Info`) %>%
+  summary()
+```
+Used the min value, where 2 evidence levels are indicated. (Opposite of the severity).
+The rationale being that you should be more cautious, and more skeptical.
+
+```{r}
+dataframe$'Complete Data' <- lapply(1:1006, function(x){
+                    if (dataframe$`Interaction Total`[[x]] == dataframe$`Severity Total`[[x]] &
+                        dataframe$`Interaction Total`[[x]] == dataframe$`Interactions Info Total`[[x]]  &
+                        dataframe$`Interaction Total`[[x]] == dataframe$`Evidence Total`[[x]])
+                    {TRUE} else {FALSE}
+})
+unlist(dataframe$'Complete Data') %>%
+  summary()
+```
+
+Complete Data
+```{r}
+dataframe %>%
+  filter(dataframe$`Complete Data` == TRUE)
+```
+
+Export dataframe
+```{r, eval=FALSE}
+dataframeName <- str_c("archive/", Datestamp) %>%
+str_replace_all(" ", "") %>%
+str_c("dataframe.Rda")
+
+save(dataframe, file=dataframeName)
+```
+
+Make a JSON Format
+```{r}
+#Create a new database
+master <- dataframe %>%
+  select('Title', 'Interactions', 'Severity', 'Evidence', 'Interactions Info') %>%
+  rename(name = 'Title',
+         imports = 'Interactions')
+master$title <- master$name
+#Relabel 'name'
+master$name <- str_c("BNF.", master$name, ".", master$name) %>%
+  str_replace_all(pattern=" ", replacement="")
+
+#Relabel 'imports'
+node.parent.child <- function(x) {
+  example <- master[x,] %>%
+    select('imports') %>%
+    unlist() %>%
+    as.character() 
+  
+  example <- str_c(".", example) %>%
+    str_dup(times=2)
+  
+  example <- str_c("BNF", example) %>%
+    str_replace_all(pattern=" ", replacement="")
+  return(as.vector(example))
+}
+master$imports <- lapply(1:nrow(master), node.parent.child)
+```
+
+```{r}
+master %>%
+  jsonlite::toJSON() %>%
+  write(file="archive/flare.json")
+
+jsonName <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "flare.json")
+
+master %>%
+  jsonlite::toJSON() %>%
+  write(file = jsonName)
+```
+
+///
+
+Shortlist top 100.
+```{r}
+#reclassify title, remove whitespace
+master$title <- as.character(master$title) %>%
+  trimws("both")
+
+top100master <- master %>%
+  filter(master$title %in% top100$X1)
+```
+
+Remove imports/ severity / evidence / interactions info.
+Find positions of imports not listed. make vector - remove severity / evidence / interactions info.
+```{r}
+for (i in 1:nrow(top100master)){
+   arentindex <- which(!top100master[i,]$imports[[1]] %in% top100master$name)
+  top100master[i,]$imports[[1]] <- top100master[i,]$imports[[1]][-c(arentindex)]
+  top100master[i,]$Severity[[1]] <- top100master[i,]$Severity[[1]][-c(arentindex)]
+  top100master[i,]$Evidence[[1]] <- top100master[i,]$Evidence[[1]][-c(arentindex)]
+  top100master[i,]$`Interactions Info`[[1]] <- top100master[i,]$`Interactions Info`[[1]][-c(arentindex)]
+}
+```
+
+```{r}
+top100master %>%
+  jsonlite::toJSON() %>%
+  write(file="archive/flare100.json")
+
+jsonName100 <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "flare100.json")
+
+master %>%
+  jsonlite::toJSON() %>%
+  write(file = jsonName100)
+```
+

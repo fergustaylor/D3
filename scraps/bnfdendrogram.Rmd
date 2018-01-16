@@ -1,0 +1,92 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(readr)
+library(tidyverse)
+```
+
+```{r}
+BNFSpending <- read_csv("~/Dropbox/D3/T201110CHEM SUBS.CSV")
+BNFSpending <- subset(BNFSpending, select = -c(X4))
+```
+
+```{r}
+library(readr)
+BNFSectionsCoded <- read_csv("~/Dropbox/D3/docs/bnfsections/flare.csv")
+```
+
+```{r}
+library(rvest)
+library(purrr)
+
+url <- read_html("https://openprescribing.net/bnf/")
+data <- html_nodes(url, css="#all-results a")
+titles <- html_text(data)
+links <- html_nodes(url, "#all-results a") %>% 
+  map(xml_attrs) %>% 
+  map_df(~as.list(.))
+```
+
+```{r}
+library(stringr)
+BNFSections <- as_data_frame(titles)
+BNFSections$links <- as.data.frame(links)
+
+BNFSections$links <- BNFSections$links[,1] %>%
+str_replace_all(pattern="/bnf/", replacement="") %>%
+str_replace_all(pattern="/", replacement="")
+
+#Add the starting label
+BNFSections <- rbind(c("BNF",""), BNFSections)
+
+
+BNFSections$id <- BNFSectionsCoded$id
+
+BNFSpending$`BNF Section` <- substr(BNFSpending$`CHEM SUB`, start = 1, stop = 2)
+BNFSpending$`BNF Section 2` <- substr(BNFSpending$`CHEM SUB`, start = 3, stop = 4)
+BNFSpending$`BNF Section 3` <- substr(BNFSpending$`CHEM SUB`, start = 5, stop = 6)
+
+BNFSpending$value <- str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`, ".", BNFSpending$NAME)
+
+id <- as.data.frame(str_c("BNF"))
+id2 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`)))
+id3 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`)))
+id4 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`)))
+id5 <- unique(as.data.frame(str_c("BNF.", BNFSpending$`BNF Section`, ".", BNFSpending$`BNF Section 2`, ".", BNFSpending$`BNF Section 3`, ".", BNFSpending$NAME)))
+names(id)[1] <- "id"
+names(id2)[1] <- "id"
+names(id3)[1] <- "id"
+names(id4)[1] <- "id"
+names(id5)[1] <- "id"
+
+MyData <- rbind(id, id2, id3, id4, id5)
+```
+#remove ..
+#remove '.' from names
+#add empty, 'value' column
+#check ',' between values
+
+```{r}
+library(readr)
+bnfinteractions <- read_csv("~/Dropbox/D3/bnfinteractions.csv", 
+    col_names = FALSE)
+```
+
+```{r}
+BNFSpending$NAME
+
+BNFInteractions <- dplyr::filter(BNFSpending, NAME %in% bnfinteractions$X1)
+
+Rest <- dplyr::filter(BNFSpending, NAME %in% bnfinteractions$X1)
+
+bnfinteractions
+```
+
+
+write.csv(MyData[1], file = "docs/bnfsections/MyData.csv")
+#might have to edit in excel to remove extra column
+```
+

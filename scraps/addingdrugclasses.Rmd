@@ -1,0 +1,97 @@
+https://data.gov.uk/dataset/176ae264-2484-4afe-a297-d51798eb8228/resource/bac33489-b3dc-47ec-b688-da9cf40e25bd
+
+```{r, message=FALSE, warning=FALSE}
+library(readr)
+T201110CHEM_SUBS <- read_csv("~/Dropbox/D3/T201110CHEM SUBS.CSV", 
+    col_types = cols(`201110` = col_skip(), 
+         X4 = col_skip()))
+T201110CHEM_SUBS <- dplyr::rename(T201110CHEM_SUBS, Title = 'NAME')
+```
+
+```{r}
+BNFchapters <- readLines("https://openprescribing.net/bnf/") %>%
+  str_match_all("<a href=\"/bnf/(.*?)\">(.*?)</a>") %>%
+  unlist() %>%
+  data.frame() 
+
+BNFchapters <- BNFchapters %>%
+  data.frame(cbind(observation = rep(1:(nrow(BNFchapters)/3), each=3))) %>%
+  data.frame(cbind(class = c("String", "Link", "Title"))) %>%
+  rename(value = '.') %>%
+  spread(key=class, value=value)
+
+BNFchapters <- BNFchapters %>%
+  dplyr::select(-observation, -String)
+
+BNFchapters <- BNFchapters[2:518,]
+```
+
+get remaining bnf chapters.
+```{r}
+BNFchapters <- BNFchapters %>%
+  mutate("CHEM SUB" = str_replace(BNFchapters$Link, "/", "")) %>%
+  dplyr::rename('BNF Section' = Title)
+BNFchapters$`CHEM SUB` <- str_pad(BNFchapters$`CHEM SUB`, width=6, side="right", pad="0")
+```
+
+Add BNF Sections to CHEM_SUB
+```{r}
+T201110CHEM_SUBS <- dplyr::left_join(T201110CHEM_SUBS, BNFchapters, by = "CHEM SUB") %>%
+  select(-Link)
+```
+
+Adjust CHEM_SUB code.
+```{r}
+T201110CHEM_SUBS$`CHEM SUB` <- T201110CHEM_SUBS$`CHEM SUB` %>%
+  substr(1, 6)
+T201110CHEM_SUBS$`CHEM SUB` <- str_pad(T201110CHEM_SUBS$`CHEM SUB`, width=6, side="right", pad="0")
+```
+
+```{r}
+#38 BNF Sections
+T201110CHEM_SUBSNA <- T201110CHEM_SUBS %>%
+  dplyr::filter(is.na(T201110CHEM_SUBS$`BNF Section`)==TRUE)
+
+#Remove NAs
+T201110CHEM_SUBS <- T201110CHEM_SUBS %>%
+  dplyr::filter(!is.na(T201110CHEM_SUBS$`BNF Section`)==TRUE)
+
+#replace last 2 digits with "00"
+str_sub(T201110CHEM_SUBSNA$`CHEM SUB`, 5) <- "00"
+
+T201110CHEM_SUBSNA <- T201110CHEM_SUBSNA %>%
+  select(-`BNF Section`)
+
+T201110CHEM_SUBSNA <- dplyr::left_join(T201110CHEM_SUBSNA, BNFchapters, by = "CHEM SUB") %>%
+  select(-Link)
+```
+
+```{r}
+#AGAIN
+T201110CHEM_SUBSNANA <- T201110CHEM_SUBSNA %>%
+  dplyr::filter(is.na(T201110CHEM_SUBSNA$`BNF Section`)==TRUE)
+str_sub(T201110CHEM_SUBSNANA$`CHEM SUB`, 3) <- "0000"
+
+T201110CHEM_SUBSNA <- T201110CHEM_SUBSNA %>%
+  dplyr::filter(!is.na(T201110CHEM_SUBSNA$`BNF Section`)==TRUE)
+
+T201110CHEM_SUBSNANA <- T201110CHEM_SUBSNANA %>%
+  select(-`BNF Section`)
+
+T201110CHEM_SUBSNANA <- dplyr::left_join(T201110CHEM_SUBSNANA, BNFchapters, by = "CHEM SUB") %>%
+  select(-Link)
+```
+
+Add the 3 tables together
+```{r}
+T201110CHEM_SUBSTotal <- dplyr::bind_rows(T201110CHEM_SUBS, T201110CHEM_SUBSNA, T201110CHEM_SUBSNANA) %>%
+  select(-`CHEM SUB`)
+
+rm(T201110CHEM_SUBSNANA, T201110CHEM_SUBSNA, T201110CHEM_SUBS)
+
+T201110CHEM_SUBSTotal <- aggregate(`BNF Section` ~ `Title`, data = T201110CHEM_SUBSTotal, c)
+```
+
+```{r, message=FALSE, cache=TRUE}
+mastersheet <- dplyr::left_join(example_dataframe, T201110CHEM_SUBSTotal, by = "Title")
+```
