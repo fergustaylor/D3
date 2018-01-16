@@ -105,6 +105,8 @@ var druginteractions;
 var druginfo = []; 
 
 var druginteractionsinfo = []; 
+var evidenceinfo = []; 
+var severityinfo = []; 
 
 function click(d) {
   //clear all previous
@@ -129,6 +131,15 @@ jQuery('#shownotice').show();
   //clear div
   var myNode = document.getElementById("div");
   myNode.innerHTML = '';
+
+  //clear bottom
+  var myNode = document.getElementById("drugstotal");
+  myNode.innerHTML = '';
+  var myNode = document.getElementById("mildmodsevere");
+  myNode.innerHTML = '';
+  var myNode = document.getElementById("notstated");
+  myNode.innerHTML = '';
+
 
   //then colour the new selection.
   svg.selectAll("path.link.target-" + d.key)
@@ -218,9 +229,11 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare100.json", function(data) {
 for (i = 0; i < data.length; i++) {
   /// will need to change the below when I add classes
 if (data[i].name == "BNF."+drugselected+"."+drugselected) {
-console.log(data[i]['Interactions Info'])
+/// console.log(data[i]['Interactions Info'])
 /// add div code
 druginteractionsinfo = data[i]['Interactions Info']
+evidenceinfo = data[i].Severity
+severityinfo = data[i].Evidence
 
 /// add severity totals
 mildtotal = data[i].mildtot
@@ -242,18 +255,29 @@ document.getElementById('notstated').innerHTML = natotal+" Not Stated";
 //create divs based off druginteractionsinfo
 $(document).ready(function() {
 for (i = 0; i < druginteractionsinfo.length; i++) {
-  var dav2 = document.getElementById('div');
-  var dav = document.createElement("span");
-  dav.appendChild(document.createTextNode(druginteractionsinfo[i]));
-  dav2.appendChild(dav).classList.add("targetDiv","sidebar2");
-  //dav2.appendChild(dav);
-  //var dav3 = document.createElement("br");
-  //dav2.appendChild(dav3);
-  dav.id = "div"+(i+1);
+  var dav = document.getElementById('div');
+  var dav2 = document.createElement("span");
+  var dav3 = document.createTextNode(druginteractionsinfo[i])
+  var dav4 = document.createElement("span");
+
+  dav4.appendChild(document.createElement("br"));
+  dav4.appendChild(document.createTextNode("Evidence: "+evidenceinfo[i]+" | Severity: "+severityinfo[i]));
+  dav4.classList.add("evidsev","sidebar2");
+
+  dav2.appendChild(dav3);
+
+  dav.appendChild(dav2);
+
+  dav2.appendChild(dav4);
+
+  dav2.setAttribute('evidence', evidenceinfo[i]);
+  dav2.setAttribute('severity', severityinfo[i]);
+
+  dav2.classList.add("targetDiv","sidebar2");
+
+  dav2.id = "div"+(i+1);
+
 };
-//var dav2 = document.getElementById('div');
-//var dav = document.createElement("br");
-//dav2.appendChild(dav);
 });
 }
 }
@@ -265,16 +289,27 @@ jQuery('.hoveroverlap').show();
 //
 //end of click function
 jQuery('#showall').click(function(){
+  //hide evidence/severity span
+  //jQuery('.evid/sev').hide();
+  //
   jQuery('.targetDiv').show();
         });
 
 jQuery('#hideall').click(function(){
+  //hide evidence/severity span
+  //jQuery('.evid/sev').hide();
+  //
   jQuery('.targetDiv').hide();
         });
 
 jQuery('.showSingle').click(function(){
+  //hide evidence/severity span
+  //jQuery('.evid/sev').hide();
+  //
   jQuery('.targetDiv').hide();
   jQuery('#div'+$(this).attr('target')).show();
+
+  //create span based off class.
         });
 }
 
@@ -305,6 +340,14 @@ function clear(d) {
 
   //clear div
   var myNode = document.getElementById("div");
+  myNode.innerHTML = '';
+
+  //clear bottom
+  var myNode = document.getElementById("drugstotal");
+  myNode.innerHTML = '';
+  var myNode = document.getElementById("mildmodsevere");
+  myNode.innerHTML = '';
+  var myNode = document.getElementById("notstated");
   myNode.innerHTML = '';
 }
 
