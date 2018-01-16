@@ -278,14 +278,6 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
 }
 });
 
-$(document).ready(function() {
-for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
-document.querySelectorAll(".showSingle")[i]
-.classList
-.add(severityinfo[i]);
-};
-});
-
 //open sidebar
 jQuery('.sidebar').show();
 jQuery('.hoveroverlap').show();
@@ -313,6 +305,13 @@ jQuery('.showSingle').click(function(){
   jQuery('#div'+$(this).attr('target')).show();
 
   //create span based off class.
+        });
+
+        $(document).ready(function() {
+        for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
+        document.querySelectorAll(".showSingle")[i]
+        .classList.add(severityinfo[i]);
+        };
         });
 }
 
