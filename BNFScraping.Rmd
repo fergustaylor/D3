@@ -355,6 +355,21 @@ for (i in 1:nrow(top100master)){
 }
 ```
 
+Now introducing some totals for evidence and severity so I don't have to do it in JS.
+```{r}
+top100master <- top100master %>%
+  mutate(mildtot = str_count(top100master$Severity, "Mild")) %>%
+  mutate(modtot = str_count(top100master$Severity, "Moderate")) %>%
+  mutate(sevtot = str_count(top100master$Severity, "Severe")) %>%
+  mutate(nstot = str_count(top100master$Severity, "NotSet"))
+
+top100master <- top100master %>%
+  mutate(studytot = str_count(top100master$Severity, "Study")) %>%
+  mutate(anectot = str_count(top100master$Severity, "Anecdotal")) %>%
+  mutate(theorettot = str_count(top100master$Severity, "Theoretical")) %>%
+  mutate(nsetot = str_count(top100master$Severity, "NotSet"))
+```
+
 ```{r}
 top100master %>%
   jsonlite::toJSON() %>%
