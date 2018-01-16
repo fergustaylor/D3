@@ -95,6 +95,11 @@ var modtotal;
 var sevtotal;
 var natotal;
 
+var studytotal;
+var anectotal;
+var theototal;
+var nsetotal;
+
 var druginteractions;
 
 var druginfo = []; 
@@ -204,12 +209,6 @@ div = document.createElement("hr");
 //div3 = document.createElement("br");
 //div2.appendChild(div3);
 
-//Bottom
-document.getElementById('drugstotal').innerHTML = drugtotal + " Interactions Listed";
-document.getElementById('mildmodsevere').innerHTML = "X Severe | X Moderate | X Mild";
-document.getElementById('notstated').innerHTML = "X Not stated";
-// drugstotal will list 1, if 0 interactions, since a path to BNF exists.
-
 //create druginteractionsinfo
 druginteractionsinfo = [];
 
@@ -222,6 +221,24 @@ if (data[i].name == "BNF."+drugselected+"."+drugselected) {
 console.log(data[i]['Interactions Info'])
 /// add div code
 druginteractionsinfo = data[i]['Interactions Info']
+
+/// add severity totals
+mildtotal = data[i].mildtot
+modtotal = data[i].modtot
+sevtotal = data[i].sevtot
+natotal = data[i].nstot
+
+/// add evidence totals
+studytotal = data[i].studytot
+anectotal = data[i].anectot
+theototal = data[i].theorettot
+nsetotal = data[i].nsetot
+
+//Bottom
+document.getElementById('drugstotal').innerHTML = drugtotal+" Interactions Listed";
+document.getElementById('mildmodsevere').innerHTML = sevtotal+" Severe | "+modtotal+" Moderate | "+mildtotal+" Mild";
+document.getElementById('notstated').innerHTML = natotal+" Not Stated";
+
 //create divs based off druginteractionsinfo
 $(document).ready(function() {
 for (i = 0; i < druginteractionsinfo.length; i++) {
