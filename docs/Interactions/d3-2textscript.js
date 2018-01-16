@@ -87,7 +87,6 @@ function mousedown() {
 }
 
 var drugselected;
-
 var drugtotal;
 
 var mildtotal;
@@ -101,14 +100,33 @@ var theototal;
 var nsetotal;
 
 var druginteractions;
-
 var druginfo = []; 
-
 var druginteractionsinfo = []; 
 var evidenceinfo = []; 
 var severityinfo = []; 
 
 function click(d) {
+  //Clear all
+  var drugselected = []; 
+  var drugtotal = []; 
+
+  var mildtotal = []; 
+  var modtotal = []; 
+  var sevtotal = []; 
+  var natotal = []; 
+
+  var studytotal = []; 
+  var anectotal = []; 
+  var theototal = []; 
+  var nsetotal = []; 
+
+  var druginteractions = []; 
+  var druginfo = []; 
+
+  var druginteractionsinfo = []; 
+  var evidenceinfo = []; 
+  var severityinfo = []; 
+
   //clear all previous
   svg.selectAll("path")
       .classed("source2", false)
@@ -122,8 +140,10 @@ function click(d) {
   //clear close2
   var myNode = document.getElementById('close2');
   myNode.innerHTML = '';
-//show "show addition information by hovering.."
-jQuery('#shownotice').show();
+
+  //show "show addition information by hovering.."
+  jQuery('#shownotice').show();
+
   //clear drug
   var myNode = document.getElementById("drug");
   myNode.innerHTML = '';
@@ -139,8 +159,6 @@ jQuery('#shownotice').show();
   myNode.innerHTML = '';
   var myNode = document.getElementById("notstated");
   myNode.innerHTML = '';
-
-/////////
 
   //then colour the new selection.
   svg.selectAll("path.link.target-" + d.key)
@@ -161,14 +179,11 @@ jQuery('#shownotice').show();
 
   drugtotal = druginteractions[0].length;
 
-  //create druginfo
-  druginfo = [];
-
   for (i = 0; i < druginteractions[0].length; i++) {
-  druginfo.push(druginteractions[0][i].__data__.target.key);
-}
+  druginfo.push(druginteractions[0][i].__data__.target.key);}
 
-for (i = 0; i < druginfo.length; i++) {
+  //create sidebar
+  for (i = 0; i < druginfo.length; i++) {
   div2 = document.getElementById('drug');
   var att = document.createAttribute("target");
   att.value = i+1;
@@ -182,8 +197,7 @@ for (i = 0; i < druginfo.length; i++) {
   div2.appendChild(div).classList.add("showSingle","sidebar2");
   div2.appendChild(div).setAttributeNode(att);
   div3 = document.createElement("br");
-  div2.appendChild(div3);
-}
+  div2.appendChild(div3);}
 
 // add list all, hide all, line
 div2 = document.getElementById('drug');
@@ -215,14 +229,11 @@ div3 = document.createElement("br");
 //create line
 div = document.createElement("hr");
 
-//create druginteractionsinfo
-druginteractionsinfo = [];
-
 //load interactionsinfo based off click
 d3.json("https://fergustaylor.github.io/D3/dev/flare100.json", function(data) {
 
 for (i = 0; i < data.length; i++) {
-  /// will need to change the below when I add classes
+/// will need to change the below when I add classes
 if (data[i].name == "BNF."+drugselected+"."+drugselected) {
 /// console.log(data[i]['Interactions Info'])
 /// add div code
@@ -247,7 +258,7 @@ document.getElementById('drugstotal').innerHTML = drugtotal+" Interactions Liste
 document.getElementById('mildmodsevere').innerHTML = sevtotal+" Severe | "+modtotal+" Moderate | "+mildtotal+" Mild";
 document.getElementById('notstated').innerHTML = natotal+" Not Stated";
 
-//create divs based off druginteractionsinfo
+//create druginteractionsinfo divs
 $(document).ready(function() {
 for (i = 0; i < druginteractionsinfo.length; i++) {
   var dav = document.getElementById('div');
@@ -260,9 +271,7 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
   dav4.classList.add("evidsev","sidebar2");
 
   dav2.appendChild(dav3);
-
   dav.appendChild(dav2);
-
   dav2.appendChild(dav4);
 
   dav2.setAttribute('evidence', evidenceinfo[i]);
@@ -274,9 +283,19 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
 
 };
 });
+
+
 }
 }
+//recolour severe text
+$(document).ready(function() {
+for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
+document.querySelectorAll(".showSingle")[i]
+.classList.add(severityinfo[i]);
+};
 });
+});
+//^end of json loaded
 
 //open sidebar
 jQuery('.sidebar').show();
@@ -307,12 +326,12 @@ jQuery('.showSingle').click(function(){
   //create span based off class.
         });
 
-$(document).ready(function() {
+//colour severe
         for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
         document.querySelectorAll(".showSingle")[i]
         .classList.add(severityinfo[i]);
         };
-        });
+
 };
 
 //clear everythin on doubleclick
