@@ -71,3 +71,111 @@ input[type=text]:focus {
     outline: none;
     border-bottom: 4px solid;
 }
+
+/* */
+
+.sidebar {
+   display: none;
+   font-family: "Segoe UI", Arial, sans-serif;
+   width: 300px;
+   position: fixed;
+   right: 0;
+   opacity: 0.75;
+   color: grey;
+   background: white;
+   padding: 2%;
+   height: 100%;
+   overflow-y: auto;
+   padding-top: 26px;
+}
+
+.Severe {
+    background-color: crimson !important;
+    color: #000 !important;
+}
+
+
+span[severity="Severe"] {
+    background-color: crimson !important;
+    color: #000 !important;
+}
+
+#notstated {
+  font-size: 12px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section#div > span {
+    float: left;
+}
+
+.hoveroverlap {
+  display: none;
+}
+
+section.bottom.sidebar2 {
+    width: 300px;
+    padding-left: 2%;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#title {
+   padding: 2%;
+   font-size: 36px;
+}
+
+div.menu {
+   padding: 2%;
+}
+
+span {
+   margin-bottom: 10px;
+ }
+
+.cnt {
+   margin-left: 15px;
+   font-size: 14px;
+   line-height: 134%;
+}
+
+span.evidsev.sidebar2{
+  font-weight: 600;
+}
+
+#open {
+   right: 0;
+   position: fixed;
+   margin-right: 20px;
+   margin-top: 26px;
+}
+
+.bottom {
+   width: 260px;
+   position: fixed;
+   bottom: 0;
+   right: 0;
+   margin-right: 20px;
+   margin-left: 20px;
+   text-align: center;
+   font-weight: bold;
+}
+section#div {
+    margin-bottom: 100px;
+    overflow: scroll;
+}
+
+#open:hover,#close:hover,.showSingle:hover,
+#showall:hover, #hoveroverlap:hover, section#div > span:hover {
+   color: #000 !important;
+   background-color: #ccc !important;
+}
+
+#hideall:hover {
+   color: #ccc !important;
+   background-color: #000 !important;
+}

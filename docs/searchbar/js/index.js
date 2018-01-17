@@ -19,7 +19,7 @@ request.onreadystatechange = function(response) {
         dataList.appendChild(option);
       });
       // Update the placeholder text.
-      input.placeholder = "Search by drug";
+      input.placeholder = "Search by drug name";
     } else {
       // An error occured :(
       input.placeholder = "Couldn't load datalist options :(";
@@ -31,3 +31,16 @@ input.placeholder = "Loading the BNF...";
 // Set up and make the request.
 request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare.json', true);
 request.send();
+
+/// Do stuff with the input.
+document.getElementById('search').addEventListener('input', function () {
+   console.log(input.value);
+});
+
+jQuery('#close').click(function(){
+  jQuery('.sidebar').hide();
+        });
+
+jQuery('#open').click(function(){
+  jQuery('.sidebar').show();
+        });
