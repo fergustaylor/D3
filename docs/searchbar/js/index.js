@@ -105,12 +105,6 @@ function click(druginput) {
   var evidenceinfo = []; 
   var severityinfo = []; 
 
-  //clear close2
-  var myNode = document.getElementById('close2');
-  myNode.innerHTML = '';
-
-  //show "show addition information by hovering.."
-  jQuery('#shownotice').show();
 
   //clear drug
   var myNode = document.getElementById("drug");
