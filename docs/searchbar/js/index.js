@@ -34,11 +34,27 @@ request.send();
 
 var druginput;
 
-/// Do stuff with the input.
-document.getElementById('search').addEventListener('input', function () {
-   console.log(input.value);
-   druginput = input.value;
-});
+var searchfield = document.getElementById('search');
+
+//store the input
+//searchfield.addEventListener('input', function () {
+//   console.log(input.value);
+//   druginput = input.value;
+//});
+
+searchfield.addEventListener("keyup", function (event) {
+          if (event.keyCode == 13) {
+              event.preventDefault();
+
+              if (searchfield.value.length != 0) {
+                  console.log(searchfield.value);
+                  // Run my specific process with my_field.value
+                  druginput = searchfield.value;
+                  click(druginput)
+
+              }
+          }
+      }, false);
 
 jQuery(function(){
 jQuery('#close').click(function(){
@@ -68,7 +84,7 @@ var druginteractionsinfo = []; 
 var evidenceinfo = []; 
 var severityinfo = []; 
 
-function click(d) {
+function click(druginput) {
   //Clear all
   var drugtotal = []; 
 
@@ -273,28 +289,28 @@ jQuery('.showSingle').click(function(){
 };
 
 //clear everythin on doubleclick
-function clear(d) {
+//function clear(d) {
 
   //hide sidebar
-  jQuery('.sidebar').hide();
+//  jQuery('.sidebar').hide();
 
   //clear drug
-  var myNode = document.getElementById("drug");
-  myNode.innerHTML = '';
+//  var myNode = document.getElementById("drug");
+//  myNode.innerHTML = '';
 
-  var drugselected = null;
-  document.getElementById('title').innerHTML = "Click on a drug to get started..";
-  document.getElementById('drugstotal').innerHTML = "X Interactions Listed";
+//  var drugselected = null;
+//  document.getElementById('title').innerHTML = "Click on a drug to get started..";
+//  document.getElementById('drugstotal').innerHTML = "X Interactions Listed";
 
   //clear div
-  var myNode = document.getElementById("div");
-  myNode.innerHTML = '';
+//  var myNode = document.getElementById("div");
+//  myNode.innerHTML = '';
 
   //clear bottom
-  var myNode = document.getElementById("drugstotal");
-  myNode.innerHTML = '';
-  var myNode = document.getElementById("mildmodsevere");
-  myNode.innerHTML = '';
-  var myNode = document.getElementById("notstated");
-  myNode.innerHTML = '';
-}
+//  var myNode = document.getElementById("drugstotal");
+//  myNode.innerHTML = '';
+//  var myNode = document.getElementById("mildmodsevere");
+//  myNode.innerHTML = '';
+//  var myNode = document.getElementById("notstated");
+//  myNode.innerHTML = '';
+//}
