@@ -37,6 +37,7 @@ document.getElementById('search').addEventListener('input', function () {
    console.log(input.value);
 });
 
+jQuery(function(){
 jQuery('#close').click(function(){
   jQuery('.sidebar').hide();
         });
@@ -44,3 +45,4 @@ jQuery('#close').click(function(){
 jQuery('#open').click(function(){
   jQuery('.sidebar').show();
         });
+});
