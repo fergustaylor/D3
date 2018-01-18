@@ -153,7 +153,9 @@ function click(druginput) {
     //druginfo = data[i].imports;
 
     //create druginteractionsinfo divs
-    $(document).ready(function() {
+    //$(document).ready(
+
+      function() {
     for (i = 0; i < druginfo.length; i++) {
       div2 = document.getElementById('drug');
       var att = document.createAttribute("target");
@@ -167,7 +169,8 @@ function click(druginput) {
       div2.appendChild(div).classList.add("showSingle","sidebar2");
       div2.appendChild(div).setAttributeNode(att);
       div3 = document.createElement("br");
-      div2.appendChild(div3);}})
+      div2.appendChild(div3);}}
+    //)
     }}});
 
 
