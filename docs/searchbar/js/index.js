@@ -33,7 +33,6 @@ request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare2electricboogalo
 request.send();
 
 var druginput;
-
 var searchfield = document.getElementById('search');
 
 searchfield.addEventListener("keyup", function (event) {
@@ -98,20 +97,16 @@ var severityinfo = []; 
 function click(druginput) {
   //Clear all
   var drugtotal = []; 
-
   var mildtotal = []; 
   var modtotal = []; 
   var sevtotal = []; 
   var natotal = []; 
-
   var studytotal = []; 
   var anectotal = []; 
   var theototal = []; 
   var nsetotal = []; 
-
   var druginteractions = []; 
   var druginfo = []; 
-
   var druginteractionsinfo = []; 
   var evidenceinfo = []; 
   var severityinfo = []; 
@@ -132,19 +127,28 @@ function click(druginput) {
   var myNode = document.getElementById("notstated");
   myNode.innerHTML = '';
 
+  //clear title
+  var myNode = document.getElementById('title');
+  myNode.innerHTML = '';
+
+  /////
+  ////
+  ///
+  //
+
   // label sidebar
   document.getElementById('title').innerHTML = druginput;
-
   //load interactionsinfo based off click
   d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(data) {
+  //////////////
     for (i = 0; i < data.length; i++) {
     if (data[i].title == druginput) {
+
+    //Set variables
     druginteractionsinfo = data[i]['Interactions Info']
     evidenceinfo = data[i].Evidence
     severityinfo = data[i].Severity
-
     drugtotal = data[i].imports.length;
-
     druginfo = data[i].importstitle
 
     /// add severity totals
@@ -159,150 +163,126 @@ function click(druginput) {
     theototal = data[i].theorettot
     nsetotal = data[i].nsetot
 
-$(document).ready(function() {
+    $(document).ready(function() {
+
     for (i = 0; i < druginfo.length; i++) {
       div2 = document.getElementById('drug');
       var att = document.createAttribute("target");
       att.value = i+1;
       div = document.createElement("a");
       var blep = druginfo[i];
-//relabel at start?
+
+      //relabel at start?
       if (druginfo[0] == undefined) {
             blep = "This drug has no interactions with the other drugs listed in this graph.";
         }
-        ////
+      ////Create the drugs titles
       div.appendChild(document.createTextNode(blep));
       div2.appendChild(div).classList.add("showSingle","sidebar2");
       div2.appendChild(div).setAttributeNode(att);
       div3 = document.createElement("br");
       div2.appendChild(div3);
+
+      //end of loop
     };
-});
 
+    // add list all, hide all, line
+    div2 = document.getElementById('drug');
+
+    //add a break between drugs and the list all/hide all
+    div3 = document.createElement("br");
+    div2.appendChild(div3);
+
+    //create list all
+    div = document.createElement("a");
+    div.appendChild(document.createTextNode("List All"));
+    div.id = "showall";
+    div2.appendChild(div).classList.add("sidebar2");
+
+    //add break
+    div3 = document.createElement("br");
+    div2.appendChild(div3);
+
+    //create hide all
+    div = document.createElement("a");
+    div.appendChild(document.createTextNode("Hide All"));
+    div.id = "hideall";
+    div2.appendChild(div).classList.add("sidebar2");
+
+    //add break
+    div3 = document.createElement("br");
+    div2.appendChild(div3);
+
+    //create line
+    div = document.createElement("hr");
+    div2.appendChild(div);
+
+    //create druginteractionsinfo divs
+    for (i = 0; i < druginteractionsinfo.length; i++) {
+      var dav = document.getElementById('div');
+      var dav2 = document.createElement("span");
+      var dav3 = document.createTextNode(druginteractionsinfo[i])
+      var dav4 = document.createElement("span");
+
+      dav4.appendChild(document.createElement("br"));
+      dav4.appendChild(document.createTextNode("Evidence: "+evidenceinfo[i]+" | Severity: "+severityinfo[i]));
+      dav4.classList.add("evidsev","sidebar2");
+
+      dav2.appendChild(dav3);
+      dav.appendChild(dav2);
+      dav2.appendChild(dav4);
+
+      dav2.setAttribute('evidence', evidenceinfo[i]);
+      dav2.setAttribute('severity', severityinfo[i]);
+
+      dav2.classList.add("targetDiv","sidebar2");
+
+      dav2.id = "div"+(i+1);
     };
-  };
-});
 
-// add list all, hide all, line
-div2 = document.getElementById('drug');
+    //Bottom
+    document.getElementById('drugstotal').innerHTML = drugtotal+" Interactions Listed";
+    document.getElementById('mildmodsevere').innerHTML = sevtotal+" Severe | "+modtotal+" Moderate | "+mildtotal+" Mild";
+    document.getElementById('notstated').innerHTML = natotal+" Not Stated";
 
-//add a break between drugs and the list all/hide all
-div3 = document.createElement("br");
-div2.appendChild(div3);
+    //recolour severe text
+    for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
+    document.querySelectorAll(".showSingle")[i].classList.add(severityinfo[i]);
+    };
 
-//create list all
-div = document.createElement("a");
-div.appendChild(document.createTextNode("List All"));
-div.id = "showall";
-div2.appendChild(div).classList.add("sidebar2");
+    //end of ready
+    });
 
-//add break
-div3 = document.createElement("br");
-div2.appendChild(div3);
+    //end of if
+    });
 
-//create hide all
-div = document.createElement("a");
-div.appendChild(document.createTextNode("Hide All"));
-div.id = "hideall";
-div2.appendChild(div).classList.add("sidebar2");
-
-//add break
-div3 = document.createElement("br");
-div2.appendChild(div3);
-
-//create line
-div = document.createElement("hr");
-div2.appendChild(div);
-
-//load interactionsinfo based off click
-d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(data) {
-
-for (i = 0; i < data.length; i++) {
-/// will need to change the below when I add classes
-if (data[i].title == druginput) {
-druginteractionsinfo = data[i]['Interactions Info']
-evidenceinfo = data[i].Evidence
-severityinfo = data[i].Severity
-
-drugtotal = data[i].imports.length;
-
-/// add severity totals
-mildtotal = data[i].mildtot
-modtotal = data[i].modtot
-sevtotal = data[i].sevtot
-natotal = data[i].nstot
-
-/// add evidence totals
-studytotal = data[i].studytot
-anectotal = data[i].anectot
-theototal = data[i].theorettot
-nsetotal = data[i].nsetot
-
-//Bottom
-document.getElementById('drugstotal').innerHTML = drugtotal+" Interactions Listed";
-document.getElementById('mildmodsevere').innerHTML = sevtotal+" Severe | "+modtotal+" Moderate | "+mildtotal+" Mild";
-document.getElementById('notstated').innerHTML = natotal+" Not Stated";
-
-//create druginteractionsinfo divs
-$(document).ready(function() {
-for (i = 0; i < druginteractionsinfo.length; i++) {
-  var dav = document.getElementById('div');
-  var dav2 = document.createElement("span");
-  var dav3 = document.createTextNode(druginteractionsinfo[i])
-  var dav4 = document.createElement("span");
-
-  dav4.appendChild(document.createElement("br"));
-  dav4.appendChild(document.createTextNode("Evidence: "+evidenceinfo[i]+" | Severity: "+severityinfo[i]));
-  dav4.classList.add("evidsev","sidebar2");
-
-  dav2.appendChild(dav3);
-  dav.appendChild(dav2);
-  dav2.appendChild(dav4);
-
-  dav2.setAttribute('evidence', evidenceinfo[i]);
-  dav2.setAttribute('severity', severityinfo[i]);
-
-  dav2.classList.add("targetDiv","sidebar2");
-
-  dav2.id = "div"+(i+1);
-
+//end of loop.
 };
-});
 
-
-}
-}
-//recolour severe text
-$(document).ready(function() {
-for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
-document.querySelectorAll(".showSingle")[i]
-.classList.add(severityinfo[i]);
+//end of d3 load
 };
-});
-});
-//^end of json loaded
-
-//open sidebar
-jQuery('.sidebar').show();
-jQuery('.hoveroverlap').show();
-//
 
 //colour severe
-        for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
-        document.querySelectorAll(".showSingle")[i]
-        .classList.add(severityinfo[i]);
-        };
+    for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
+    document.querySelectorAll(".showSingle")[i]
+    .classList.add(severityinfo[i]);
+    };
+//open sidebar
+jQuery('.sidebar').show();
 
-        jQuery('#showall').click(function(){
-          jQuery('.targetDiv').show();
-                });
+//make the buttons work
+    jQuery('#showall').click(function(){
+      jQuery('.targetDiv').show();
+            });
 
-        jQuery('#hideall').click(function(){
-          jQuery('.targetDiv').hide();
-                });
+    jQuery('#hideall').click(function(){
+      jQuery('.targetDiv').hide();
+            });
 
-        jQuery('.showSingle').click(function(){
-          jQuery('.targetDiv').hide();
-          jQuery('#div'+$(this).attr('target')).show();
-                });
-};
+    jQuery('.showSingle').click(function(){
+      jQuery('.targetDiv').hide();
+      jQuery('#div'+$(this).attr('target')).show();
+            });
+
+//end of click
+});
