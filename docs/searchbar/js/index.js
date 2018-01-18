@@ -285,4 +285,4 @@ jQuery('.sidebar').show();
             });
 
 //end of click
-});
+};
