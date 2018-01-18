@@ -231,7 +231,6 @@ function click(druginput) {
     document.querySelectorAll(".showSingle")[i].classList.add(severityinfo[i]);
     };
 
-    //end of ready
     jQuery(function(){
     jQuery('#showall').click(function(){
         jQuery('.targetDiv').show();
@@ -247,6 +246,7 @@ function click(druginput) {
               });
     });
 
+    //end of ready
     });
 
     //end of if
