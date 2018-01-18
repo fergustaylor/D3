@@ -42,8 +42,8 @@ searchfield.addEventListener("keyup", function (event) {
                   console.log(searchfield.value);
                   // Run my specific process with my_field.value
                   druginput = searchfield.value;
-                  click(druginput);
-                  $(document).on('function_a_complete', button());
+                  click(druginput, button);
+                );
               }
           }
       }, false);
@@ -76,7 +76,7 @@ var druginteractionsinfo = []; 
 var evidenceinfo = []; 
 var severityinfo = []; 
 
-function click(druginput) {
+function click(druginput, callback) {
   //Clear all
   var drugtotal = []; 
   var mildtotal = []; 
@@ -253,5 +253,5 @@ function click(druginput) {
 jQuery('.sidebar').show();
 
 //end of click
-$(document).trigger('function_a_complete');
+callback();
 };
