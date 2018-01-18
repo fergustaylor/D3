@@ -254,13 +254,13 @@ function click(druginput) {
     });
 
     //end of if
-    });
+    };
 
 //end of loop.
 };
 
 //end of d3 load
-};
+});
 
 //colour severe
     for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
