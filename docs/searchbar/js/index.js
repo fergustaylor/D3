@@ -36,12 +36,6 @@ var druginput;
 
 var searchfield = document.getElementById('search');
 
-//store the input
-//searchfield.addEventListener('input', function () {
-//   console.log(input.value);
-//   druginput = input.value;
-//});
-
 searchfield.addEventListener("keyup", function (event) {
           if (event.keyCode == 13) {
               event.preventDefault();
@@ -50,6 +44,10 @@ searchfield.addEventListener("keyup", function (event) {
                   // Run my specific process with my_field.value
                   druginput = searchfield.value;
                   click(druginput)
+                  jQuery('.showSingle').click(function(){
+                    jQuery('.targetDiv').hide();
+                    jQuery('#div'+$(this).attr('target')).show();
+                          });
               }
           }
       }, false);
@@ -288,13 +286,8 @@ jQuery('.hoveroverlap').show();
           jQuery('.targetDiv').hide();
                 });
 
-        jQuery('.showSingle').click(function(){
-          jQuery('.targetDiv').hide();
-          jQuery('#div'+$(this).attr('target')).show();
-                });
+        //jQuery('.showSingle').click(function(){
+        //  jQuery('.targetDiv').hide();
+        //  jQuery('#div'+$(this).attr('target')).show();
+        //        });
 };
-
-jQuery('.showSingle').click(function(){
-  jQuery('.targetDiv').hide();
-  jQuery('#div'+$(this).attr('target')).show();
-        });
