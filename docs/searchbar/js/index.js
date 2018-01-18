@@ -155,7 +155,7 @@ function click(druginput) {
     //create druginteractionsinfo divs
     //$(document).ready(
 
-      function() {
+    //  function() {
     for (i = 0; i < druginfo.length; i++) {
       div2 = document.getElementById('drug');
       var att = document.createAttribute("target");
