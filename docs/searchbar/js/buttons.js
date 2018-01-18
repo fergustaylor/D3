@@ -1,3 +1,4 @@
+function button() {
 //make the buttons work
     jQuery('#showall').click(function(){
       jQuery('.targetDiv').show();
@@ -11,3 +12,4 @@
       jQuery('.targetDiv').hide();
       jQuery('#div'+$(this).attr('target')).show();
             });
+};
