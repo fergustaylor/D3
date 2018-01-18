@@ -253,6 +253,7 @@ function click(druginput) {
 jQuery('.sidebar').show();
 
 //end of click
+button;
 };
 
 //make the buttons work
