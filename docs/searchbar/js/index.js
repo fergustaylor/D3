@@ -165,39 +165,39 @@ function click(druginput) {
       div2.appendChild(div3);
     };
 
-    // add list all, hide all, line
-    div2 = document.getElementById('drug');
-
-    //add a break between drugs and the list all/hide all
-    div3 = document.createElement("br");
-    div2.appendChild(div3);
-
-    //create list all
-    div = document.createElement("a");
-    div.appendChild(document.createTextNode("List All"));
-    div.id = "showall";
-    div2.appendChild(div).classList.add("sidebar2");
-
-    //add break
-    div3 = document.createElement("br");
-    div2.appendChild(div3);
-
-    //create hide all
-    div = document.createElement("a");
-    div.appendChild(document.createTextNode("Hide All"));
-    div.id = "hideall";
-    div2.appendChild(div).classList.add("sidebar2");
-
-    //add break
-    div3 = document.createElement("br");
-    //div2.appendChild(div3);
-
-    //create line
-    div = document.createElement("hr");
-
     };
   };
 });
+
+// add list all, hide all, line
+div2 = document.getElementById('drug');
+
+//add a break between drugs and the list all/hide all
+div3 = document.createElement("br");
+div2.appendChild(div3);
+
+//create list all
+div = document.createElement("a");
+div.appendChild(document.createTextNode("List All"));
+div.id = "showall";
+div2.appendChild(div).classList.add("sidebar2");
+
+//add break
+div3 = document.createElement("br");
+div2.appendChild(div3);
+
+//create hide all
+div = document.createElement("a");
+div.appendChild(document.createTextNode("Hide All"));
+div.id = "hideall";
+div2.appendChild(div).classList.add("sidebar2");
+
+//add break
+div3 = document.createElement("br");
+//div2.appendChild(div3);
+
+//create line
+div = document.createElement("hr");
 
 //load interactionsinfo based off click
 d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(data) {
