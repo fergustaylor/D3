@@ -44,10 +44,10 @@ searchfield.addEventListener("keyup", function (event) {
                   // Run my specific process with my_field.value
                   druginput = searchfield.value;
                   click(druginput)
-                  jQuery('.showSingle').click(function(){
-                    jQuery('.targetDiv').hide();
-                    jQuery('#div'+$(this).attr('target')).show();
-                          });
+                  //jQuery('.showSingle').click(function(){
+                  //  jQuery('.targetDiv').hide();
+                  //  jQuery('#div'+$(this).attr('target')).show();
+                  //        });
               }
           }
       }, false);
@@ -61,6 +61,19 @@ jQuery('#open').click(function(){
   jQuery('.sidebar').show();
         });
 });
+
+jQuery('.showSingle').click(function(){
+  jQuery('.targetDiv').hide();
+  jQuery('#div'+$(this).attr('target')).show();
+        });
+
+jQuery('#showall').click(function(){
+  jQuery('.targetDiv').show();
+        });
+
+jQuery('#hideall').click(function(){
+  jQuery('.targetDiv').hide();
+        });
 
 var drugtotal;
 
@@ -286,8 +299,8 @@ jQuery('.hoveroverlap').show();
           jQuery('.targetDiv').hide();
                 });
 
-        //jQuery('.showSingle').click(function(){
-        //  jQuery('.targetDiv').hide();
-        //  jQuery('#div'+$(this).attr('target')).show();
-        //        });
+        jQuery('.showSingle').click(function(){
+          jQuery('.targetDiv').hide();
+          jQuery('#div'+$(this).attr('target')).show();
+                });
 };
