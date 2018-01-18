@@ -125,29 +125,54 @@ function click(druginput) {
   // label sidebar
   document.getElementById('title').innerHTML = druginput;
 
-  //druginteractions = ;
 
-  //drugtotal = druginteractions[0].length;
+  //load interactionsinfo based off click
+  d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(data) {
+    for (i = 0; i < data.length; i++) {
+    if (data[i].title == druginput) {
+    druginteractionsinfo = data[i]['Interactions Info']
+    evidenceinfo = data[i].Evidence
+    severityinfo = data[i].Severity
 
-  //for (i = 0; i < druginteractions[0].length; i++) {
-  //druginfo.push(druginteractions[0][i].__data__.target.key);}
+    drugtotal = data[i].imports.length;
 
-  //create sidebar
-  //for (i = 0; i < druginfo.length; i++) {
-  //div2 = document.getElementById('drug');
-  //var att = document.createAttribute("target");
-  //att.value = i+1;
-  //div = document.createElement("a");
-  //var blep = druginfo[i];
-  //if (druginfo[0] == undefined && druginfo.length=1) {
-  //if (druginfo[0] == undefined) {
-  //      blep = "This drug has no interactions with the other drugs listed in this graph.";
-  //  }
-  //div.appendChild(document.createTextNode(blep));
-  //div2.appendChild(div).classList.add("showSingle","sidebar2");
-  //div2.appendChild(div).setAttributeNode(att);
-  //div3 = document.createElement("br");
-  //div2.appendChild(div3);}
+    druginfo = data[i].imports
+
+    /// add severity totals
+    mildtotal = data[i].mildtot
+    modtotal = data[i].modtot
+    sevtotal = data[i].sevtot
+    natotal = data[i].nstot
+
+    /// add evidence totals
+    studytotal = data[i].studytot
+    anectotal = data[i].anectot
+    theototal = data[i].theorettot
+    nsetotal = data[i].nsetot
+
+    //druginfo = data[i].imports;
+
+    //create druginteractionsinfo divs
+    $(document).ready(function() {
+    for (i = 0; i < druginfo.length; i++) {
+      div2 = document.getElementById('drug');
+      var att = document.createAttribute("target");
+      att.value = i+1;
+      div = document.createElement("a");
+      var blep = druginfo[i];
+      if (druginfo[0] == undefined) {
+            blep = "This drug has no interactions with the other drugs listed in this graph.";
+        }
+      div.appendChild(document.createTextNode(blep));
+      div2.appendChild(div).classList.add("showSingle","sidebar2");
+      div2.appendChild(div).setAttributeNode(att);
+      div3 = document.createElement("br");
+      div2.appendChild(div3);}
+
+    };
+    });
+  });
+  });
 
 // add list all, hide all, line
 div2 = document.getElementById('drug');
@@ -281,32 +306,4 @@ jQuery('.showSingle').click(function(){
         document.querySelectorAll(".showSingle")[i]
         .classList.add(severityinfo[i]);
         };
-
 };
-
-//clear everythin on doubleclick
-//function clear(d) {
-
-  //hide sidebar
-//  jQuery('.sidebar').hide();
-
-  //clear drug
-//  var myNode = document.getElementById("drug");
-//  myNode.innerHTML = '';
-
-//  var drugselected = null;
-//  document.getElementById('title').innerHTML = "Click on a drug to get started..";
-//  document.getElementById('drugstotal').innerHTML = "X Interactions Listed";
-
-  //clear div
-//  var myNode = document.getElementById("div");
-//  myNode.innerHTML = '';
-
-  //clear bottom
-//  var myNode = document.getElementById("drugstotal");
-//  myNode.innerHTML = '';
-//  var myNode = document.getElementById("mildmodsevere");
-//  myNode.innerHTML = '';
-//  var myNode = document.getElementById("notstated");
-//  myNode.innerHTML = '';
-//}
