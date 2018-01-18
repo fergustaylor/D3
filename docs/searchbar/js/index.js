@@ -168,7 +168,6 @@ function click(druginput) {
       div2.appendChild(div).setAttributeNode(att);
       div3 = document.createElement("br");
       div2.appendChild(div3);}
-
     };
     });
   });
