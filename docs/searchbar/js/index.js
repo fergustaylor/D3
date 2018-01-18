@@ -29,7 +29,7 @@ request.onreadystatechange = function(response) {
 // Update the placeholder text.
 input.placeholder = "Loading the BNF...";
 // Set up and make the request.
-request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare.json', true);
+request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json', true);
 request.send();
 
 var druginput;
@@ -180,7 +180,7 @@ div3 = document.createElement("br");
 div = document.createElement("hr");
 
 //load interactionsinfo based off click
-d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(data) {
+d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(data) {
 
 for (i = 0; i < data.length; i++) {
 /// will need to change the below when I add classes
