@@ -136,7 +136,7 @@ function click(druginput) {
 
     drugtotal = data[i].imports.length;
 
-    druginfo = data[i].imports
+    druginfo = data[i].importstitle
 
     /// add severity totals
     mildtotal = data[i].mildtot
