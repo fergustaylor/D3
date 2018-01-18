@@ -271,34 +271,23 @@ document.querySelectorAll(".showSingle")[i]
 jQuery('.sidebar').show();
 jQuery('.hoveroverlap').show();
 //
-//end of click function
-jQuery('#showall').click(function(){
-  //hide evidence/severity span
-  //jQuery('.evid/sev').hide();
-  //
-  jQuery('.targetDiv').show();
-        });
-
-jQuery('#hideall').click(function(){
-  //hide evidence/severity span
-  //jQuery('.evid/sev').hide();
-  //
-  jQuery('.targetDiv').hide();
-        });
-
-jQuery('.showSingle').click(function(){
-  //hide evidence/severity span
-  //jQuery('.evid/sev').hide();
-  //
-  jQuery('.targetDiv').hide();
-  jQuery('#div'+$(this).attr('target')).show();
-
-  //create span based off class.
-        });
 
 //colour severe
         for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
         document.querySelectorAll(".showSingle")[i]
         .classList.add(severityinfo[i]);
         };
+
+        jQuery('#showall').click(function(){
+          jQuery('.targetDiv').show();
+                });
+
+        jQuery('#hideall').click(function(){
+          jQuery('.targetDiv').hide();
+                });
+
+        jQuery('.showSingle').click(function(){
+          jQuery('.targetDiv').hide();
+          jQuery('#div'+$(this).attr('target')).show();
+                });
 };

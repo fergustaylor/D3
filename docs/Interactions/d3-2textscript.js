@@ -301,7 +301,6 @@ document.querySelectorAll(".showSingle")[i]
 jQuery('.sidebar').show();
 jQuery('.hoveroverlap').show();
 //
-//end of click function
 jQuery('#showall').click(function(){
   //hide evidence/severity span
   //jQuery('.evid/sev').hide();
