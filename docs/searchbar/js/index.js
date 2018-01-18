@@ -43,7 +43,7 @@ searchfield.addEventListener("keyup", function (event) {
                   // Run my specific process with my_field.value
                   druginput = searchfield.value;
                   click(druginput);
-                  $(document).bind('function_a_complete', button());
+                  $(document).on('function_a_complete', button());
               }
           }
       }, false);
