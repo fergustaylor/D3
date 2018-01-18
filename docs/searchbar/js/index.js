@@ -45,13 +45,11 @@ var searchfield = document.getElementById('search');
 searchfield.addEventListener("keyup", function (event) {
           if (event.keyCode == 13) {
               event.preventDefault();
-
               if (searchfield.value.length != 0) {
                   console.log(searchfield.value);
                   // Run my specific process with my_field.value
                   druginput = searchfield.value;
                   click(druginput)
-
               }
           }
       }, false);
@@ -105,7 +103,6 @@ function click(druginput) {
   var evidenceinfo = []; 
   var severityinfo = []; 
 
-
   //clear drug
   var myNode = document.getElementById("drug");
   myNode.innerHTML = '';
@@ -149,21 +146,25 @@ function click(druginput) {
     theototal = data[i].theorettot
     nsetotal = data[i].nsetot
 
+$(document).ready(function() {
     for (i = 0; i < druginfo.length; i++) {
       div2 = document.getElementById('drug');
       var att = document.createAttribute("target");
       att.value = i+1;
       div = document.createElement("a");
       var blep = druginfo[i];
+//relabel at start?
       if (druginfo[0] == undefined) {
             blep = "This drug has no interactions with the other drugs listed in this graph.";
         }
+        ////
       div.appendChild(document.createTextNode(blep));
       div2.appendChild(div).classList.add("showSingle","sidebar2");
       div2.appendChild(div).setAttributeNode(att);
       div3 = document.createElement("br");
       div2.appendChild(div3);
     };
+});
 
     };
   };
@@ -194,10 +195,11 @@ div2.appendChild(div).classList.add("sidebar2");
 
 //add break
 div3 = document.createElement("br");
-//div2.appendChild(div3);
+div2.appendChild(div3);
 
 //create line
 div = document.createElement("hr");
+div2.appendChild(div);
 
 //load interactionsinfo based off click
 d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(data) {
