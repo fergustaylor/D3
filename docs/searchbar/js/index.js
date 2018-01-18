@@ -232,6 +232,21 @@ function click(druginput) {
     };
 
     //end of ready
+    jQuery(function(){
+    jQuery('#showall').click(function(){
+        jQuery('.targetDiv').show();
+              });
+
+    jQuery('#hideall').click(function(){
+        jQuery('.targetDiv').hide();
+              });
+
+    jQuery('.showSingle').click(function(){
+        jQuery('.targetDiv').hide();
+        jQuery('#div'+$(this).attr('target')).show();
+              });
+    });
+
     });
 
     //end of if
@@ -254,18 +269,4 @@ jQuery('.sidebar').show();
 //end of click
 //callback();
 
-jQuery(function(){
-jQuery('#showall').click(function(){
-    jQuery('.targetDiv').show();
-          });
-
-jQuery('#hideall').click(function(){
-    jQuery('.targetDiv').hide();
-          });
-
-jQuery('.showSingle').click(function(){
-    jQuery('.targetDiv').hide();
-    jQuery('#div'+$(this).attr('target')).show();
-          });
-});
 };
