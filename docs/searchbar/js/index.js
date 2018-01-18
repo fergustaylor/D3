@@ -40,7 +40,8 @@ searchfield.addEventListener("keyup", function (event) {
               event.preventDefault();
               if (searchfield.value.length != 0) {
                   druginput = searchfield.value;
-                  click(druginput, button);
+                  click(druginput);
+                  //click(druginput, button);
               }
           }
       }, false);
@@ -73,7 +74,8 @@ var druginteractionsinfo = []; 
 var evidenceinfo = []; 
 var severityinfo = []; 
 
-function click(druginput, callback) {
+function click(druginput) {
+//function click(druginput, callback) {
   //Clear all
   var drugtotal = []; 
   var mildtotal = []; 
@@ -250,10 +252,9 @@ function click(druginput, callback) {
 jQuery('.sidebar').show();
 
 //end of click
-callback();
-};
+//callback();
 
-function button() {
+jQuery(function(){
 jQuery('#showall').click(function(){
     jQuery('.targetDiv').show();
           });
@@ -266,4 +267,5 @@ jQuery('.showSingle').click(function(){
     jQuery('.targetDiv').hide();
     jQuery('#div'+$(this).attr('target')).show();
           });
+});
 };
