@@ -43,7 +43,7 @@ searchfield.addEventListener("keyup", function (event) {
                   // Run my specific process with my_field.value
                   druginput = searchfield.value;
                   click(druginput);
-                  button();
+                  button;
               }
           }
       }, false);
