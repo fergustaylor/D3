@@ -382,3 +382,22 @@ master %>%
   write(file = jsonName100)
 ```
 
+////
+Will reshuffle this later. But adding totals to the original master
+```{r}
+master2 <- master %>%
+  mutate(mildtot = str_count(master$Severity, "Mild")) %>%
+  mutate(modtot = str_count(master$Severity, "Moderate")) %>%
+  mutate(sevtot = str_count(master$Severity, "Severe")) %>%
+  mutate(nstot = str_count(master$Severity, "NotSet"))
+
+master2 <- master %>%
+  mutate(studytot = str_count(master$Severity, "Study")) %>%
+  mutate(anectot = str_count(master$Severity, "Anecdotal")) %>%
+  mutate(theorettot = str_count(master$Severity, "Theoretical")) %>%
+  mutate(nsetot = str_count(master$Severity, "NotSet"))
+
+master2 %>%
+  jsonlite::toJSON() %>%
+  write(file="archive/flare2electricboogaloo.json")
+```
