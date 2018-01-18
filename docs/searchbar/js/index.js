@@ -43,15 +43,12 @@ searchfield.addEventListener("keyup", function (event) {
                   // Run my specific process with my_field.value
                   druginput = searchfield.value;
                   click(druginput);
-                  button;
                   jQuery('#showall').click(function(){
                     jQuery('.targetDiv').show();
                           });
-
                   jQuery('#hideall').click(function(){
                     jQuery('.targetDiv').hide();
                           });
-
                   jQuery('.showSingle').click(function(){
                     jQuery('.targetDiv').hide();
                     jQuery('#div'+$(this).attr('target')).show();
