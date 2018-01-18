@@ -42,13 +42,7 @@ searchfield.addEventListener("keyup", function (event) {
                   console.log(searchfield.value);
                   // Run my specific process with my_field.value
                   druginput = searchfield.value;
-                  click(druginput)
-                  $(document).ready(function() {
-                  jQuery('.showSingle').click(function(){
-                    jQuery('.targetDiv').hide();
-                    jQuery('#div'+$(this).attr('target')).show();
-                          });
-                });
+                  click(druginput);
               }
           }
       }, false);
@@ -62,19 +56,6 @@ jQuery('#open').click(function(){
   jQuery('.sidebar').show();
         });
 });
-
-jQuery('.showSingle').click(function(){
-  jQuery('.targetDiv').hide();
-  jQuery('#div'+$(this).attr('target')).show();
-        });
-
-jQuery('#showall').click(function(){
-  jQuery('.targetDiv').show();
-        });
-
-jQuery('#hideall').click(function(){
-  jQuery('.targetDiv').hide();
-        });
 
 var drugtotal;
 
@@ -270,6 +251,9 @@ function click(druginput) {
 //open sidebar
 jQuery('.sidebar').show();
 
+//end of click
+};
+
 //make the buttons work
     jQuery('#showall').click(function(){
       jQuery('.targetDiv').show();
@@ -283,6 +267,3 @@ jQuery('.sidebar').show();
       jQuery('.targetDiv').hide();
       jQuery('#div'+$(this).attr('target')).show();
             });
-
-//end of click
-};
