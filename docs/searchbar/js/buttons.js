@@ -1,5 +1,4 @@
 function button() {
-//make the buttons work
 jQuery('#showall').click(function(){
     jQuery('.targetDiv').show();
           });

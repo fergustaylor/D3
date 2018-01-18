@@ -39,8 +39,6 @@ searchfield.addEventListener("keyup", function (event) {
           if (event.keyCode == 13) {
               event.preventDefault();
               if (searchfield.value.length != 0) {
-                  console.log(searchfield.value);
-                  // Run my specific process with my_field.value
                   druginput = searchfield.value;
                   click(druginput, button);
               }
