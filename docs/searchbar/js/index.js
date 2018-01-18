@@ -185,7 +185,7 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", fun
 for (i = 0; i < data.length; i++) {
 /// will need to change the below when I add classes
 if (data[i].title == druginput) {
-//druginteractionsinfo = data[i]['Interactions Info']
+druginteractionsinfo = data[i]['Interactions Info']
 evidenceinfo = data[i].Evidence
 severityinfo = data[i].Severity
 
