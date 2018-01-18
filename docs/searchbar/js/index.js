@@ -44,6 +44,18 @@ searchfield.addEventListener("keyup", function (event) {
                   druginput = searchfield.value;
                   click(druginput);
                   button;
+                  jQuery('#showall').click(function(){
+                    jQuery('.targetDiv').show();
+                          });
+
+                  jQuery('#hideall').click(function(){
+                    jQuery('.targetDiv').hide();
+                          });
+
+                  jQuery('.showSingle').click(function(){
+                    jQuery('.targetDiv').hide();
+                    jQuery('#div'+$(this).attr('target')).show();
+                          });
               }
           }
       }, false);
@@ -255,6 +267,19 @@ jQuery('.sidebar').show();
 //end of click
 button;
 };
+
+jQuery('#showall').click(function(){
+  jQuery('.targetDiv').show();
+        });
+
+jQuery('#hideall').click(function(){
+  jQuery('.targetDiv').hide();
+        });
+
+jQuery('.showSingle').click(function(){
+  jQuery('.targetDiv').hide();
+  jQuery('#div'+$(this).attr('target')).show();
+        });
 
 //make the buttons work
 //    jQuery('#showall').click(function(){
