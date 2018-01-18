@@ -189,6 +189,8 @@ druginteractionsinfo = data[i]['Interactions Info']
 evidenceinfo = data[i].Evidence
 severityinfo = data[i].Severity
 
+drugtotal = data[i].imports.length;
+
 /// add severity totals
 mildtotal = data[i].mildtot
 modtotal = data[i].modtot
