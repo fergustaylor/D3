@@ -169,7 +169,9 @@ function click(druginput) {
       div2.appendChild(div).classList.add("showSingle","sidebar2");
       div2.appendChild(div).setAttributeNode(att);
       div3 = document.createElement("br");
-      div2.appendChild(div3);}}
+      div2.appendChild(div3); }
+
+    //}
     //)
     }}});
 
