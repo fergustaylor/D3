@@ -302,6 +302,9 @@ master$title <- master$name
 master$name <- str_c("BNF.", master$name, ".", master$name) %>%
   str_replace_all(pattern=" ", replacement="")
 
+#Added an unlabled column
+master$importstitle <- master$imports
+
 #Relabel 'imports'
 node.parent.child <- function(x) {
   example <- master[x,] %>%
