@@ -297,6 +297,8 @@ document.querySelectorAll(".showSingle")[i]
 });
 //^end of json loaded
 
+//show bottom
+jQuery('.bottom').show();
 //open sidebar
 jQuery('.sidebar').show();
 jQuery('.hoveroverlap').show();
@@ -335,7 +337,8 @@ jQuery('.showSingle').click(function(){
 
 //clear everythin on doubleclick
 function clear(d) {
-
+  //hide bottom
+  jQuery('.bottom').hide();
   //hide sidebar
   jQuery('.sidebar').hide();
 
