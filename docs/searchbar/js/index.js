@@ -263,6 +263,9 @@ function click(druginput) {
     document.querySelectorAll(".showSingle")[i]
     .classList.add(severityinfo[i]);
     };
+
+//show bottom
+jQuery('.bottom').show();       
 //open sidebar
 jQuery('.sidebar').show();
 
