@@ -421,7 +421,7 @@ function mouseover(d) {
     var hovering = document.querySelectorAll(".node:hover")[0].__data__.key;
 
 //not sure why drugselected was the previous drug selected. so I'm setting it from the header which always seems to be correct.
-    //var drugselected = document.getElementById('title').innerHTML
+    var drugselected = document.getElementById('title').innerHTML
     //var newinteractions = document.querySelectorAll(".node:hover");
 
     var includedinteractions = document.querySelectorAll(".node.targetnode.target");
@@ -434,6 +434,9 @@ function mouseover(d) {
     if (hovering == document.getElementById('title').innerHTML) {
     dov.appendChild(document.createTextNode("You're hovering over the selected drug, ("+drugselected+"), try moving the mouse over another drug to compare the two."));
     dov2.appendChild(dov);
+//then clear drugselected
+    var drugselected = null;
+    //
     }
     else {
       dov.appendChild(document.createTextNode("You're hovering over "+hovering+"."));
