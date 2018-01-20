@@ -377,7 +377,8 @@ function mousemove() {
   if (m0) {
     var m1 = mouse(d3.event),
         dm = Math.atan2(cross(m0, m1), dot(m0, m1)) * 180 / Math.PI;
-    div.style("-webkit-transform", "translateY(" + (ry - rx) + "px)rotateZ(" + dm + "deg)translateY(" + (rx - ry) + "px)");
+        ///I think this is the messed up line for rotations
+    div.style("-webkit-transform", "translateY(" + (ry) + "px)rotateZ(" + dm + "deg)translateX(" + (rx) + "px)");
   }
 }
 

@@ -1,5 +1,11 @@
-d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(classes) {
+var array100 = [];
 
+d3.json("https://fergustaylor.github.io/D3/dev/flare100.json", function(classes) {
+  for (i = 0; i < classes.length; i++) {
+    array100.push(classes[i].name);
+}});
+
+d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(classes) {
 
   var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes),
@@ -22,15 +28,9 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", fun
       .attr("dy", ".31em")
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
       .attr("transform", function(d) { return d.x < 180 ? null : "rotate(180)"; })
-      .text(function(d) { return d.key; })
-      .on("mouseover", mouseover)
-      .on("mouseout", mouseout)
-      .on("mousedown", click)
-      .on("dblclick", clear);
-      //
-
-  d3.select("input[type=range]").on("change", function() {
-    line.tension(this.value / 100);
-    path.attr("d", function(d, i) { return line(splines[i]); });
-  });
+      .text(function(d) { return d.key; });
 });
+
+
+///draw nodes based on names list.
+///ignore imports not listed in names list.
