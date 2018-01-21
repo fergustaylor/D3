@@ -1,0 +1,5 @@
+[{"name":"BNF.Heart.Adenosine","imports":[]},
+{"name":"BNF.Heart.Adenosine2","imports":["BNF.Heart.Adenosine"]},
+{"name":"BNF.Stomach.Adenosine3","imports":["BNF.Heart.Adenosine"]},
+{"name":"BNF.Stomach.Adenosine4","imports":["BNF.Heart.Adenosine"]},
+{"name":"BNF.Liver.Adenosine5","imports":["BNF.Heart.Adenosine"]}]
