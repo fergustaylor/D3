@@ -1,6 +1,6 @@
 Paracetamol,Analgesics
 Ibuprofen,Analgesics
-Co-codamol (paracetamol and codeine mix),Analgesics
+Co-codamol,Analgesics
 Codeine,Analgesics
 Tramadol,Analgesics
 Morphine,Analgesics
@@ -28,7 +28,7 @@ Clarithromycin,Antibiotics
 Co-amoxiclav,Antibiotics
 Doxycycline,Antibiotics
 Ceftazidime,Antibiotics
-Piperacillin / Tazobactam (tazocin),Antibiotics
+Piperacillin,Antibiotics
 Ciprofloxacin,Antibiotics
 Levofloxacin,Antibiotics
 Cephalexin,Antibiotics
@@ -42,9 +42,9 @@ Apixaban,Anticoagulants
 Enoxaparin,Anticoagulants
 Funderparinex,Anticoagulants
 Heparin,Anticoagulants
-Sodium valproate (Epilim),Anticonvulsants
+Sodium valproate,Anticonvulsants
 Phenytoin,Anticonvulsants
-Levetiracetam (Keppra),Anticonvulsants
+Levetiracetam,Anticonvulsants
 Gabapentin,Anticonvulsants
 Clonazepam,Anticonvulsants
 Diazapam,Anticonvulsants
@@ -87,8 +87,8 @@ Indapamide,Diuretics
 Amiloride,Diuretics
 Normal Saline,Intravenous Fluids
 Plasmalyte,Intravenous Fluids
-HartmannÍs solution,Intravenous Fluids
-Geloplasma / Plasmalyte,Intravenous Fluids
+Hartmannês solution,Intravenous Fluids
+Geloplasma,Intravenous Fluids
 Glucose,Intravenous Fluids
 Zopiclone,Sedatives
 Haloperidol,Sedatives
@@ -102,7 +102,7 @@ Simvastatin,Statins
 Atorvastatin,Statins
 Pravastatin,Statins
 Levothyroxine,Supplements
-Adcal / Calcichew,Supplements
+Adcal,Supplements
 Ferrous Fumarate,Supplements
 Ferrous Sulphate,Supplements
 Multivitamins,Supplements
@@ -122,8 +122,8 @@ Bisacodyl,Laxatives
 Phosphate Enema,Laxatives
 Microlax Enema,Laxatives
 Glycerine Suppositories,Laxatives
-Omeprazole,Proton Pump Inhibitors
-Lansoprazole,Proton Pump Inhibitors
-Esomeprazole,Proton Pump Inhibitors
-Ranitidine (H2-receptor-blocker),Proton Pump Inhibitors
-Peptacæ,Proton Pump Inhibitors
+Omeprazole,Reflux
+Lansoprazole,Reflux
+Esomeprazole,Reflux
+Ranitidine,Reflux
+Peptac,Reflux
