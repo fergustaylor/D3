@@ -74,6 +74,13 @@ top100drugs$Interactions <- lapply(1:nrow(top100drugs), node.parent.child)
 ```
 
 ```{r}
+top100drugs <- top100drugs %>%
+  rename('title' = 'name') %>%
+  rename('name' = 'Title') %>%
+  rename('imports' = 'Interactions')
+```
+
+```{r}
 top100drugs %>%
   jsonlite::toJSON() %>%
   write(file="archive/flareexample.json")
