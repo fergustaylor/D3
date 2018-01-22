@@ -38,7 +38,7 @@ svg.append("svg:path")
     .attr("d", d3.svg.arc().outerRadius(ry - 120).innerRadius(0).startAngle(0).endAngle(2 * Math.PI))
     .on("mousedown", mousedown);
 
-d3.json("https://fergustaylor.github.io/D3/dev/flare100.json", function(classes) {
+d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(classes) {
   var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes),
       splines = bundle(links);
@@ -230,7 +230,7 @@ duv3 = document.createElement("br");
 duv = document.createElement("hr");
 
 //load interactionsinfo based off click
-d3.json("https://fergustaylor.github.io/D3/dev/flare100.json", function(data) {
+d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(data) {
 
   for (i = 0; i < data.length; i++) {
   if (data[i].title == drugselected) {
