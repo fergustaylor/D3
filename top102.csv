@@ -13,12 +13,9 @@ Nefopam,Analgesics
 Gabapentin,Analgesics
 Fentanyl,Analgesics
 Ketamine,Analgesics
-Bisoprolol,Antiarrhythmics
-Atenolol,Antiarrhythmics
 Digoxin,Antiarrhythmics
 Amiodarone,Antiarrhythmics
 Adenosine,Antiarrhythmics
-Diltiazem,Antiarrhythmics
 Amoxicillin,Antibiotics
 Flucloxacillin,Antibiotics
 Meropenem,Antibiotics
@@ -45,10 +42,8 @@ Heparin,Anticoagulants
 Sodium valproate,Anticonvulsants
 Phenytoin,Anticonvulsants
 Levetiracetam,Anticonvulsants
-Gabapentin,Anticonvulsants
 Clonazepam,Anticonvulsants
 Diazapam,Anticonvulsants
-Lorazepam,Anticonvulsants
 Carbamazepine,Anticonvulsants
 Citalopram,Antidepressants
 Fluoxetine,Antidepressants
