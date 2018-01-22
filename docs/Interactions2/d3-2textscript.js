@@ -232,9 +232,8 @@ duv = document.createElement("hr");
 //load interactionsinfo based off click
 d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(data) {
 
-for (i = 0; i < data.length; i++) {
-/// will need to change the below when I add classes
-if (data[i].name == "BNF."+drugselected+"."+drugselected) {
+  for (i = 0; i < data.length; i++) {
+  if (data[i].title == drugselected) {
 /// console.log(data[i]['Interactions Info'])
 /// add div code
 druginteractionsinfo = data[i]['Interactions Info']
