@@ -184,50 +184,50 @@ function click(d) {
 
   //create sidebar
   for (i = 0; i < druginfo.length; i++) {
-  div2 = document.getElementById('drug');
+  duv2 = document.getElementById('drug');
   var att = document.createAttribute("target");
   att.value = i+1;
-  div = document.createElement("a");
+  duv = document.createElement("a");
   var blep = druginfo[i];
   //if (druginfo[0] == undefined && druginfo.length=1) {
   if (druginfo[0] == undefined) {
         blep = "This drug has no interactions with the other drugs listed in this graph.";
     }
-  div.appendChild(document.createTextNode(blep));
-  div2.appendChild(div).classList.add("showSingle","sidebar2");
-  div2.appendChild(div).setAttributeNode(att);
-  div3 = document.createElement("br");
-  div2.appendChild(div3);}
+  duv.appendChild(document.createTextNode(blep));
+  duv2.appendChild(duv).classList.add("showSingle","sidebar2");
+  duv2.appendChild(duv).setAttributeNode(att);
+  duv3 = document.createElement("br");
+  duv2.appendChild(duv3);}
 
 // add list all, hide all, line
-div2 = document.getElementById('drug');
+duv2 = document.getElementById('drug');
 
 //add a break between drugs and the list all/hide all
-div3 = document.createElement("br");
-div2.appendChild(div3);
+duv3 = document.createElement("br");
+duv2.appendChild(duv3);
 
 //create list all
-div = document.createElement("a");
-div.appendChild(document.createTextNode("List All"));
-div.id = "showall";
-div2.appendChild(div).classList.add("sidebar2");
+duv = document.createElement("a");
+duv.appendChild(document.createTextNode("List All"));
+duv.id = "showall";
+duv2.appendChild(duv).classList.add("sidebar2");
 
 //add break
-div3 = document.createElement("br");
-div2.appendChild(div3);
+duv3 = document.createElement("br");
+duv2.appendChild(duv3);
 
 //create hide all
-div = document.createElement("a");
-div.appendChild(document.createTextNode("Hide All"));
-div.id = "hideall";
-div2.appendChild(div).classList.add("sidebar2");
+duv = document.createElement("a");
+duv.appendChild(document.createTextNode("Hide All"));
+duv.id = "hideall";
+duv2.appendChild(duv).classList.add("sidebar2");
 
 //add break
-div3 = document.createElement("br");
+duv3 = document.createElement("br");
 //div2.appendChild(div3);
 
 //create line
-div = document.createElement("hr");
+duv = document.createElement("hr");
 
 //load interactionsinfo based off click
 d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(data) {
