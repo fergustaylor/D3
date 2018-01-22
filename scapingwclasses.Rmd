@@ -68,11 +68,13 @@ node.parent.child <- function(x) {
     }
     
     top100drugs$Interactions[x][[1]] <- examplelist
-    }
+    } else {top100drugs$Interactions[x][[1]] <- character(0)}
+    
     }
 top100drugs$Interactions <- lapply(1:nrow(top100drugs), node.parent.child)
 ```
 
+//should redo earlier in the process
 ```{r}
 top100drugs <- top100drugs %>%
   rename('title' = 'name') %>%
@@ -86,3 +88,7 @@ top100drugs %>%
   write(file="archive/flareexample.json")
 ```
 
+```{r}
+top100drugsmin <- top100drugs %>%
+  select(name, imports)
+```
