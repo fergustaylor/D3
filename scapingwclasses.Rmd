@@ -87,8 +87,3 @@ top100drugs %>%
   jsonlite::toJSON() %>%
   write(file="archive/flareexample.json")
 ```
-
-```{r}
-top100drugsmin <- top100drugs %>%
-  select(name, imports)
-```
