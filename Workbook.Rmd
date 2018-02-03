@@ -10,7 +10,7 @@ library(stringi)
 library(tidyverse)
 ```
 
-Creating the drugs look-up.
+#Create the drugs look-up.
 ```{r}
 #Get a list of links to test
 drugs_list <- readLines("https://bnf.nice.org.uk/interaction/") %>%
@@ -58,20 +58,18 @@ drugs_list[] <- lapply(drugs_list, as.character)
 drugs_listDatestamp <- Sys.Date()
 ```
 
-Export Drugs_List
+#Export Drugs_list
 ```{r, eval=FALSE}
 drugs_listName <- str_c("archive/", drugs_listDatestamp) %>%
 str_replace_all(" ", "") %>%
 str_c("drugs_list.csv")
 
 write.csv(drugs_list, drugs_listName)
-```
 
-```{r, echo=FALSE}
 head(drugs_list, 5)
 ```
 
-Scrape Data.
+#Scrape Data
 ```{r}
 #Data
 data <- sapply(drugs_list$url, function(x)
@@ -83,8 +81,7 @@ Timestamp <- Sys.time()
 Datestamp <- Sys.Date()
 ```
 
-Constructing the interactions database.
-//Create blank spaces for not listed ()
+#Constructing interactions database from Data
 ```{r}
 ##Title
 dataframe <- data.frame(Title = drugs_list$Title)
@@ -228,11 +225,11 @@ dataframe$'Interactions Info Total' <- lapply(1:nrow(dataframe), function(x){
 #rm(severityi)
 #rm(evidencei)
 #rm(infoi)
-
 #rm(dataframe)
 ```
 
-#Incomplete Data
+#Check Data completion.
+##Incomplete Data
 ```{r}
 dataframe$'Complete Severity' <- lapply(1:1006, function(x){
                     if (dataframe$`Interaction Total`[[x]] == dataframe$`Severity Total`[[x]])
@@ -276,7 +273,7 @@ unlist(dataframe$'Complete Data') %>%
 ```
 
 Complete Data
-```{r}
+```{r, eval=FALSE}
 dataframe %>%
   filter(dataframe$`Complete Data` == TRUE)
 ```
@@ -290,7 +287,9 @@ str_c("dataframe.Rda")
 save(dataframe, file=dataframeName)
 ```
 
-Make a JSON Format
+/////////////////////////////////////////////////////////////
+
+Make a limited databse for JSON Format
 ```{r}
 #Create a new database
 master <- dataframe %>%
@@ -322,6 +321,22 @@ node.parent.child <- function(x) {
 master$imports <- lapply(1:nrow(master), node.parent.child)
 ```
 
+#Add totals to the original master
+```{r}
+master <- master %>%
+  mutate(mildtot = str_count(master$Severity, "Mild")) %>%
+  mutate(modtot = str_count(master$Severity, "Moderate")) %>%
+  mutate(sevtot = str_count(master$Severity, "Severe")) %>%
+  mutate(nstot = str_count(master$Severity, "NotSet") + 
+           str_count(master$Severity, "Unknown"))
+
+master <- master %>%
+  mutate(studytot = str_count(master$Evidence, "Study")) %>%
+  mutate(anectot = str_count(master$Evidence, "Anecdotal")) %>%
+  mutate(theorettot = str_count(master$Evidence, "Theoretical")) %>%
+  mutate(nsetot = str_count(master$Evidence, "NotSet"))
+```
+
 ```{r}
 master %>%
   jsonlite::toJSON() %>%
@@ -334,21 +349,20 @@ master %>%
   write(file = jsonName)
 ```
 
-///
+////////////////////////////////////////////////////////////////
 
-Shortlist top 100.
+#Shortlist top 100.
 ```{r}
-#reclassify title, remove whitespace
+#Reclassify title, remove whitespace
 master$title <- as.character(master$title) %>%
   trimws("both")
 
+#Create database subsetted from master
 top100master <- master %>%
   filter(master$title %in% top100$X1)
-```
 
-Remove imports/ severity / evidence / interactions info.
-Find positions of imports not listed. make vector - remove severity / evidence / interactions info.
-```{r}
+#Remove imports/ severity / evidence / interactions info.
+#Find positions of imports not listed. make vector - remove severity / evidence / interactions info.
 for (i in 1:nrow(top100master)){
    arentindex <- which(!top100master[i,]$imports[[1]] %in% top100master$name)
   top100master[i,]$imports[[1]] <- top100master[i,]$imports[[1]][-c(arentindex)]
@@ -356,10 +370,8 @@ for (i in 1:nrow(top100master)){
   top100master[i,]$Evidence[[1]] <- top100master[i,]$Evidence[[1]][-c(arentindex)]
   top100master[i,]$`Interactions Info`[[1]] <- top100master[i,]$`Interactions Info`[[1]][-c(arentindex)]
 }
-```
 
-Now introducing some totals for evidence and severity so I don't have to do it in JS.
-```{r}
+#Introduce severity totals
 top100master <- top100master %>%
   mutate(mildtot = str_count(top100master$Severity, "Mild")) %>%
   mutate(modtot = str_count(top100master$Severity, "Moderate")) %>%
@@ -367,6 +379,7 @@ top100master <- top100master %>%
   mutate(nstot = str_count(top100master$Severity, "NotSet") + 
            str_count(top100master$Severity, "Unknown"))
 
+#Introduce evidence totals
 top100master <- top100master %>%
   mutate(studytot = str_count(top100master$Evidence, "Study")) %>%
   mutate(anectot = str_count(top100master$Evidence, "Anecdotal")) %>%
@@ -374,6 +387,7 @@ top100master <- top100master %>%
   mutate(nsetot = str_count(top100master$Evidence, "NotSet"))
 ```
 
+#Export 100 data
 ```{r}
 #Copy to 'archive'
 top100master %>%
@@ -392,22 +406,97 @@ master %>%
   write(file = jsonName100)
 ```
 
-////
-Will reshuffle this later. But adding totals to the original master
+#100 data with classes
+```{r, message=FALSE, warning=FALSE}
+#Import original 100 drugs list, with classes
+drugclasses <- read_csv("~/Dropbox/D3/top102.csv", col_names = FALSE) %>%
+  rename('Title' = 'X1', 'Class' = 'X2')
+
+top100classes <- dataframe %>%
+  filter(trimws(as.character(dataframe$Title), "both") %in% drugclasses$Title)
+
+dataframe$Title <- as.character(dataframe$Title) %>%
+  trimws("both")
+
+top100drugs <- dplyr::inner_join(drugclasses, dataframe, by = "Title")
+top100drugs$importstitle <- top100drugs$Interactions
+top100drugs$name <- top100drugs$Title
+
+#Edit out extra drugs 
+for (i in 1:nrow(top100drugs)){
+   arentindex <- which(!top100drugs[i,]$importstitle[[1]] %in% top100drugs$Title)
+  top100drugs[i,]$importstitle[[1]] <- top100drugs[i,]$importstitle[[1]][-c(arentindex)]
+  top100drugs[i,]$Interactions[[1]] <- top100drugs[i,]$Interactions[[1]][-c(arentindex)]
+  top100drugs[i,]$Severity[[1]] <- top100drugs[i,]$Severity[[1]][-c(arentindex)]
+  top100drugs[i,]$Evidence[[1]] <- top100drugs[i,]$Evidence[[1]][-c(arentindex)]
+  top100drugs[i,]$`Interactions Info`[[1]] <- top100drugs[i,]$`Interactions Info`[[1]][-c(arentindex)]
+}
+
+#Add Severity Totals
+top100drugs <- top100drugs %>%
+  mutate(mildtot = str_count(top100drugs$Severity, "Mild")) %>%
+  mutate(modtot = str_count(top100drugs$Severity, "Moderate")) %>%
+  mutate(sevtot = str_count(top100drugs$Severity, "Severe")) %>%
+  mutate(nstot = str_count(top100drugs$Severity, "NotSet") + 
+           str_count(top100drugs$Severity, "Unknown"))
+
+#Add Evidence Totals
+top100drugs <- top100drugs %>%
+  mutate(studytot = str_count(top100drugs$Evidence, "Study")) %>%
+  mutate(anectot = str_count(top100drugs$Evidence, "Anecdotal")) %>%
+  mutate(theorettot = str_count(top100drugs$Evidence, "Theoretical")) %>%
+  mutate(nsetot = str_count(top100drugs$Evidence, "NotSet"))
+
+#Relabel 'Title'
+top100drugs$Title <- str_c("BNF.", top100drugs$Class, ".", top100drugs$name) %>%
+  str_replace_all(pattern=" ", replacement="")
+
+#Relabel 'imports'
+node.parent.child <- function(x) {
+    example <- top100drugs[x,] %>%
+    select('Interactions') %>%
+    unlist() %>%
+    as.character() 
+
+    if (length(example) > 0) {
+    examplelist <- c(1:length(example))
+    
+    for (i in 1:length(example)){
+    examplename <- filter(top100drugs, name == example[i]) %>%
+    select(Title)
+    examplelist[i] <- examplename[[1]]
+    }
+    
+    top100drugs$Interactions[x][[1]] <- examplelist
+    } else {top100drugs$Interactions[x][[1]] <- character(0)}
+    
+    }
+top100drugs$Interactions <- lapply(1:nrow(top100drugs), node.parent.child)
+
+#Tidy up
+top100drugs <- top100drugs %>%
+  rename('title' = 'name') %>%
+  rename('name' = 'Title') %>%
+  rename('imports' = 'Interactions')
+```
+
 ```{r}
-master2 <- master %>%
-  mutate(mildtot = str_count(master$Severity, "Mild")) %>%
-  mutate(modtot = str_count(master$Severity, "Moderate")) %>%
-  mutate(sevtot = str_count(master$Severity, "Severe")) %>%
-  mutate(nstot = str_count(master$Severity, "NotSet"))
-
-master2 <- master2 %>%
-  mutate(studytot = str_count(master$Severity, "Study")) %>%
-  mutate(anectot = str_count(master$Severity, "Anecdotal")) %>%
-  mutate(theorettot = str_count(master$Severity, "Theoretical")) %>%
-  mutate(nsetot = str_count(master$Severity, "NotSet"))
-
-master2 %>%
+#Export
+top100drugs %>%
+  select(-c(7:14)) %>%
   jsonlite::toJSON() %>%
-  write(file="archive/flare2electricboogaloo.json")
+  write(file="archive/flareexample.json")
+
+#Copy to 'docs/dev'
+top100drugs %>%
+  select(-c(7:14)) %>%
+  jsonlite::toJSON() %>%
+  write(file="docs/dev/flareexample.json")
+
+#Copy to archive with a timestamp
+jsonName100classes <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "flareexample.json")
+top100drugs %>%
+  select(-c(7:14)) %>%
+  jsonlite::toJSON() %>%
+  write(file = jsonName100classes)
 ```
