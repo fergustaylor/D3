@@ -364,22 +364,29 @@ top100master <- top100master %>%
   mutate(mildtot = str_count(top100master$Severity, "Mild")) %>%
   mutate(modtot = str_count(top100master$Severity, "Moderate")) %>%
   mutate(sevtot = str_count(top100master$Severity, "Severe")) %>%
-  mutate(nstot = str_count(top100master$Severity, "NotSet"))
+  mutate(nstot = str_count(top100master$Severity, "NotSet") + 
+           str_count(top100master$Severity, "Unknown"))
 
 top100master <- top100master %>%
-  mutate(studytot = str_count(top100master$Severity, "Study")) %>%
-  mutate(anectot = str_count(top100master$Severity, "Anecdotal")) %>%
-  mutate(theorettot = str_count(top100master$Severity, "Theoretical")) %>%
-  mutate(nsetot = str_count(top100master$Severity, "NotSet"))
+  mutate(studytot = str_count(top100master$Evidence, "Study")) %>%
+  mutate(anectot = str_count(top100master$Evidence, "Anecdotal")) %>%
+  mutate(theorettot = str_count(top100master$Evidence, "Theoretical")) %>%
+  mutate(nsetot = str_count(top100master$Evidence, "NotSet"))
 ```
 
 ```{r}
+#Copy to 'archive'
 top100master %>%
   jsonlite::toJSON() %>%
   write(file="archive/flare100.json")
 
-jsonName100 <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "flare100.json")
+#Copy to 'docs/dev'
+top100master %>%
+  jsonlite::toJSON() %>%
+  write(file="docs/dev/flare100.json")
 
+#Copy to archive with a timestamp
+jsonName100 <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "flare100.json")
 master %>%
   jsonlite::toJSON() %>%
   write(file = jsonName100)

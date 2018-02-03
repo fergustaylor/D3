@@ -1,13 +1,5 @@
 https://data.gov.uk/dataset/176ae264-2484-4afe-a297-d51798eb8228/resource/bac33489-b3dc-47ec-b688-da9cf40e25bd
 
-```{r, message=FALSE, warning=FALSE}
-library(readr)
-T201110CHEM_SUBS <- read_csv("~/Dropbox/D3/T201110CHEM SUBS.CSV", 
-    col_types = cols(`201110` = col_skip(), 
-         X4 = col_skip()))
-T201110CHEM_SUBS <- dplyr::rename(T201110CHEM_SUBS, Title = 'NAME')
-```
-
 ```{r}
 BNFchapters <- readLines("https://openprescribing.net/bnf/") %>%
   str_match_all("<a href=\"/bnf/(.*?)\">(.*?)</a>") %>%

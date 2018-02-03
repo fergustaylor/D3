@@ -1,6 +1,5 @@
 ---
 title: "R Notebook"
-output: html_notebook
 ---
 
 ```{r}
@@ -64,10 +63,6 @@ names(id5)[1] <- "id"
 
 MyData <- rbind(id, id2, id3, id4, id5)
 ```
-#remove ..
-#remove '.' from names
-#add empty, 'value' column
-#check ',' between values
 
 ```{r}
 library(readr)
@@ -84,7 +79,6 @@ Rest <- dplyr::filter(BNFSpending, NAME %in% bnfinteractions$X1)
 
 bnfinteractions
 ```
-
 
 write.csv(MyData[1], file = "docs/bnfsections/MyData.csv")
 #might have to edit in excel to remove extra column

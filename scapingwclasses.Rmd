@@ -87,3 +87,11 @@ top100drugs %>%
   jsonlite::toJSON() %>%
   write(file="archive/flareexample.json")
 ```
+
+//////////////
+
+```{r}
+library(readr)
+MyData <- read_csv("~/Dropbox/D3/docs/bnfsections/MyData.csv")[,1]
+```
+
