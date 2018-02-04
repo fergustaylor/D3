@@ -482,6 +482,8 @@ top100drugs <- top100drugs %>%
 
 ```{r}
 #Export
+top100drugs$Stamp <- Timestamp
+
 top100drugs %>%
   select(-c(7:14)) %>%
   jsonlite::toJSON() %>%
