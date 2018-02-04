@@ -39,6 +39,10 @@ svg.append("svg:path")
     .on("mousedown", mousedown);
 
 d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(classes) {
+  
+  //Update Timestamp
+  document.getElementById('disclaimer').innerHTML = "This data was last updated on the " + classes[0].Stamp;
+  
   var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes),
       splines = bundle(links);
@@ -100,32 +104,32 @@ var theototal;
 var nsetotal;
 
 var druginteractions;
-var druginfo = []; 
-var druginteractionsinfo = []; 
-var evidenceinfo = []; 
-var severityinfo = []; 
+var druginfo = [];
+var druginteractionsinfo = [];
+var evidenceinfo = [];
+var severityinfo = [];
 
 function click(d) {
   //Clear all
-  var drugselected = []; 
-  var drugtotal = []; 
+  var drugselected = [];
+  var drugtotal = [];
 
-  var mildtotal = []; 
-  var modtotal = []; 
-  var sevtotal = []; 
-  var natotal = []; 
+  var mildtotal = [];
+  var modtotal = [];
+  var sevtotal = [];
+  var natotal = [];
 
-  var studytotal = []; 
-  var anectotal = []; 
-  var theototal = []; 
-  var nsetotal = []; 
+  var studytotal = [];
+  var anectotal = [];
+  var theototal = [];
+  var nsetotal = [];
 
-  var druginteractions = []; 
-  var druginfo = []; 
+  var druginteractions = [];
+  var druginfo = [];
 
-  var druginteractionsinfo = []; 
-  var evidenceinfo = []; 
-  var severityinfo = []; 
+  var druginteractionsinfo = [];
+  var evidenceinfo = [];
+  var severityinfo = [];
 
   //clear all previous
   svg.selectAll("path")

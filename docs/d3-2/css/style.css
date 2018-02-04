@@ -291,3 +291,17 @@ body > svg {
     }
 }
 */
+
+div.notice p {
+    font: 300 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    fill: #bbb;
+    margin: 2px;
+    padding-top: 2px;
+    padding-left: 2px;
+}
+
+div.notice {
+    position: absolute;
+    top: 26px;
+    left: 20px;
+}
