@@ -51,23 +51,10 @@ d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(clas
       .data(links)
     .enter().append("svg:path")
       .attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key; })
+      //// add class 'severe' to red links
+      .attr("class", function(d) { return d.source.Severity; })
+      ///
       .attr("d", function(d, i) { return line(splines[i]); });
-
-//// add class 'severe' to red links
-var path2 = svg.selectAll("path.link")
-    .data(links)
-    console.log(path2);
-//    .attr("class", function(d) { if (data.sev == drugselected) {
-//      return d.source.key;
-//};
-//});
-
-////////for (i = 0; i < data.length; i++) {
-////////if (data[i].title == drugselected) {
-////////druginteractionsinfo = data[i]['Interactions Info']
-////////evidenceinfo = data[i].Evidence
-////////severityinfo = data[i].Severity
-
 
   svg.selectAll("g.node")
       .data(nodes.filter(function(n) { return !n.children; }))
