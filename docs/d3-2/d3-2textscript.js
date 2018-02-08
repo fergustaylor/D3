@@ -39,10 +39,10 @@ svg.append("svg:path")
     .on("mousedown", mousedown);
 
 d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(classes) {
-  
+
   //Update Timestamp
-  document.getElementById('disclaimer').innerHTML = "This data was last updated on the " + classes[0].Stamp;
-  
+  document.getElementById('disclaimer').innerHTML = "This data was last updated " + classes[0].Stamp;
+
   var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes),
       splines = bundle(links);
