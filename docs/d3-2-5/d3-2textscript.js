@@ -50,10 +50,7 @@ d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(clas
   var path = svg.selectAll("path.link")
       .data(links)
     .enter().append("svg:path")
-      .attr("class", function(d) { return "link source-"
-
-      + d.source.key + " target-" + d.target.key; })
-
+      .attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key + " " + d.source.Severity[d.source.importstitle.indexOf(d.target.key)];})
       .attr("d", function(d, i) { return line(splines[i]); });
 
   svg.selectAll("g.node")
