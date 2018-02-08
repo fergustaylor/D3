@@ -154,14 +154,20 @@ font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .link.source {
-  stroke: #d62728;
+  stroke: #d62728 !important;
 }
 
 .link.source2 {
-  stroke: #5405c1 !important;
+  stroke: #5405c1;
   stroke-opacity: 1;
   stroke-width: 2px;
 }
+
+/*.link.source2.Severe {
+  stroke: #d62728 !important;
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}*/
 
 .node.targetnode {
 fill: #5405c1 !important;
@@ -177,7 +183,8 @@ text-decoration: overline underline !important;
 }
 
 .link.target {
-  stroke: #2ca02c;
+  /* background link*/
+  stroke: #5405c1;
 }
 
 body {
