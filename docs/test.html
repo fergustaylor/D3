@@ -20,7 +20,11 @@ txt += "<p>Total width/height: " + screen.width + "*" + screen.height + "</p>";
 txt += "<p>Available width/height: " + screen.availWidth + "*" + screen.availHeight + "</p>";
 txt += "<p>Color depth: " + screen.colorDepth + "</p>";
 txt += "<p>Color resolution: " + screen.pixelDepth + "</p>";
-
+txt += "<p>innerWidth: " + window.innerWidth + "</p>";
+txt += "<p>innerHeight: " + window.innerHeight + "</p>";
+txt += "<p>outerWidth: " + window.outerWidth + "</p>";
+txt += "<p>outerHeight: " + window.outerHeight + "</p>";
+  
 document.getElementById("demo").innerHTML = txt;
 </script>
 
