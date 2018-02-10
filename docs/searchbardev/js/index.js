@@ -37,7 +37,19 @@ request.send();
 var druginput;
 var searchfield = document.getElementById('search');
 
+function myFunction() {
+    alert("The form was submitted");
+}
 
+searchfield.addEventListener("keyup", function (event) {
+          if (event.keyCode == 13 && searchfield.value.length != 0) {
+              event.preventDefault();
+              druginput = searchfield.value;
+              //click(druginput);
+              //myScript(druginput);
+              myFunction();      
+          }
+      }, false);
 
 jQuery(function(){
 jQuery('#close').click(function(){
