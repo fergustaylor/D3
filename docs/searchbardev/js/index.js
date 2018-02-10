@@ -15,6 +15,8 @@ request.onreadystatechange = function(response) {
         var option = document.createElement('option');
         // Set the value using the item in the JSON array.
         option.value = item.title;
+        //trying to add submit
+        //option.addEventListener("submit", myScript);
         // Add the <option> element to the <datalist>.
         dataList.appendChild(option);
       });
@@ -35,12 +37,18 @@ request.send();
 var druginput;
 var searchfield = document.getElementById('search');
 
+function myFunction() {
+    alert("The form was submitted");
+}
+
 searchfield.addEventListener("keyup", function (event) {
           if (event.keyCode == 13) {
               event.preventDefault();
+              myFunction(druginput);
               if (searchfield.value.length != 0) {
                   druginput = searchfield.value;
                   click(druginput);
+                  //myScript(druginput);
                   //click(druginput, button);
               }
           }
@@ -265,7 +273,7 @@ function click(druginput) {
     };
 
 //show bottom
-jQuery('.bottom').show();       
+jQuery('.bottom').show();
 //open sidebar
 jQuery('.sidebar').show();
 
