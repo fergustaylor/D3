@@ -1,5 +1,5 @@
-var w = screen.width,
-    h = screen.height,
+var w = window.innerWidth,
+    h = window.innerHeight,
     rx = w / 2,
     ry = h / 2,
     m0,
