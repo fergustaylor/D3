@@ -38,7 +38,7 @@ var druginput;
 var searchfield = document.getElementById('search');
 
 function myFunction() {
-    alert("The form was submitted");
+    alert(searchfield.value+" was submitted");
 }
 
 searchfield.addEventListener("keyup", function (event) {
@@ -47,7 +47,7 @@ searchfield.addEventListener("keyup", function (event) {
               druginput = searchfield.value;
               //click(druginput);
               //myScript(druginput);
-              myFunction();      
+              myFunction();
           }
       }, false);
 

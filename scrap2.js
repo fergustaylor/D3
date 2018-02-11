@@ -1,3 +1,6 @@
+var drugarray = {}
+drugarray.push(druginput)
+
 var selec = document.createElement('div');
 
 selec.setAttribute("class", "drugselected");
