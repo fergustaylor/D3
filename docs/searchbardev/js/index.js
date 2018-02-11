@@ -38,13 +38,15 @@ var druginput;
 var searchfield = document.getElementById('search');
 
 function myFunction() {
-    alert(searchfield.value+" was submitted");
+    alert(searchfield.value+"was submitted");
 }
 
+var druginputarray = [];
 searchfield.addEventListener("keyup", function (event) {
           if (event.keyCode == 13 && searchfield.value.length != 0) {
               event.preventDefault();
               druginput = searchfield.value;
+              druginputarray.push(searchfield.value);
               //click(druginput);
               //myScript(druginput);
               myFunction();
