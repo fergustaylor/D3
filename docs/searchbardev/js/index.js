@@ -42,6 +42,7 @@ function myFunction() {
 }
 
 var druginputarray = [];
+
 searchfield.addEventListener("keyup", function (event) {
           if (event.keyCode == 13 && searchfield.value.length != 0) {
               event.preventDefault();
