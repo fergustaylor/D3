@@ -61,9 +61,9 @@ function listOptionSelected() {
             selec.appendChild(selec3);
             selec.appendChild(selec4);
 
-            for (var i = 0; i < druginputarray.length; i++) {
+            for (var ii = 0; ii < druginputarray.length; ii++) {
             var selec5 = document.createElement('p')
-            var selec55 = document.createTextNode(druginputarray[i]);
+            var selec55 = document.createTextNode(druginputarray[ii]);
             selec5.appendChild(selec55);
             selec.appendChild(selec5);
             }
