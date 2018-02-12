@@ -57,6 +57,7 @@ function listOptionSelected() {
     var selec2 = document.createElement('p')
     var selec25 = document.createTextNode("Selected Drugs");
     selec2.appendChild(selec25);
+
     var selec3 = document.createElement('hr')
     var selec4 = document.createElement('br')
 
