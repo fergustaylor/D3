@@ -13,3 +13,7 @@ div.drugselected p  {
   padding-left: 2px;
   padding-top: 2px;
 }
+
+p.druglist:hover {
+    text-decoration: underline;
+}
