@@ -4,6 +4,10 @@ var input = document.getElementById('search');
 // Create a new XMLHttpRequest.
 var request = new XMLHttpRequest();
 
+function myFunction() {
+    alert("clickety click click");
+}
+
 // Handle state changes for the request.
 request.onreadystatechange = function(response) {
   if (request.readyState === 4) {
@@ -17,9 +21,7 @@ request.onreadystatechange = function(response) {
         // Set the value using the item in the JSON array.
         option.value = item.title;
         //option.addEventListener("submit", myScript);
-        option.addEventListener("click", function(){
-          alert(option.value+" was submitted");
-        });
+        option.addEventListener("click", myFunction);
         // Add the <option> element to the <datalist>.
         dataList.appendChild(option);
       });
@@ -31,6 +33,7 @@ request.onreadystatechange = function(response) {
     }
   }
 };
+
 // Update the placeholder text.
 input.placeholder = "Loading the BNF...";
 // Set up and make the request.
