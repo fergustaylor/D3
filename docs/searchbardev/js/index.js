@@ -17,7 +17,7 @@ request.onreadystatechange = function(response) {
         // Set the value using the item in the JSON array.
         option.value = item.title;
         //option.addEventListener("submit", myScript);
-        object.addEventListener("click", function(){
+        option.addEventListener("click", function(){
           alert(option.value+" was submitted");
         });
         // Add the <option> element to the <datalist>.
