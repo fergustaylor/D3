@@ -3,6 +3,7 @@ var dataList = document.getElementById('json-datalist');
 var input = document.getElementById('search');
 // Create a new XMLHttpRequest.
 var request = new XMLHttpRequest();
+
 // Handle state changes for the request.
 request.onreadystatechange = function(response) {
   if (request.readyState === 4) {
@@ -15,8 +16,10 @@ request.onreadystatechange = function(response) {
         var option = document.createElement('option');
         // Set the value using the item in the JSON array.
         option.value = item.title;
-        //trying to add submit
         //option.addEventListener("submit", myScript);
+        object.addEventListener("click", function(){
+          alert(option.value+" was submitted");
+        });
         // Add the <option> element to the <datalist>.
         dataList.appendChild(option);
       });
