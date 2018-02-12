@@ -4,10 +4,6 @@ var input = document.getElementById('search');
 // Create a new XMLHttpRequest.
 var request = new XMLHttpRequest();
 
-function myFunction() {
-    alert("clickety click click");
-}
-
 // Handle state changes for the request.
 request.onreadystatechange = function(response) {
   if (request.readyState === 4) {
@@ -21,7 +17,7 @@ request.onreadystatechange = function(response) {
         // Set the value using the item in the JSON array.
         option.value = item.title;
         //option.addEventListener("submit", myScript);
-        option.addEventListener("click", myFunction);
+        //option.addEventListener("click", myFunction);
         // Add the <option> element to the <datalist>.
         dataList.appendChild(option);
       });
@@ -39,6 +35,30 @@ input.placeholder = "Loading the BNF...";
 // Set up and make the request.
 request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json', true);
 request.send();
+
+var myInput =  document.getElementById('search');
+var myDataList = document.getElementById('json-datalist')
+var myOptions = document.getElementById('json-datalist').childNodes;
+
+function listOptionSelected() {
+    var myValue = myInput.value;
+    for (var i = 0; i < myOptions.length; i++) {
+        if (myOptions[i].value === myValue) {
+            console.log('Option Selected: ' + myValue);
+        }
+    }
+}
+
+function typedOptionSelected() {
+    var myValue = myInput.value;
+    if (myValue !== '') {
+        console.log('Option Selected: ' + myInput.value);
+    }
+}
+
+myInput.addEventListener('input', listOptionSelected, false);
+myInput.addEventListener('blur', typedOptionSelected, false);
+
 
 //
 
