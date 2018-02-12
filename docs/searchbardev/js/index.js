@@ -40,6 +40,9 @@ var druginputarray = [];
 var myOptions = document.getElementById('json-datalist').childNodes;
 
 function listOptionSelected() {
+
+    $( ".drugselected" ).remove();
+
     var myValue = input.value;
     for (var i = 0; i < myOptions.length; i++) {
         if (myOptions[i].value === myValue) {
