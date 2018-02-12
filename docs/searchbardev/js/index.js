@@ -51,9 +51,6 @@ function listOptionSelected() {
             }
         }
     // create div.
-
-    }
-
     var selec = document.createElement('div');
     selec.setAttribute("class", "drugselected");
 
@@ -75,6 +72,7 @@ function listOptionSelected() {
     }
 
     document.body.appendChild(selec);
+    }
 
 input.addEventListener('input', listOptionSelected, false);
 
