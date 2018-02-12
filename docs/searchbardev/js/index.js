@@ -36,6 +36,7 @@ input.placeholder = "Loading the BNF...";
 request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json', true);
 request.send();
 
+var druginputarray = [];
 var myOptions = document.getElementById('json-datalist').childNodes;
 
 function listOptionSelected() {
@@ -43,6 +44,7 @@ function listOptionSelected() {
     for (var i = 0; i < myOptions.length; i++) {
         if (myOptions[i].value === myValue) {
             console.log('Option Selected: ' + myValue);
+            druginputarray.push(myValue);
         }
     }
 }
