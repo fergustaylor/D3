@@ -66,7 +66,7 @@ function listOptionSelected() {
     selec.appendChild(selec4);
 
     for (var ii = 0; ii < druginputarray.length; ii++) {
-    var selec5 = document.createElement('p')
+    var selec5 = document.createElement('p');
     selec5.setAttribute("class", "druglist");
     var selec55 = document.createTextNode(druginputarray[ii]);
     selec5.appendChild(selec55);
