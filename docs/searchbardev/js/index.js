@@ -48,44 +48,43 @@ function removedrug() {
 }
 
 function listOptionSelected() {
-    //remove the previous drugselected div
-    $( ".drugselected" ).remove();
-
     var myValue = input.value;
     for (var i = 0; i < myOptions.length; i++) {
         if (myOptions[i].value === myValue) {
+            //remove the previous drugselected div
+            $( ".drugselected" ).remove();
+            //console log it.
             console.log('Option Selected: ' + myValue);
             //add to druginputarray
             druginputarray.push(myValue);
+            // create div.
+            var selec = document.createElement('div');
+            selec.setAttribute("class", "drugselected");
+
+            var selec2 = document.createElement('p')
+            var selec25 = document.createTextNode("Selected Drugs");
+            selec2.appendChild(selec25);
+
+            var selec3 = document.createElement('hr')
+            var selec4 = document.createElement('br')
+
+            selec.appendChild(selec2);
+            selec.appendChild(selec3);
+            selec.appendChild(selec4);
+
+            for (var ii = 0; ii < druginputarray.length; ii++) {
+            var selec5 = document.createElement('p');
+            selec5.setAttribute("class", "druglist");
+            selec5.addEventListener('click', removedrug, false);
+            var selec55 = document.createTextNode(druginputarray[ii]);
+            selec5.appendChild(selec55);
+            selec.appendChild(selec5);
+            }
+            document.body.appendChild(selec);
+            //clear input
+            input.value = "";
             }
         }
-    // create div.
-    var selec = document.createElement('div');
-    selec.setAttribute("class", "drugselected");
-
-    var selec2 = document.createElement('p')
-    var selec25 = document.createTextNode("Selected Drugs");
-    selec2.appendChild(selec25);
-
-    var selec3 = document.createElement('hr')
-    var selec4 = document.createElement('br')
-
-    selec.appendChild(selec2);
-    selec.appendChild(selec3);
-    selec.appendChild(selec4);
-
-    for (var ii = 0; ii < druginputarray.length; ii++) {
-    var selec5 = document.createElement('p');
-    selec5.setAttribute("class", "druglist");
-    selec5.addEventListener('click', removedrug, false);
-    var selec55 = document.createTextNode(druginputarray[ii]);
-    selec5.appendChild(selec55);
-    selec.appendChild(selec5);
-    }
-
-    document.body.appendChild(selec);
-    //clear input
-    input.value = "";
     }
 
 input.addEventListener('input', listOptionSelected, false);
