@@ -41,7 +41,8 @@ var myOptions = document.getElementById('json-datalist').childNodes;
 
 function removedrug() {
   this.parentNode.removeChild(this);
-  console.log(this)
+  var indexposition = $('.druglist').index(this);
+  druginputarray.splice(indexposition, 1);
   //remove from druginputarray
 }
 
@@ -74,7 +75,7 @@ function listOptionSelected() {
     for (var ii = 0; ii < druginputarray.length; ii++) {
     var selec5 = document.createElement('p');
     selec5.setAttribute("class", "druglist");
-    selec5.setAttribute("drugindex", ii);
+    //selec5.setAttribute("drugindex", ii);
     selec5.addEventListener('click', removedrug, false);
     var selec55 = document.createTextNode(druginputarray[ii]);
     selec5.appendChild(selec55);
