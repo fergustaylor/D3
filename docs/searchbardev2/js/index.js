@@ -16,7 +16,6 @@ request.onreadystatechange = function(response) {
         var option = document.createElement('option');
         // Set the value using the item in the JSON array.
         option.value = item.title;
-        option.addEventListener("click", listOptionSelected2);
 
         // Add the <option> element to the <datalist>.
         dataList.appendChild(option);
@@ -128,6 +127,8 @@ function listOptionSelected2() {
             }
         }
     }
+
+input.addEventListener("click", listOptionSelected2);
 
 //type it out and enter
 input.addEventListener("keyup", function (event) {
