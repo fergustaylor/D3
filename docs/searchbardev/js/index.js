@@ -54,7 +54,7 @@ function listOptionSelected() {
             //remove the previous drugselected div
             $( ".drugselected" ).remove();
             //console log it.
-            console.log('Option Selected: ' + myValue);
+            //console.log('Option Selected: ' + myValue);
             //add to druginputarray
             druginputarray.push(myValue);
             // create div.
@@ -88,6 +88,17 @@ function listOptionSelected() {
     }
 
 input.addEventListener('input', listOptionSelected, false);
+
+//type it out and enter
+input.addEventListener("keyup", function (event) {
+          if (event.keyCode == 13) {
+              event.preventDefault();
+              if (input.value.length != 0) {
+                  druginput = input.value;
+                  click(druginput);
+              }
+          }
+      }, false);
 
 jQuery(function(){
 jQuery('#close').click(function(){
