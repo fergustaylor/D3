@@ -40,10 +40,11 @@ var druginputarray = [];
 var myOptions = document.getElementById('json-datalist').childNodes;
 
 function removedrug() {
-  this.parentNode.removeChild(this);
+  //remove from druginputarray
   var indexposition = $('.druglist').index(this);
   druginputarray.splice(indexposition, 1);
-  //remove from druginputarray
+  //remove element
+  this.parentNode.removeChild(this);
 }
 
 function listOptionSelected() {
@@ -83,6 +84,9 @@ function listOptionSelected() {
     }
 
     document.body.appendChild(selec);
+
+
+      //clear input afterwards
     }
 
 input.addEventListener('input', listOptionSelected, false);
