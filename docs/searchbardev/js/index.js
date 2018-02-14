@@ -41,6 +41,7 @@ var myOptions = document.getElementById('json-datalist').childNodes;
 
 function removedrug() {
   this.parentNode.removeChild(this);
+  //remove from druginputarray
 }
 
 function listOptionSelected() {
