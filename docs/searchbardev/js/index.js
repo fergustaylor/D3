@@ -48,13 +48,14 @@ function removedrug() {
 }
 
 function listOptionSelected() {
-
+    //remove the previous drugselected div
     $( ".drugselected" ).remove();
 
     var myValue = input.value;
     for (var i = 0; i < myOptions.length; i++) {
         if (myOptions[i].value === myValue) {
             console.log('Option Selected: ' + myValue);
+            //add to druginputarray
             druginputarray.push(myValue);
             }
         }
@@ -76,7 +77,6 @@ function listOptionSelected() {
     for (var ii = 0; ii < druginputarray.length; ii++) {
     var selec5 = document.createElement('p');
     selec5.setAttribute("class", "druglist");
-    //selec5.setAttribute("drugindex", ii);
     selec5.addEventListener('click', removedrug, false);
     var selec55 = document.createTextNode(druginputarray[ii]);
     selec5.appendChild(selec55);
@@ -84,9 +84,8 @@ function listOptionSelected() {
     }
 
     document.body.appendChild(selec);
-
-
-      //clear input afterwards
+    //clear input
+    input.value = "";
     }
 
 input.addEventListener('input', listOptionSelected, false);
