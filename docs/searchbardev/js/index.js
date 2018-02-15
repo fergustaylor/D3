@@ -43,45 +43,6 @@ function removedrug() {
   this.parentNode.removeChild(this);
 }
 
-function listOptionSelected() {
-    var myValue = input.value;
-    for (var i = 0; i < myOptions.length; i++) {
-        if (myOptions[i].value === myValue && $.inArray( myValue, druginputarray ) == -1) {
-            //remove the previous drugselected div
-            $( ".drugselected" ).remove();
-            //add to druginputarray
-            druginputarray.push(myValue);
-            // create div.
-            var selec = document.createElement('div');
-            selec.setAttribute("class", "drugselected");
-
-            var selec2 = document.createElement('p')
-            var selec25 = document.createTextNode("Selected Drugs");
-            selec2.appendChild(selec25);
-
-            var selec3 = document.createElement('hr')
-            var selec4 = document.createElement('br')
-
-            selec.appendChild(selec2);
-            selec.appendChild(selec3);
-            selec.appendChild(selec4);
-
-            for (var ii = 0; ii < druginputarray.length; ii++) {
-            var selec5 = document.createElement('p');
-            selec5.setAttribute("class", "druglist");
-            selec5.addEventListener('click', removedrug, false);
-            var selec55 = document.createTextNode(druginputarray[ii]);
-            selec5.appendChild(selec55);
-            selec.appendChild(selec5);
-            }
-            document.body.appendChild(selec);
-            //clear input
-            input.value = "";
-            }
-        }
-    }
-//input.addEventListener('input', listOptionSelected, false);
-
 function listOptionSelected2() {
     var myValue = input.value;
     for (var i = 0; i < myOptions.length; i++) {
@@ -89,20 +50,18 @@ function listOptionSelected2() {
         if (myOptions[i].value === myValue && $.inArray( myValue, druginputarray ) == -1) {
             //remove the previous drugselected div
             $( ".drugselected" ).remove();
-            //console log it.
-            //console.log('Option Selected: ' + myValue);
             //add to druginputarray
             druginputarray.push(myValue);
             // create div.
             var selec = document.createElement('div');
             selec.setAttribute("class", "drugselected");
 
-            var selec2 = document.createElement('p')
+            var selec2 = document.createElement('p');
             var selec25 = document.createTextNode("Selected Drugs");
             selec2.appendChild(selec25);
 
-            var selec3 = document.createElement('hr')
-            var selec4 = document.createElement('br')
+            var selec3 = document.createElement('hr');
+            var selec4 = document.createElement('br');
 
             selec.appendChild(selec2);
             selec.appendChild(selec3);
@@ -116,6 +75,15 @@ function listOptionSelected2() {
             selec5.appendChild(selec55);
             selec.appendChild(selec5);
             }
+
+            selec.appendChild(selec4);
+
+            var selec6 = document.createElement('p');
+            var selec65 = document.createTextNode("Build my graph");
+            selec6.setAttribute("class", "buildbutton");
+            selec6.appendChild(selec65);
+            selec.appendChild(selec5);
+
             document.body.appendChild(selec);
             //clear input
             input.value = "";
