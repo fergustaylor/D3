@@ -15,5 +15,11 @@ div.drugselected p  {
 }
 
 p.druglist:hover {
+    text-decoration: line-through;
+}
+
+p.buildbutton:hover {
     text-decoration: underline;
+    color: #000 !important;
+    background-color: #ccc !important;
 }
