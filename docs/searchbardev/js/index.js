@@ -82,7 +82,7 @@ function listOptionSelected2() {
             var selec65 = document.createTextNode("Build my graph");
             selec6.setAttribute("class", "buildbutton");
             selec6.appendChild(selec65);
-            selec.appendChild(selec5);
+            selec.appendChild(selec6);
 
             document.body.appendChild(selec);
             //clear input
