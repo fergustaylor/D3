@@ -3,7 +3,6 @@ var dataList = document.getElementById('json-datalist');
 var input = document.getElementById('search');
 // Create a new XMLHttpRequest.
 var request = new XMLHttpRequest();
-
 // Handle state changes for the request.
 request.onreadystatechange = function(response) {
   if (request.readyState === 4) {
@@ -16,7 +15,6 @@ request.onreadystatechange = function(response) {
         var option = document.createElement('option');
         // Set the value using the item in the JSON array.
         option.value = item.title;
-
         // Add the <option> element to the <datalist>.
         dataList.appendChild(option);
       });
@@ -28,7 +26,6 @@ request.onreadystatechange = function(response) {
     }
   }
 };
-
 // Update the placeholder text.
 input.placeholder = "Loading the BNF...";
 // Set up and make the request.
@@ -49,11 +46,9 @@ function removedrug() {
 function listOptionSelected() {
     var myValue = input.value;
     for (var i = 0; i < myOptions.length; i++) {
-        if (myOptions[i].value === myValue) {
+        if (myOptions[i].value === myValue && $.inArray( myValue, druginputarray ) == -1) {
             //remove the previous drugselected div
             $( ".drugselected" ).remove();
-            //console log it.
-            //console.log('Option Selected: ' + myValue);
             //add to druginputarray
             druginputarray.push(myValue);
             // create div.
@@ -85,13 +80,13 @@ function listOptionSelected() {
             }
         }
     }
-
 //input.addEventListener('input', listOptionSelected, false);
 
 function listOptionSelected2() {
     var myValue = input.value;
     for (var i = 0; i < myOptions.length; i++) {
-        if (myOptions[i].value === myValue) {
+        //if (myOptions[i].value === myValue) {
+        if (myOptions[i].value === myValue && $.inArray( myValue, druginputarray ) == -1) {
             //remove the previous drugselected div
             $( ".drugselected" ).remove();
             //console log it.
