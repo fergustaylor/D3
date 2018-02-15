@@ -43,7 +43,7 @@ function removedrug() {
   this.parentNode.removeChild(this);
 }
 
-function listOptionSelected2() {
+function listOptionSelected() {
     var myValue = input.value;
     for (var i = 0; i < myOptions.length; i++) {
         //if (myOptions[i].value === myValue) {
@@ -91,13 +91,14 @@ function listOptionSelected2() {
         }
     }
 
-input.addEventListener("click", listOptionSelected2);
+input.addEventListener("click", listOptionSelected);
 
 //type it out and enter
 input.addEventListener("keyup", function (event) {
           if (event.keyCode == 13) {
               event.preventDefault();
               if (input.value.length != 0) {
+                //add an if druginput is in array conditional
                   druginput = input.value;
                   click(druginput);
               }
