@@ -9,15 +9,22 @@ request.onreadystatechange = function(response) {
       var jsonOptions = JSON.parse(request.responseText);
       // Loop over the JSON array.
      jsonOptions.forEach(function(item) {
-        // Create a new <option> element.
-        var checklists = document.createElement('input')
-        checklists.setAttribute("type", "checkbox")
-        checklists.setAttribute("value", item.title)
+
+        // Create a new <input> element.
+        var inputs = document.createElement('input')
+        inputs.setAttribute("type", "checkbox")
+        inputs.setAttribute("value", item.title)
+
         // Set the value using the item in the JSON array.
+        var checklists = document.createElement('p')
         var checklists5 = document.createTextNode(item.title)
         checklists.appendChild(checklists5)
+
         //add a break
         var breaks = document.createElement('br')
+        
+        // Add the <input> element to the <div>.
+        checklistcontainer.appendChild(inputs);
         // Add the <p> element to the <div>.
         checklistcontainer.appendChild(checklists);
         // Add the <br> element to the <div>.
