@@ -12,10 +12,11 @@ request.onreadystatechange = function(response) {
         // Create a new <span> element.
         var span = document.createElement('span')
         span.setAttribute("value", item.title)
-        
+
         // Create a new <input> element.
         var inputs = document.createElement('input')
         inputs.setAttribute("type", "checkbox")
+        inputs.setAttribute("name", "drugs")
         inputs.setAttribute("value", item.title)
 
         // Set the value using the item in the JSON array.
