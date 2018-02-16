@@ -47,7 +47,7 @@ function showall() {
   var all = $('div#checklist>span' )
   //loop through all
   for (i = 0; i < all.length; i++) {
-    all[i].style.visibility = 'visible';
+    all[i].style.display = 'block';
   }
 }
 
