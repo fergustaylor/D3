@@ -9,6 +9,8 @@ request.onreadystatechange = function(response) {
       var jsonOptions = JSON.parse(request.responseText);
       // Loop over the JSON array.
      jsonOptions.forEach(function(item) {
+        // Create a new <span> element.
+        var span = document.createElement('span')
 
         // Create a new <input> element.
         var inputs = document.createElement('input')
@@ -22,13 +24,13 @@ request.onreadystatechange = function(response) {
 
         //add a break
         var breaks = document.createElement('br')
-        
-        // Add the <input> element to the <div>.
-        checklistcontainer.appendChild(inputs);
-        // Add the <p> element to the <div>.
-        checklistcontainer.appendChild(checklists);
-        // Add the <br> element to the <div>.
-        checklistcontainer.appendChild(breaks);
+
+        // Add the <input> element to the <span>.
+        span.appendChild(inputs);
+        // Add the <p> element to the <span>.
+        span.appendChild(checklists);
+
+        checklistcontainer.appendChild(span);
       });
     }
   }
