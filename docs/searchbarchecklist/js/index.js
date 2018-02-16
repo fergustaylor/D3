@@ -72,7 +72,7 @@ function showunselected() {
   }
   var unselected = $('div#checklist>span>input').not(':checked').parent()
   //loop through selected
-  for (i = 0; i < selected.length; i++) {
+  for (i = 0; i < unselected.length; i++) {
     unselected[i].style.display = 'block';
   }
 }
