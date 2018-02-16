@@ -10,7 +10,9 @@ request.onreadystatechange = function(response) {
       // Loop over the JSON array.
      jsonOptions.forEach(function(item) {
         // Create a new <option> element.
-        var checklists = document.createElement('p');
+        var checklists = document.createElement('input');
+        checklists.setAttribute("type", "checkbox");
+        checklists.setAttribute("value", item.title);
         // Set the value using the item in the JSON array.
         var checklists5 = document.createTextNode(item.title);
         checklists.appendChild(checklists5);
@@ -24,6 +26,7 @@ request.onreadystatechange = function(response) {
     }
   }
 };
+
 // Set up and make the request.
 request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json', true);
 request.send();
