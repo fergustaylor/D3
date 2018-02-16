@@ -41,3 +41,38 @@ request.onreadystatechange = function(response) {
 // Set up and make the request.
 request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json', true);
 request.send();
+
+//functions for the radio buttons
+function showall() {
+  var all = $('div#checklist>span' )
+  //loop through all
+  for (i = 0; i < all.length; i++) {
+    all[i].style.visibility = 'visible';
+  }
+}
+
+function showselected() {
+  var all = $('div#checklist>span' )
+  //loop through all
+  for (i = 0; i < all.length; i++) {
+    all[i].style.display = 'none';
+  }
+  var selected = $('div#checklist>span>input:checked' ).parent()
+  //loop through selected
+  for (i = 0; i < selected.length; i++) {
+    selected[i].style.display = 'block';
+  }
+}
+
+function showunselected() {
+  var all = $('div#checklist>span' )
+  //loop through all
+  for (i = 0; i < all.length; i++) {
+    all[i].style.display = 'none';
+  }
+  var unselected = $('div#checklist>span>input').not(':checked').parent()
+  //loop through selected
+  for (i = 0; i < selected.length; i++) {
+    unselected[i].style.display = 'block';
+  }
+}
