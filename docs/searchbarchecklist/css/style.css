@@ -17,6 +17,8 @@ html {
   /*display: flex;
   justify-content: center;
   align-items: center;*/
+  column-count: 4;
+  column-width: auto;
 }
 
 div#checklist span * {
