@@ -12,17 +12,14 @@ html {
 }
 
 div.flex-container {
-  height: 90vh;
-  width: 100%;
-  /*display: flex;
-  justify-content: center;
-  align-items: center;*/
+  /*width: 100%;*/
   column-count: 4;
   column-width: auto;
 }
 
 form.filters {
-  height: 10vh;
+  /*height: 10vh;*/
+  padding: 20px;
   width: 100%;
 }
 
