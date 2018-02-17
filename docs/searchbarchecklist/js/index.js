@@ -89,7 +89,7 @@ function showsearched(string) {
     searched[i].style.display = 'block';
   }
   //search by capitalised version
-  var string2 = string.charAt(0).toUpperCase();
+  var string2 = string.charAt(0).toUpperCase()+string.slice(1);
   var searched2 = $("span:contains("+string2+")")
   //loop through searched
   for (i = 0; i < searched2.length; i++) {
