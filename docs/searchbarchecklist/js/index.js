@@ -100,6 +100,7 @@ function showsearched(string) {
 var druginputarray = [];
 
 function buildgraph() {
+  var druginputarray = [];
   var selected = $('div#checklist>span>input:checked' );
   //create array
   for (i = 0; i < selected.length; i++) {
