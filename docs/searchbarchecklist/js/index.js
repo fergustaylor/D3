@@ -83,7 +83,7 @@ function showsearched(string) {
   for (i = 0; i < all.length; i++) {
     all[i].style.display = 'none';
   }
-  var searched = $('div#checklist>span>input').match(/string/g);
+  var searched = $("div#checklist>span>input:contains("+string+")")
   //loop through searched
   for (i = 0; i < searched.length; i++) {
     searched[i].style.display = 'block';
