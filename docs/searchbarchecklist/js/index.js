@@ -77,4 +77,15 @@ function showunselected() {
   }
 }
 
-function showsearched() {}
+function showsearched(string) {
+  var all = $('div#checklist>span' )
+  //loop through all
+  for (i = 0; i < all.length; i++) {
+    all[i].style.display = 'none';
+  }
+  var searched = $('div#checklist>span>input').match(/string/g);
+  //loop through searched
+  for (i = 0; i < searched.length; i++) {
+    searched[i].style.display = 'block';
+  }
+}
