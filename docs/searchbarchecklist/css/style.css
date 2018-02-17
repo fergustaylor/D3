@@ -30,3 +30,23 @@ div#checklist span * {
 div#checklist * {
     display: block;
 }
+
+input[type=text] {
+    width: 30%;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    position:fixed;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+input[type=text]:focus {
+    width: 50%;
+    outline: none;
+    border-bottom: 4px solid;
+}
