@@ -15,7 +15,7 @@
 
 <body>
 <label for="search">Search: </label>
-<input type="text" id="search" onkeyup="showsearched(document.getElementById('search').value)" autocomplete="off">
+<input type="text" id="search" onkeyup="showsearched(this.value)" autocomplete="off">
 <form class="filters">
   <input type="radio" name="filter" value="Show All" checked onchange="showall()"> Show All
   <input type="radio" name="filter" value="Show Selected" onchange="showselected()"> Show Selected
