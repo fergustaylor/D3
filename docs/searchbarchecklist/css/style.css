@@ -32,7 +32,7 @@ div#checklist * {
 }
 
 input {
-  font: 24pt helvetica neue;
+  font-size: 400%;
   background: none;
   border: none;
   outline: 0;
