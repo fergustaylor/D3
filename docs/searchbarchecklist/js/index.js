@@ -76,3 +76,5 @@ function showunselected() {
     unselected[i].style.display = 'block';
   }
 }
+
+function showsearched() {}
