@@ -97,9 +97,10 @@ function showsearched(string) {
   }
 }
 
+var druginputarray = [];
+
 function buildgraph() {
   var selected = $('div#checklist>span>input:checked' );
-  var druginputarray = [];
   //create array
   for (i = 0; i < selected.length; i++) {
     druginputarray.push(selected[i].value);
