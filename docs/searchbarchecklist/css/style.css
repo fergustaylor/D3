@@ -37,3 +37,8 @@ input {
   border: none;
   outline: 0;
 }
+
+label#search {
+    font-size: 400%;
+    padding-left: 20px;
+}
