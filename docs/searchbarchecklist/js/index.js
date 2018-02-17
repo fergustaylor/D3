@@ -107,4 +107,5 @@ function buildgraph() {
     druginputarray.push(selected[i].value);
   }
   console.log(druginputarray);
+  return(druginputarray)
 }
