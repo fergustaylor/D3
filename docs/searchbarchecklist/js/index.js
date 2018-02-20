@@ -17,7 +17,8 @@ request.onreadystatechange = function(response) {
         var inputs = document.createElement('input')
         inputs.setAttribute("type", "checkbox")
         inputs.setAttribute("name", "drugs")
-        inputs.setAttribute("value", item.title)
+        //inputs.setAttribute("value", item.title)
+        inputs.setAttribute("value", item.name.substring(i = item.name.lastIndexOf(".") + 1))
 
         // Set the value using the item in the JSON array.
         var checklists = document.createElement('p')
