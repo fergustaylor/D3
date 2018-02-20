@@ -47,7 +47,9 @@ d3.json("https://fergustaylor.github.io/D3/flare.json", function(classes) {
       .attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key; })
       .attr("d", function(d, i) { return line(splines[i]); })
       /// style = hidden
-      .attr("style", "display: none");
+      .attr("style", "display: none")
+      .attr("code", function(d) { return d.source.key; })
+      ;
       ///
 
   svg.selectAll("g.node")
