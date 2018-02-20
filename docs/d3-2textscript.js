@@ -20,16 +20,14 @@ var line = d3.svg.line.radial()
     .angle(function(d) { return d.x / 180 * Math.PI; });
 
 var div = d3.select("body").insert("div", "h2")
-//.style("top", "-80px")
-//.style("left", "-160px")
     .style("width", w + "px")
-    .style("height", h + "px")
+    .style("height", w + "px")
     .style("position", "absolute")
     .style("-webkit-backface-visibility", "hidden");
 
 var svg = div.append("svg:svg")
     .attr("width", w)
-    .attr("height", h)
+    .attr("height", w)
   .append("svg:g")
     .attr("transform", "translate(" + rx + "," + ry + ")");
 
