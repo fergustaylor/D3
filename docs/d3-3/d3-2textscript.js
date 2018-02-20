@@ -60,6 +60,7 @@ d3.json("https://fergustaylor.github.io/D3/flare.json", function(classes) {
       .attr("id", function(d) { return "node-" + d.key; })
       /// style = hidden
       .attr("style", "display: none")
+      .attr("key", function(d) { return d.key; })
       ///
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
     .append("svg:text")
