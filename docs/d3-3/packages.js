@@ -5,7 +5,7 @@
     root: function(classes) {
       var map = {};
 
-      function find(name, data) {
+      function find(name, data)
         var node = map[name], i;
         if (!node) {
           node = map[name] = data || {name: name, children: []};
@@ -38,7 +38,13 @@
       // For each import, construct a link from the source to target node.
       nodes.forEach(function(d) {
         if (d.imports) d.imports.forEach(function(i) {
-          imports.push({source: map[d.name], target: map[i]});
+
+          //if in druginputarray
+          for (ii = 0; ii < druginputarray.length; ii++) {
+                if (i.substring(lastIndexOf(".") + 1) == druginputarray[ii]) {
+                  imports.push({source: map[d.name], target: map[i]});
+              }
+            }
         });
       });
       return imports;

@@ -37,7 +37,24 @@ svg.append("svg:path")
     .on("mousedown", mousedown);
 
 d3.json("https://fergustaylor.github.io/D3/flare.json", function(classes) {
-  var nodes = cluster.nodes(packages.root(classes)),
+
+
+///filtering classes
+var druginputarray = ["Abciximab", "Acebutolol", "Adrenaline/epinephrine", "Agalsidase", "Agomelatine", "Albendazole", "Albiglutide", "Alcohol(beverage)", "Dairyproducts", "Dapsone", "Daptomycin", "Daratumumab", "Daunorubicin", "Ketoconazole", "Ketorolac", "Ketotifen", "Laronidase", "Lercanidipine", "Levamisole", "Prednisone", "Pregabalin", "Pseudoephedrine"];
+
+var classes2 = []
+
+for (i = 0; i < druginputarray.length; i++) {
+  for (ii = 0; ii < classes.length; ii++) {
+    if (classes[ii].key == druginputarray[i]) {
+      classes2.push(classes[ii])
+    }
+  }
+}
+
+
+  //var nodes = cluster.nodes(packages.root(classes)),
+  var nodes = cluster.nodes(packages.root(classes2)),
       links = packages.imports(nodes),
       splines = bundle(links);
 

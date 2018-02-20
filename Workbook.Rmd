@@ -338,6 +338,9 @@ master <- master %>%
 ```
 
 ```{r}
+#Export
+master$Stamp <- Timestamp
+
 master %>%
   jsonlite::toJSON() %>%
   write(file="archive/flare.json")
@@ -480,6 +483,7 @@ top100drugs <- top100drugs %>%
   rename('imports' = 'Interactions')
 ```
 
+d3-2 data (top 100 with classes)
 ```{r}
 #Export
 top100drugs$Stamp <- Timestamp
