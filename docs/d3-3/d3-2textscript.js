@@ -45,13 +45,19 @@ d3.json("https://fergustaylor.github.io/D3/flare.json", function(classes) {
       .data(links)
     .enter().append("svg:path")
       .attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key; })
-      .attr("d", function(d, i) { return line(splines[i]); });
+      .attr("d", function(d, i) { return line(splines[i]); })
+      /// style = hidden
+      .attr("style", "display: none");
+      ///
 
   svg.selectAll("g.node")
       .data(nodes.filter(function(n) { return !n.children; }))
     .enter().append("svg:g")
       .attr("class", "node")
       .attr("id", function(d) { return "node-" + d.key; })
+      /// style = hidden
+      .attr("style", "display: none")
+      ///
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
     .append("svg:text")
       .attr("dx", function(d) { return d.x < 180 ? 8 : -8; })
