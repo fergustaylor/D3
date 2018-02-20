@@ -48,7 +48,8 @@ d3.json("https://fergustaylor.github.io/D3/flare.json", function(classes) {
       .attr("d", function(d, i) { return line(splines[i]); })
       /// style = hidden
       .attr("style", "display: none")
-      .attr("code", function(d) { return d.source.key; })
+      .attr("source", function(d) { return d.source.key; })
+      .attr("target", function(d) { return d.target.key; })
       ;
       ///
 
