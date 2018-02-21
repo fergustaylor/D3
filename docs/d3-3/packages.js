@@ -37,21 +37,7 @@
 
       // For each import, construct a link from the source to target node.
       nodes.forEach(function(d) {
-        if (d.imports)
-
-        var example = d.imports
-
-        var nodes2 = [];
-
-        for (q = 0; q < druginputarray.length; q++) {
-          for (ii = 0; ii < example.length; ii++) {
-            if (example[ii].substring(i = example[ii].lastIndexOf(".") + 1) == druginputarray[q]) {
-              nodes2.push(example[ii])
-            }
-          }
-        };
-
-        nodes2.forEach(function(i) {
+        if (d.imports) d.imports.forEach(function(i) {
           imports.push({source: map[d.name], target: map[i]});
         });
       });
