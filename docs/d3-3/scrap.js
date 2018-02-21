@@ -29,5 +29,3 @@ for (i = 0; i < druginputarray.length; i++) {
     }
   }
 }
-
-/////////////////
