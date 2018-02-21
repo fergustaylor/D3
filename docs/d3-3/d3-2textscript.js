@@ -1,3 +1,6 @@
+///filtering classes
+var druginputarray = ["Abciximab", "Acebutolol", "Adrenaline/epinephrine", "Agalsidase", "Agomelatine", "Albendazole", "Albiglutide", "Alcohol(beverage)", "Dairyproducts", "Dapsone", "Daptomycin", "Daratumumab", "Daunorubicin", "Ketoconazole", "Ketorolac", "Ketotifen", "Laronidase", "Lercanidipine", "Levamisole", "Prednisone", "Pregabalin", "Pseudoephedrine"];
+
 var w = screen.width,
     h = screen.height,
     rx = w / 2,
@@ -38,10 +41,6 @@ svg.append("svg:path")
 
 d3.json("https://fergustaylor.github.io/D3/flare.json", function(classes) {
 
-
-///filtering classes
-var druginputarray = ["Abciximab", "Acebutolol", "Adrenaline/epinephrine", "Agalsidase", "Agomelatine", "Albendazole", "Albiglutide", "Alcohol(beverage)", "Dairyproducts", "Dapsone", "Daptomycin", "Daratumumab", "Daunorubicin", "Ketoconazole", "Ketorolac", "Ketotifen", "Laronidase", "Lercanidipine", "Levamisole", "Prednisone", "Pregabalin", "Pseudoephedrine"];
-
 var classes2 = []
 //add key to classes array
 for (ii = 0; ii < classes.length; ii++) {
@@ -55,9 +54,6 @@ for (i = 0; i < druginputarray.length; i++) {
     }
   }
 };
-
-/////
-
 
 //var nodes = cluster.nodes(packages.root(classes)),
 var nodes = cluster.nodes(packages.root(classes2)),
