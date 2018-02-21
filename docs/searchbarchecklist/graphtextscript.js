@@ -1,5 +1,3 @@
-////adjust the data
-
 
 var w = window.innerWidth,
     h = window.innerHeight,
@@ -46,7 +44,22 @@ d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(clas
   //Update Timestamp
   document.getElementById('disclaimer').innerHTML = "This data was last updated " + classes[0].Stamp;
 
-  var nodes = cluster.nodes(packages.root(classes)),
+  var classes2 = []
+  //add key to classes array
+  for (ii = 0; ii < classes.length; ii++) {
+    classes[ii].key = classes[ii].name.substring(i = classes[ii].name.lastIndexOf(".") + 1)
+  }
+  //filter classes array
+  for (i = 0; i < druginputarray.length; i++) {
+    for (ii = 0; ii < classes.length; ii++) {
+      if (classes[ii].key == druginputarray[i]) {
+        classes2.push(classes[ii])
+      }
+    }
+  };
+
+//var nodes = cluster.nodes(packages.root(classes)),
+  var nodes = cluster.nodes(packages.root(classes2)),
       links = packages.imports(nodes),
       splines = bundle(links);
 
