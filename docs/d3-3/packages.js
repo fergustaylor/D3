@@ -41,7 +41,7 @@
 
           //if in druginputarray
           for (ii = 0; ii < druginputarray.length; ii++) {
-                if i.substring(i = i.lastIndexOf(".") + 1) == druginputarray[ii]) {
+                if (i.substring(i = i.lastIndexOf(".") + 1) == druginputarray[ii]) {
                   imports.push({source: map[d.name], target: map[i]});
               }
             }
