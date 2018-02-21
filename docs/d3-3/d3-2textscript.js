@@ -66,7 +66,7 @@ var nodes = cluster.nodes(packages.root(classes2)),
       .attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key; })
       .attr("d", function(d, i) { return line(splines[i]); })
       /// style = hidden
-      .attr("style", "display: none")
+      //.attr("style", "display: none")
       .attr("source", function(d) { return d.source.key; })
       .attr("target", function(d) { return d.target.key; })
       ;
@@ -78,7 +78,7 @@ var nodes = cluster.nodes(packages.root(classes2)),
       .attr("class", "node")
       .attr("id", function(d) { return "node-" + d.key; })
       /// style = hidden
-      .attr("style", "display: none")
+      //.attr("style", "display: none")
       .attr("key", function(d) { return d.key; })
       ///
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
