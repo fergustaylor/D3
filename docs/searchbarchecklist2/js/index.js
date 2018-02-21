@@ -105,6 +105,6 @@ function buildgraph() {
   for (i = 0; i < selected.length; i++) {
     druginputarray.push(selected[i].value);
   }
-  console.log(druginputarray);
+  //console.log(druginputarray);
   graphit(druginputarray);
 }
