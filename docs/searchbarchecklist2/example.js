@@ -256,7 +256,7 @@ function toggleCheckbox(element)
  duv = document.createElement("hr");
 
  //load interactionsinfo based off click
- d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(data) {
+ d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(data) {
 
    for (i = 0; i < data.length; i++) {
    if (data[i].title == drugselected) {
@@ -557,7 +557,7 @@ svg.append("svg:path")
     .attr("d", d3.svg.arc().outerRadius(ry - 120).innerRadius(0).startAngle(0).endAngle(2 * Math.PI))
     .on("mousedown", mousedown);
 
-d3.json("https://fergustaylor.github.io/D3/dev/flareexample.json", function(classes) {
+d3.json("https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json", function(classes) {
 
   //Update Timestamp
   document.getElementById('disclaimer').innerHTML = "This data was last updated " + classes[0].Stamp;
