@@ -1,4 +1,4 @@
-function graphit () {
+function graphit (druginputarray) {
 //Clear previous HTML
 var body = document.body.childNodes;
 for (i=body.length-1;i>=0;i--) {
