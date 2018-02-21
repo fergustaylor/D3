@@ -1,3 +1,4 @@
+function graphit () {
 //Clear previous HTML
 var body = document.body.childNodes;
 for (i=body.length-1;i>=0;i--) {
@@ -64,49 +65,9 @@ body.appendChild(node10);
 
 //textscript
 var node11 = document.createElement("script");
-node11.setAttribute("src", "d3-2textscript.js");
+node11.setAttribute("src", "graphtextscript.js");
 body.appendChild(node11);
 
-//HTML
-document.write('
-
-<a class="sidebar2" id="open">&#9776;</a>\
-<div class="sidebar sidebar2" style="display:none;">\
-<a  class="sidebar2" id="close">&#9776;</a><br>\
-<a  class="sidebar2" id="title">Click on a drug to get started..</a><br>\
-<div id="drug" class="menu sidebar2">\
-</div>\
-
-<div class="hoveroverlap">\
-<hr style="height:4px, colour:black;">\
-<a id="shownotice">Show additional information by hovering over another drug.</a>\
-<div class="hoveroverlap2" id="close2">\
-</div>\
-<hr style="height:4px, colour:black;">\
-</div>\
-
-<section id="div" class="cnt sidebar2">\
-</section>\
-
-<section class="bottom sidebar2" style="display: none;">\
-<a id="drugstotal" class="sidebar2">X Interactions Listed</a><br>\
-<a id="mildmodsevere" class="sidebar2">X Severe | X Moderate | X Mild</a><br>\
-<a id="notstated" class="sidebar2">X Not stated</a>\
-</section>\
-</div>\
-
-<div id="tensionbar" style="position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;">\
-<form name="cssbox">\
-<input type="checkbox" name="cssbox" onchange="toggleCheckbox(this)"/><p>Colour the severe drug interactions</p>\
-</form>\
-<input style="position:relative;top:3px;" type="range" min="0" max="100" value="85">\
-</div>\
-
-<script  src="js/index.js"></script>\
-
-<div class="notice">\
-<p>This graph is based on <a href="">the BNF.</a></p>\
-<p id="disclaimer">This data was last updated X.</p>\
-</div>\
-
-');
+//load HTML
+$(document.body).load( "https://fergustaylor.github.io/D3/searchbarchecklist/insert.html" );
+}
