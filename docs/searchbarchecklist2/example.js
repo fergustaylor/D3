@@ -161,7 +161,6 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
     path.attr("d", function(d, i) { return line(splines[i]); });
   });
 });
-}
 
 d3.select(window)
     .on("mousemove", mousemove)
@@ -584,3 +583,4 @@ function dot(a, b) {
 
 //load HTML
 $(document.body).load( "https://fergustaylor.github.io/D3/searchbarchecklist/insert.html" );
+}
