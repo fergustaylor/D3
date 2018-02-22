@@ -116,14 +116,17 @@ var anectotal;
 var theototal;
 var nsetotal;
 
-var druginteractions;
+var druginteractions = [];
 var druginfo = [];
+
 var druginteractionsinfo = [];
 var evidenceinfo = [];
-//
-var drugtitles = [];
-//
 var severityinfo = [];
+
+var drugtitles = [];
+var druginteractionsinfo2 = [];
+var evidenceinfo2 = [];
+var severityinfo2 = [];
 
 function click(d) {
   //Clear all
@@ -145,10 +148,12 @@ function click(d) {
 
   var druginteractionsinfo = [];
   var evidenceinfo = [];
-//
-  var drugtitles = [];
-//
   var severityinfo = [];
+
+  var drugtitles = [];
+  var druginteractionsinfo2 = [];
+  var evidenceinfo2 = [];
+  var severityinfo2 = [];
 
   //clear all previous
   svg.selectAll("path")
@@ -260,9 +265,12 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(data) {
 /// console.log(data[i]['Interactions Info'])
 /// add div code
 druginteractionsinfo = data[i]['Interactions Info']
+druginteractionsinfo2 = []
 evidenceinfo = data[i].Evidence
-drugtitles = data[i].importstitle;
+evidenceinfo2 = []
+drugtitles = data[i].importstitle
 severityinfo = data[i].Severity
+severityinfo2 = []
 
 /// add severity totals
 mildtotal = data[i].mildtot
@@ -286,29 +294,35 @@ $(document).ready(function() {
 for (i = 0; i < drugtitles.length; i++) {
 for (ii = 0; ii < druginfo.length; ii++) {
   if (drugtitles[i] == druginfo[ii]) {
+    druginteractionsinfo2.push(druginteractionsinfo[i])
+    evidenceinfo2.push(evidenceinfo[i])
+    severityinfo2.push(severityinfo[i])
+}
+}
+};
+
+for (i = 0; i < druginfo.length; i++) {
   var dav = document.getElementById('div');
   var dav2 = document.createElement("span");
-  var dav3 = document.createTextNode(druginteractionsinfo[i])
+  var dav3 = document.createTextNode(druginteractionsinfo2[i])
   var dav4 = document.createElement("span");
 
   dav4.appendChild(document.createElement("br"));
-  dav4.appendChild(document.createTextNode("Evidence: "+evidenceinfo[i]+" | Severity: "+severityinfo[i]));
+  dav4.appendChild(document.createTextNode("Evidence: "+evidenceinfo2[i]+" | Severity: "+severityinfo2[i]));
   dav4.classList.add("evidsev","sidebar2");
 
   dav2.appendChild(dav3);
   dav.appendChild(dav2);
   dav2.appendChild(dav4);
 
-  dav2.setAttribute('evidence', evidenceinfo[i]);
-  dav2.setAttribute('severity', severityinfo[i]);
+  dav2.setAttribute('evidence', evidenceinfo2[i]);
+  dav2.setAttribute('severity', severityinfo2[i]);
 
   dav2.classList.add("targetDiv","sidebar2");
 
   dav2.id = "div"+(i+1);
 }
-}
 
-};
 });
 
 }
