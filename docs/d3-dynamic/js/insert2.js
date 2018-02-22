@@ -1,4 +1,4 @@
-//insert.html
+
 var node11 = document.createElement("a");
 node11.setAttribute("class", "sidebar2");
 node11.setAttribute("id", "open");
@@ -149,4 +149,3 @@ node45.setAttribute("id", "disclaimer")
 var node46 = document.createTextNode("This data was last updated X.")
 node45.appendChild(node46);
 node40.appendChild(node45);
-//^insert.html
