@@ -277,6 +277,9 @@ document.getElementById('notstated').innerHTML = natotal+" Not Stated";
 //create druginteractionsinfo divs
 $(document).ready(function() {
 for (i = 0; i < druginteractionsinfo.length; i++) {
+
+for (ii = 0; ii < druginfo.length; ii++) {
+  if (druginteractionsinfo[i] == druginfo[ii]) {
   var dav = document.getElementById('div');
   var dav2 = document.createElement("span");
   var dav3 = document.createTextNode(druginteractionsinfo[i])
@@ -296,6 +299,8 @@ for (i = 0; i < druginteractionsinfo.length; i++) {
   dav2.classList.add("targetDiv","sidebar2");
 
   dav2.id = "div"+(i+1);
+}
+}
 
 };
 });
