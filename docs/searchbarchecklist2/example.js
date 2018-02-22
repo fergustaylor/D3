@@ -583,5 +583,5 @@ function dot(a, b) {
 //textscript.js
 
 //load HTML
-$(document.body).load( "https://fergustaylor.github.io/D3/searchbarchecklist/insert.html" );
+//$(document.body).load( "https://fergustaylor.github.io/D3/searchbarchecklist/insert.html" );
 }
