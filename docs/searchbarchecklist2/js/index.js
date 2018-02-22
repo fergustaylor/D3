@@ -40,7 +40,7 @@ request.onreadystatechange = function(response) {
 };
 
 // Set up and make the request.
-request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare2electricboogaloo.json', true);
+request.open('GET', 'https://fergustaylor.github.io/D3/dev/flare.json', true);
 request.send();
 
 //functions for the radio buttons
