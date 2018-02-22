@@ -77,8 +77,9 @@ function click(d) {
 
   drugtotal = druginteractions[0].length;
 
-  for (i = 0; i < druginteractions[0].length; i++) {
-  druginfo.push(druginteractions[0][i].__data__.target.key);}
+  for (i = 0; i < drugtotal; i++) {
+  druginfo.push(druginteractions[0][i].__data__.target.key);
+  }
 
   //create sidebar
   for (i = 0; i < druginfo.length; i++) {
@@ -95,7 +96,8 @@ function click(d) {
   duv2.appendChild(duv).classList.add("showSingle","sidebar2");
   duv2.appendChild(duv).setAttributeNode(att);
   duv3 = document.createElement("br");
-  duv2.appendChild(duv3);}
+  duv2.appendChild(duv3);
+  }
 
 // add list all, hide all, line
 duv2 = document.getElementById('drug');
@@ -127,32 +129,27 @@ duv3 = document.createElement("br");
 //create line
 duv = document.createElement("hr");
 
-//load interactionsinfo based off click
-d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(data) {
-
-  for (i = 0; i < data.length; i++) {
-  if (data[i].title == drugselected) {
-/// console.log(data[i]['Interactions Info'])
+////
 /// add div code
-druginteractionsinfo = data[i]['Interactions Info']
+druginteractionsinfo = d.['Interactions Info']
 druginteractionsinfo2 = []
-evidenceinfo = data[i].Evidence
+evidenceinfo = d.Evidence
 evidenceinfo2 = []
-drugtitles = data[i].importstitle
-severityinfo = data[i].Severity
+drugtitles = d.importstitle
+severityinfo = d.Severity
 severityinfo2 = []
 
 /// add severity totals
-mildtotal = data[i].mildtot
-modtotal = data[i].modtot
-sevtotal = data[i].sevtot
-natotal = data[i].nstot
+mildtotal = d.mildtot
+modtotal = d.modtot
+sevtotal = d.sevtot
+natotal = d.nstot
 
 /// add evidence totals
-studytotal = data[i].studytot
-anectotal = data[i].anectot
-theototal = data[i].theorettot
-nsetotal = data[i].nsetot
+studytotal = d.studytot
+anectotal = d.anectot
+theototal = d.theorettot
+nsetotal = d.nsetot
 
 //Bottom
 document.getElementById('drugstotal').innerHTML = drugtotal+" Interactions Listed";
@@ -195,9 +192,6 @@ for (i = 0; i < druginfo.length; i++) {
 
 });
 
-}
-}
-
 //recolour severe text
 $(document).ready(function() {
 for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
@@ -205,8 +199,8 @@ document.querySelectorAll(".showSingle")[i]
 .classList.add(severityinfo[i]);
 };
 });
-});
-//^end of json loaded
+
+////
 
 //show bottom
 jQuery('.bottom').show();
