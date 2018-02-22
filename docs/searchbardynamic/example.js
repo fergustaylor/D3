@@ -576,17 +576,6 @@ function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1];
 }
 
-//trying to recentre any rotations. not sure how I broke it originally.
-///document.querySelector("body > div:nth-child(1) > svg").style.transformOrigin = rx+"px"+" "+rx+"px";
-
-//^^///////////
-//textscript.js
-
-//load HTML
-//insert.html
-
-//^insert.html
-
 //insert.js
 var node46 = document.createElement("script");
 node46.setAttribute("src", "js/insert.js");
