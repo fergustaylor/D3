@@ -262,7 +262,7 @@ duv = document.createElement("hr");
 
 ////
 /// add div code
-druginteractionsinfo = d.['Interactions Info']
+druginteractionsinfo = d["Interactions Info"]
 druginteractionsinfo2 = []
 evidenceinfo = d.Evidence
 evidenceinfo2 = []
