@@ -120,6 +120,9 @@ var druginteractions;
 var druginfo = [];
 var druginteractionsinfo = [];
 var evidenceinfo = [];
+//
+var drugtitles = [];
+//
 var severityinfo = [];
 
 function click(d) {
@@ -142,6 +145,9 @@ function click(d) {
 
   var druginteractionsinfo = [];
   var evidenceinfo = [];
+//
+  var drugtitles = [];
+//
   var severityinfo = [];
 
   //clear all previous
@@ -255,6 +261,7 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(data) {
 /// add div code
 druginteractionsinfo = data[i]['Interactions Info']
 evidenceinfo = data[i].Evidence
+drugtitles = data[i].importstitle;
 severityinfo = data[i].Severity
 
 /// add severity totals
@@ -276,10 +283,9 @@ document.getElementById('notstated').innerHTML = natotal+" Not Stated";
 
 //create druginteractionsinfo divs
 $(document).ready(function() {
-for (i = 0; i < druginteractionsinfo.length; i++) {
-
+for (i = 0; i < drugtitles.length; i++) {
 for (ii = 0; ii < druginfo.length; ii++) {
-  if (druginteractionsinfo[i] == druginfo[ii]) {
+  if (drugtitles[i] == druginfo[ii]) {
   var dav = document.getElementById('div');
   var dav2 = document.createElement("span");
   var dav3 = document.createTextNode(druginteractionsinfo[i])
@@ -305,9 +311,9 @@ for (ii = 0; ii < druginfo.length; ii++) {
 };
 });
 
+}
+}
 
-}
-}
 //recolour severe text
 $(document).ready(function() {
 for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
@@ -356,7 +362,7 @@ jQuery('.showSingle').click(function(){
 
 };
 
-//clear everythin on doubleclick
+//clear everything on doubleclick
 function clear(d) {
   //hide bottom
   jQuery('.bottom').hide();
