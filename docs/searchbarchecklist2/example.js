@@ -63,7 +63,7 @@ var node10 = document.createElement("script");
 node10.setAttribute("src", "packages.js");
 body.appendChild(node10);
 
-///////
+///////////////
 //textscript.js
 
 var w = window.innerWidth,
@@ -579,7 +579,8 @@ function dot(a, b) {
 //trying to recentre any rotations. not sure how I broke it originally.
 ///document.querySelector("body > div:nth-child(1) > svg").style.transformOrigin = rx+"px"+" "+rx+"px";
 
-//////
+//^^///////////
+//textscript.js
 
 //load HTML
 $(document.body).load( "https://fergustaylor.github.io/D3/searchbarchecklist/insert.html" );
