@@ -103,58 +103,8 @@ function mousedown() {
   d3.event.preventDefault();
 }
 
-var drugselected;
-var drugtotal;
-
-var mildtotal;
-var modtotal;
-var sevtotal;
-var natotal;
-
-var studytotal;
-var anectotal;
-var theototal;
-var nsetotal;
-
-var druginteractions = [];
-var druginfo = [];
-
-var druginteractionsinfo = [];
-var evidenceinfo = [];
-var severityinfo = [];
-
-var drugtitles = [];
-var druginteractionsinfo2 = [];
-var evidenceinfo2 = [];
-var severityinfo2 = [];
-
 //////
 function click(d) {
-  //Clear all
-  var drugselected = [];
-  var drugtotal = [];
-
-  var mildtotal = [];
-  var modtotal = [];
-  var sevtotal = [];
-  var natotal = [];
-
-  var studytotal = [];
-  var anectotal = [];
-  var theototal = [];
-  var nsetotal = [];
-
-  var druginteractions = [];
-  var druginfo = [];
-
-  var druginteractionsinfo = [];
-  var evidenceinfo = [];
-  var severityinfo = [];
-
-  var drugtitles = [];
-  var druginteractionsinfo2 = [];
-  var evidenceinfo2 = [];
-  var severityinfo2 = [];
 
   //clear all previous
   svg.selectAll("path")
@@ -202,6 +152,7 @@ function click(d) {
 
   // label sidebar
   drugselected = d.key;
+  
   document.getElementById('title').innerHTML = drugselected;
 
   druginteractions = svg.selectAll("path.link.source-" + d.key);
@@ -219,7 +170,6 @@ function click(d) {
   att.value = i+1;
   duv = document.createElement("a");
   var blep = druginfo[i];
-  //if (druginfo[0] == undefined && druginfo.length=1) {
   if (druginfo[0] == undefined) {
         blep = "This drug has no interactions with the other drugs listed in this graph.";
     }
