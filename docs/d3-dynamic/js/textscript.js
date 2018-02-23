@@ -168,9 +168,9 @@ function click(d) {
   //create sidebar
   for (i = 0; i < druginfo.length; i++) {
   duv2 = document.getElementById('drug');
-  //var att = document.createAttribute("target");
-  //att.value = i+1;
-  document.createAttribute("target").value = i+1;
+  var att = document.createAttribute("target");
+  att.value = i+1;
+  //document.createAttribute("target").value = i+1;
   duv = document.createElement("a");
   var blep = druginfo[i];
   if (druginfo[0] == undefined) {
