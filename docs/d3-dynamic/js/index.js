@@ -34,8 +34,9 @@ request.onreadystatechange = function(response) {
 
         //add event listener to span
         span.addEventListener("click", function(){
-        var state = this.firstChild.checked;
+        state = this.firstChild.checked;
         state = !state;
+        this.firstChild.checked = state;
         });
 
         //add span to checklistcontainer
