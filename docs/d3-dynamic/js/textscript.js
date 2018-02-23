@@ -118,27 +118,21 @@ function click(d) {
      .classed("targetnode", false)
 
   //clear close2
-  var myNode = document.getElementById('close2');
-  myNode.innerHTML = '';
+  document.getElementById('close2').innerHTML = '';
 
   //show "show addition information by hovering.."
   jQuery('#shownotice').show();
 
   //clear drug
-  var myNode = document.getElementById("drug");
-  myNode.innerHTML = '';
+  document.getElementById("drug").innerHTML = '';
 
   //clear div
-  var myNode = document.getElementById("div");
-  myNode.innerHTML = '';
+  document.getElementById("div").innerHTML = '';
 
   //clear bottom
-  var myNode = document.getElementById("drugstotal");
-  myNode.innerHTML = '';
-  var myNode = document.getElementById("mildmodsevere");
-  myNode.innerHTML = '';
-  var myNode = document.getElementById("notstated");
-  myNode.innerHTML = '';
+  document.getElementById("drugstotal").innerHTML = '';
+  document.getElementById("mildmodsevere").innerHTML = '';
+  document.getElementById("notstated").innerHTML = '';
 
   //then colour the new selection.
   svg.selectAll("path.link.target-" + d.key)
@@ -345,24 +339,19 @@ function clear(d) {
   jQuery('.hoveroverlap').hide();
 
   //clear drug
-  var myNode = document.getElementById("drug");
-  myNode.innerHTML = '';
+  document.getElementById("drug").innerHTML = '';
 
   var drugselected = null;
   document.getElementById('title').innerHTML = "Click on a drug to get started..";
   document.getElementById('drugstotal').innerHTML = "X Interactions Listed";
 
   //clear div
-  var myNode = document.getElementById("div");
-  myNode.innerHTML = '';
+  document.getElementById("div").innerHTML = '';
 
   //clear bottom
-  var myNode = document.getElementById("drugstotal");
-  myNode.innerHTML = '';
-  var myNode = document.getElementById("mildmodsevere");
-  myNode.innerHTML = '';
-  var myNode = document.getElementById("notstated");
-  myNode.innerHTML = '';
+  document.getElementById("drugstotal").innerHTML = '';
+  document.getElementById("mildmodsevere").innerHTML = '';
+  document.getElementById("notstated").innerHTML = '';
 }
 
 function mousemove() {
@@ -405,8 +394,7 @@ function mouseover(d) {
       .each(updateNodes("target", true));
 
   //clear close2
-  var myNode = document.getElementById('close2');
-  myNode.innerHTML = '';
+  document.getElementById('close2').innerHTML = '';
 
   var hovering = document.querySelectorAll(".node:hover")[0].__data__.key;
   var drugselected = document.getElementById('title').innerHTML
@@ -447,8 +435,7 @@ function mouseout(d) {
   svg.selectAll("path.link.target-" + d.key)
       .classed("target", false)
       .each(updateNodes("source", false));
-  var myNode = document.getElementById('close2');
-  myNode.innerHTML = '';
+  document.getElementById('close2').innerHTML = '';
   var hovering = "";
   jQuery('#shownotice').show();
 }
