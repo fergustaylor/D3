@@ -152,12 +152,14 @@ function click(d) {
 
   // label sidebar
   drugselected = d.key;
-  
+
   document.getElementById('title').innerHTML = drugselected;
 
   druginteractions = svg.selectAll("path.link.source-" + d.key);
 
   drugtotal = druginteractions[0].length;
+
+  druginfo = [];
 
   for (i = 0; i < drugtotal; i++) {
   druginfo.push(druginteractions[0][i].__data__.target.key);
