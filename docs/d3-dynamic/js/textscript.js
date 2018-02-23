@@ -168,8 +168,9 @@ function click(d) {
   //create sidebar
   for (i = 0; i < druginfo.length; i++) {
   duv2 = document.getElementById('drug');
-  var att = document.createAttribute("target");
-  att.value = i+1;
+  //var att = document.createAttribute("target");
+  //att.value = i+1;
+  document.createAttribute("target").value = i+1;
   duv = document.createElement("a");
   var blep = druginfo[i];
   if (druginfo[0] == undefined) {
@@ -239,11 +240,12 @@ document.getElementById('drugstotal').innerHTML = drugtotal+" Interactions Liste
 document.getElementById('mildmodsevere').innerHTML = sevtotal+" Severe | "+modtotal+" Moderate | "+mildtotal+" Mild";
 document.getElementById('notstated').innerHTML = natotal+" Not Stated";
 
+//reversed the order so pushes in druginfo order
 //create druginteractionsinfo divs
 $(document).ready(function() {
-for (i = 0; i < drugtitles.length; i++) {
 for (ii = 0; ii < druginfo.length; ii++) {
-  if (drugtitles[i] == druginfo[ii]) {
+for (i = 0; i < drugtitles.length; i++) {
+  if (druginfo[ii] == drugtitles[i]) {
     druginteractionsinfo2.push(druginteractionsinfo[i])
     evidenceinfo2.push(evidenceinfo[i])
     severityinfo2.push(severityinfo[i])
