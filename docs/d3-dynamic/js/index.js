@@ -19,6 +19,13 @@ request.onreadystatechange = function(response) {
         inputs.setAttribute("name", "drugs")
         inputs.setAttribute("value", item.name.substring(i = item.name.lastIndexOf(".") + 1))
 
+        //add event listener to input (to cancel out double-effect by clicking on span)
+        inputs.addEventListener("click", function(){
+        state = this.checked;
+        state = !state;
+        this.checked = state;
+        });
+
         // Set the value using the item in the JSON array.
         var checklists = document.createElement('p')
         var checklists5 = document.createTextNode(item.title)
