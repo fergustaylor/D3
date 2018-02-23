@@ -275,7 +275,8 @@ for (i = 0; i < druginfo.length; i++) {
 $(document).ready(function() {
 for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
 document.querySelectorAll(".showSingle")[i]
-.classList.add(severityinfo[i]);
+//.classList.add(severityinfo[i]);
+.classList.add(severityinfo2[i]);
 };
 });
 
@@ -314,7 +315,8 @@ jQuery('.showSingle').click(function(){
 //colour severe
         for (i=0; i < document.querySelectorAll(".showSingle").length; i++) {
         document.querySelectorAll(".showSingle")[i]
-        .classList.add(severityinfo[i]);
+        //.classList.add(severityinfo[i]);
+        .classList.add(severityinfo2[i]);
         };
 
 };
