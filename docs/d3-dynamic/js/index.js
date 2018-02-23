@@ -11,7 +11,7 @@ request.onreadystatechange = function(response) {
      jsonOptions.forEach(function(item) {
         // Create a new <span> element.
         var span = document.createElement('span')
-        span.setAttribute("value", item.title)
+        //span.setAttribute("value", item.title)
 
         // Create a new <input> element.
         var inputs = document.createElement('input')
