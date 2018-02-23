@@ -260,16 +260,12 @@ for (i = 0; i < druginfo.length; i++) {
   dav4.appendChild(document.createElement("br"));
   dav4.appendChild(document.createTextNode("Evidence: "+evidenceinfo2[i]+" | Severity: "+severityinfo2[i]));
   dav4.classList.add("evidsev","sidebar2");
-
   dav2.appendChild(dav3);
   dav.appendChild(dav2);
   dav2.appendChild(dav4);
-
   dav2.setAttribute('evidence', evidenceinfo2[i]);
   dav2.setAttribute('severity', severityinfo2[i]);
-
   dav2.classList.add("targetDiv","sidebar2");
-
   dav2.id = "div"+(i+1);
 }
 
@@ -345,14 +341,11 @@ function clear(d) {
 
   //clear drug
   document.getElementById("drug").innerHTML = '';
-
   var drugselected = null;
   document.getElementById('title').innerHTML = "Click on a drug to get started..";
   document.getElementById('drugstotal').innerHTML = "X Interactions Listed";
-
   //clear div
   document.getElementById("div").innerHTML = '';
-
   //clear bottom
   document.getElementById("drugstotal").innerHTML = '';
   document.getElementById("mildmodsevere").innerHTML = '';
