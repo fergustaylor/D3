@@ -152,7 +152,7 @@ function click(d) {
       .classed("targetnode", true)
 
   // label sidebar
-  drugselected = d.key;
+  drugselected = d.title;
 
   document.getElementById('title').innerHTML = drugselected;
 
