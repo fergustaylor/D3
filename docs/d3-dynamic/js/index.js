@@ -59,7 +59,7 @@ request.send();
 
 //functions for the radio buttons
 function showall() {
-  var all = $('div#checklist>span' )
+  var all = $('div#checklist>span')
   //loop through all
   for (i = 0; i < all.length; i++) {
     all[i].style.display = 'block';
@@ -67,12 +67,12 @@ function showall() {
 }
 
 function showselected() {
-  var all = $('div#checklist>span' )
+  var all = $('div#checklist>span')
   //loop through all
   for (i = 0; i < all.length; i++) {
     all[i].style.display = 'none';
   }
-  var selected = $('div#checklist>span>input:checked' ).parent()
+  var selected = $('div#checklist>span>input:checked').parent()
   //loop through selected
   for (i = 0; i < selected.length; i++) {
     selected[i].style.display = 'block';
@@ -80,7 +80,7 @@ function showselected() {
 }
 
 function showunselected() {
-  var all = $('div#checklist>span' )
+  var all = $('div#checklist>span')
   //loop through all
   for (i = 0; i < all.length; i++) {
     all[i].style.display = 'none';
@@ -93,7 +93,7 @@ function showunselected() {
 }
 
 function showsearched(string) {
-  var all = $('div#checklist>span' )
+  var all = $('div#checklist>span')
   //loop through all
   for (i = 0; i < all.length; i++) {
     all[i].style.display = 'none';
@@ -115,7 +115,7 @@ function showsearched(string) {
 var druginputarray = [];
 
 function buildgraph() {
-  var selected = $('div#checklist>span>input:checked' );
+  var selected = $('div#checklist>span>input:checked');
   //create array
   for (i = 0; i < selected.length; i++) {
     druginputarray.push(selected[i].value);
