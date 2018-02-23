@@ -16,7 +16,7 @@ request.onreadystatechange = function(response) {
         // Create a new <input> element.
         var inputs = document.createElement('input')
         inputs.setAttribute("type", "checkbox")
-        inputs.setAttribute("name", "drugs")
+        //inputs.setAttribute("name", "drugs")
         inputs.setAttribute("value", item.name.substring(i = item.name.lastIndexOf(".") + 1))
 
         //add event listener to input (to cancel out double-effect by clicking on span)
