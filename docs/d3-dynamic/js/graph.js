@@ -1,4 +1,21 @@
-function graphit (druginputarray) {
+function endload () {
+  //hide loading graphic
+  document.querySelectorAll("div.loading")[0].style.display = "none"
+
+  //new css
+  var newcss = document.createElement("link");
+  newcss.setAttribute("rel", "stylesheet");
+  newcss.setAttribute("href", "css/graphstyle.css");
+  document.head.appendChild(newcss);
+
+  //unhide elements
+  document.getElementById("open").style.display = "";
+  document.getElementsByClassName("notice")[0].style.display = "";
+  document.getElementById("tensionbar").style = "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;";
+  document.querySelectorAll("div")[1].style.display = ""
+}
+
+function graphit (druginputarray, endload) {
 
 //Clear previous HTML
 //var body = document.body.childNodes;
@@ -43,20 +60,5 @@ var insert2 = document.createElement("script");
 insert2.setAttribute("src", "js/insert2.js");
 document.body.appendChild(insert2);
 
-//hide loading
-document.querySelectorAll("div.loading")[0].style.display = "none"
-
-//new css
-var newcss = document.createElement("link");
-newcss.setAttribute("rel", "stylesheet");
-newcss.setAttribute("href", "css/graphstyle.css");
-document.head.appendChild(newcss);
-
-//unhide elements
-document.getElementById("open").style.display = "";
-document.getElementsByClassName("notice")[0].style.display = "";
-document.getElementById("tensionbar").style = "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;";
-document.querySelectorAll("div")[1].style.display = ""
-//
-
+endload()
 }
