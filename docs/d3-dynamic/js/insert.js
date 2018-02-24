@@ -8,15 +8,9 @@ head.appendChild(node1);
 
 //title
 var node2 = document.createElement("title");
-var node3 = document.createTextNode("Top 100 Prescribed Drugs");
+var node3 = document.createTextNode("BNF Drug Interactions");
 node2.appendChild(node3);
 head.appendChild(node2);
-
-//css
-var node4 = document.createElement("link");
-node4.setAttribute("rel", "stylesheet");
-node4.setAttribute("href", "css/graphstyle.css");
-head.appendChild(node4);
 
 //jquery
 var node5 = document.createElement("script");

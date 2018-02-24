@@ -2,6 +2,9 @@
 var node11 = document.createElement("a");
 node11.setAttribute("class", "sidebar2");
 node11.setAttribute("id", "open");
+//
+node11.setAttribute("style", "display:none;")
+//
 var node12 = document.createTextNode("☰");
 node11.appendChild(node12);
 document.body.appendChild(node11);
@@ -99,6 +102,9 @@ node26.appendChild(node31);
 var node33 = document.createElement("div");
 node33.setAttribute("id", "tensionbar");
 node33.setAttribute("style", "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;");
+//
+node33.setAttribute("style", "display:none;");
+//
 document.body.appendChild(node33);
 
 var node34 = document.createElement("form");
@@ -130,6 +136,9 @@ document.body.appendChild(node39);
 
 var node40 = document.createElement("div");
 node40.setAttribute("class", "notice");
+//
+node40.setAttribute("style", "display:none;");
+//
 document.body.appendChild(node40);
 
 var node41 = document.createElement("p");

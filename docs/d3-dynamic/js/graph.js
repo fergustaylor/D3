@@ -13,6 +13,21 @@ function graphit (druginputarray) {
 document.body.innerHTML = '';
 document.head.innerHTML = '';
 
+//hide everything
+//document.body.style.display = "none";
+
+//css
+var nodeloading = document.createElement("link");
+nodeloading.setAttribute("rel", "stylesheet");
+nodeloading.setAttribute("href", "css/loading.css");
+document.head.appendChild(nodeloading);
+
+//loading
+var x = document.createElement("div");
+x.setAttribute("class", "loading");
+document.body.appendChild(x);
+
+//////////
 //insert.js
 var insertjs = document.createElement("script");
 insertjs.setAttribute("src", "js/insert.js");

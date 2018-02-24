@@ -22,6 +22,9 @@ var line = d3.svg.line.radial()
 var div = d3.select("body").insert("div", "h2")
     .style("width", w + "px")
     .style("height", w + "px")
+    ///
+    .style("display", "none")
+    //
     .style("position", "absolute")
     .style("-webkit-backface-visibility", "hidden");
 
