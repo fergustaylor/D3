@@ -7,6 +7,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/loading.css">
 
 <script src="d3/d3.js"></script>
 <script src="d3/d3.layout.js"></script>
@@ -22,6 +23,8 @@
   <input type="radio" name="filter" value="Show Unselected" onchange="showunselected()"> Show Unselected
   <button type="button" onclick="buildgraph()">Build my Graph</button>
 </form>
+
+<div class="loading"></div>
 
 <div class="flex-container" id="checklist">
 </div>

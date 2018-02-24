@@ -46,6 +46,10 @@ request.onreadystatechange = function(response) {
         this.firstChild.checked = state;
         });
 
+        //hide loading div
+        var x = document.getElementsByClassName("loading");
+        x[0].style.display = "none";
+
         //add span to checklistcontainer
         checklistcontainer.appendChild(span);
       });
