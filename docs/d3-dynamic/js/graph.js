@@ -42,4 +42,8 @@ document.body.appendChild(textscriptjs);
 var insert2 = document.createElement("script");
 insert2.setAttribute("src", "js/insert2.js");
 document.body.appendChild(insert2);
+
+//then unhide it
+
+
 }

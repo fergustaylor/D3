@@ -12,6 +12,12 @@ var node3 = document.createTextNode("BNF Drug Interactions");
 node2.appendChild(node3);
 head.appendChild(node2);
 
+//css
+var node4 = document.createElement("link");
+node4.setAttribute("rel", "stylesheet");
+node4.setAttribute("href", "css/graphstyle.css");
+head.appendChild(node4);
+
 //jquery
 var node5 = document.createElement("script");
 node5.setAttribute("src", "https://code.jquery.com/jquery-1.10.2.js");
