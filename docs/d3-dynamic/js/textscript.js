@@ -24,6 +24,7 @@ var div = d3.select("body").insert("div", "h2")
     .style("height", w + "px")
     ///
     .style("display", "none")
+    .attr("class", "graphic")
     //
     .style("position", "absolute")
     .style("-webkit-backface-visibility", "hidden");

@@ -12,7 +12,7 @@ function endload () {
   document.getElementById("open").style.display = "";
   document.getElementsByClassName("notice")[0].style.display = "";
   document.getElementById("tensionbar").style = "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;";
-  document.querySelectorAll("div")[1].style.display = ""
+  document.getElementsByClassName("graphic")[0].style.display = "";
 }
 
 function graphit (druginputarray, endload) {
