@@ -73,7 +73,8 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
       .attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key;})
       .attr("value", function(d) {return d.source.title})
       .attr("severity", function(d) {return d.source.Severity[d.source.importstitle.indexOf(d.target.title)];})
-      .attr("interaction", function(d) {return d.source["Interactions Info"][d.source.importstitle.indexOf(d.target.key)];})
+      //.attr("interaction", function(d) {return d.source["Interactions Info"][d.source.importstitle.indexOf(d.target.key)];})
+      .attr("interaction", function(d) {return d.source["Interactions Info"][d.source.importstitle.indexOf(d.target.title)];})
       .attr("d", function(d, i) { return line(splines[i]); });
 
   svg.selectAll("g.node")
