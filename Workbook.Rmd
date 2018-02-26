@@ -297,12 +297,48 @@ master <- dataframe %>%
   rename(name = 'Title',
          imports = 'Interactions')
 master$title <- master$name
-#Relabel 'name'
-master$name <- str_c("BNF.", master$name, ".", master$name) %>%
-  str_replace_all(pattern=" ", replacement="")
 
 #Added an unlabled column
 master$importstitle <- master$imports
+
+##remove odd characters in $name
+faultycharacters <- str_detect(master$name, "\\(") | str_detect(master$name, string="\\)") | grepl(pattern = "/", x = master$name)
+faultyvalues <- master$name[faultycharacters]
+faultyvaluesindex <- which(faultycharacters)
+
+for (i in faultyvaluesindex){
+ master$name[i] <- master$name[i] %>%
+  stri_replace_all_regex(pattern = "/", replacement = " ") %>%
+  str_replace_all(pattern = "\\(", replacement = "") %>%
+  str_replace_all(pattern = "\\)", replacement = "")
+}
+
+fixedvector <- lapply(faultyvalues, function(x) 
+  x %>%
+  stri_replace_all_regex(pattern = "/", replacement = " ") %>%
+  str_replace_all(pattern = "\\(", replacement = "") %>%
+  str_replace_all(pattern = "\\)", replacement = "")
+  )
+fixedvector <- unlist(fixedvector)
+
+master$imports <- master$imports %>%
+  stri_replace_all_regex(pattern = "/", replacement = " ")
+
+master$imports %>%
+  stri_replace_all_regex(pattern = "/", replacement = " ")
+
+faultyvalues2 <- faultyvalues %>%
+  str_replace_all(pattern = "\\(", replacement = "\\\\(") %>%
+  str_replace_all(pattern = "\\)", replacement = "\\\\)")
+
+for (i in 1:length(faultyvaluesindex)){
+  master$imports <- master$imports %>%
+    str_replace_all(pattern = faultyvalues2[i], replacement = fixedvector[i])
+}
+
+#Relabel 'name'
+master$name <- str_c("BNF.", master$name, ".", master$name) %>%
+  str_replace_all(pattern=" ", replacement="")
 
 #Relabel 'imports'
 node.parent.child <- function(x) {

@@ -13,6 +13,10 @@ chemicalcodes <- chemicalcodes[c(1,2)]
 ```{r}
 attempt <- master %>%
   dplyr::left_join(chemicalcodes, by = "title")
+```
+
+
+```{r}
 
 
 grep(value = TRUE)
@@ -26,11 +30,32 @@ attemptna <- attempt %>%
 failedvector <- attemptna$title
 
 failedvector[1] %>%
-  grep(x=chemicalcodes$title)
+  grep(x=chemicalcodes$title, value=TRUE)
 
+failedvector[1] %>%
+  grep(x=chemicalcodes$title, value=FALSE)
+
+comparisons <- data.frame()
 for (i in 1:length(failedvector)){
-  print(paste("The year is", i))
+  result <- data.frame(x0=failedvector[i],
+                    x1=grep(failedvector[i], x=chemicalcodes$title, value=TRUE))
+  comparisons <- rbind(comparisons, result)
 }
+
+ as.vector(failedvector[1], grep(failedvector[1], x=chemicalcodes$title, value=TRUE))
+
+c(failedvector[1], grep(failedvector[1], x=chemicalcodes$title, value=TRUE))
+
+cbind(failedvector[1], grep(failedvector[1], x=chemicalcodes$title, value=TRUE))
+
+cbind(failedvector[1], c(grep(failedvector[1], x=chemicalcodes$title, value=TRUE)))
+
+failedvector[1]
+c(grep(failedvector[1], x=chemicalcodes$title, value=TRUE))
+
+
+
+as.vector(grep(failedvector[1], x=chemicalcodes$title, value=TRUE))
 
 chemicalcodes[2569,]
 chemicalcodes[2570,]
