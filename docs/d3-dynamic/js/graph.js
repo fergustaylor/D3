@@ -15,7 +15,7 @@ function endload () {
   document.getElementsByClassName("graphic")[0].style.display = "";
 }
 
-function graphit (druginputarray, endload) {
+function graphit (druginputarray) {
 
 //Clear previous HTML
 //var body = document.body.childNodes;
