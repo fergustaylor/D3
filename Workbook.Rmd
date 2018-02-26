@@ -306,6 +306,7 @@ faultycharacters <- str_detect(master$name, "\\(") | str_detect(master$name, str
 faultyvalues <- master$name[faultycharacters]
 faultyvaluesindex <- which(faultycharacters)
 
+##remove odd characters in $name
 for (i in faultyvaluesindex){
  master$name[i] <- master$name[i] %>%
   stri_replace_all_regex(pattern = "/", replacement = " ") %>%
@@ -313,6 +314,7 @@ for (i in faultyvaluesindex){
   str_replace_all(pattern = "\\)", replacement = "")
 }
 
+##create a vector of the replaced values
 fixedvector <- lapply(faultyvalues, function(x) 
   x %>%
   stri_replace_all_regex(pattern = "/", replacement = " ") %>%
@@ -321,26 +323,20 @@ fixedvector <- lapply(faultyvalues, function(x)
   )
 fixedvector <- unlist(fixedvector)
 
-master$imports <- master$imports %>%
-  stri_replace_all_regex(pattern = "/", replacement = " ")
-
-master$imports %>%
-  stri_replace_all_regex(pattern = "/", replacement = " ")
-
-faultyvalues2 <- faultyvalues %>%
-  str_replace_all(pattern = "\\(", replacement = "\\\\(") %>%
-  str_replace_all(pattern = "\\)", replacement = "\\\\)")
-
-for (i in 1:length(faultyvaluesindex)){
-  master$imports <- master$imports %>%
-    str_replace_all(pattern = faultyvalues2[i], replacement = fixedvector[i])
+for (i in 1:length(master$imports)){
+example <- list()
+example[[1]] <- master$imports[i] %>%
+  unlist() %>%
+  stri_replace_all_regex(pattern = "/", replacement = " ") %>%
+  str_replace_all(pattern = "\\(", replacement = "") %>%
+  str_replace_all(pattern = "\\)", replacement = "")
+master$imports[i] <- example
 }
 
 #Relabel 'name'
 master$name <- str_c("BNF.", master$name, ".", master$name) %>%
   str_replace_all(pattern=" ", replacement="")
 
-#Relabel 'imports'
 node.parent.child <- function(x) {
   example <- master[x,] %>%
     select('imports') %>%
