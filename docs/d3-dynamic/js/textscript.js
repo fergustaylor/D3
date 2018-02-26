@@ -168,7 +168,7 @@ function click(d) {
   druginfo = [];
 
   for (i = 0; i < drugtotal; i++) {
-  druginfo.push(druginteractions[0][i].__data__.target.key);
+  druginfo.push(druginteractions[0][i].__data__.target.title);
   }
 
   //create sidebar
