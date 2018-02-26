@@ -302,7 +302,7 @@ master$title <- master$name
 master$importstitle <- master$imports
 
 ##remove odd characters in $name
-faultycharacters <- str_detect(master$name, "\\(") | str_detect(master$name, string="\\)") | grepl(pattern = "/", x = master$name)
+faultycharacters <- str_detect(master$name, "\\(") | str_detect(master$name, string="\\)") | grepl(pattern = "/", x = master$name) | grepl(pattern = "'", x = master$name) | grepl(pattern = ",", x = master$name)
 faultyvalues <- master$name[faultycharacters]
 faultyvaluesindex <- which(faultycharacters)
 
@@ -311,17 +311,21 @@ for (i in faultyvaluesindex){
  master$name[i] <- master$name[i] %>%
   stri_replace_all_regex(pattern = "/", replacement = " ") %>%
   str_replace_all(pattern = "\\(", replacement = "") %>%
-  str_replace_all(pattern = "\\)", replacement = "")
+  str_replace_all(pattern = "\\)", replacement = "") %>%
+  stri_replace_all_regex(pattern = "'", replacement = "") %>%
+  stri_replace_all_regex(pattern = ",", replacement = "")
 }
 
 ##create a vector of the replaced values
-fixedvector <- lapply(faultyvalues, function(x) 
-  x %>%
-  stri_replace_all_regex(pattern = "/", replacement = " ") %>%
-  str_replace_all(pattern = "\\(", replacement = "") %>%
-  str_replace_all(pattern = "\\)", replacement = "")
-  )
-fixedvector <- unlist(fixedvector)
+#fixedvector <- lapply(faultyvalues, function(x) 
+#  x %>%
+#  stri_replace_all_regex(pattern = "/", replacement = " ") %>%
+#  str_replace_all(pattern = "\\(", replacement = "") %>%
+#  str_replace_all(pattern = "\\)", replacement = "") %>%
+#  stri_replace_all_regex(pattern = "'", replacement = "") %>%
+#  stri_replace_all_regex(pattern = ",", replacement = "")
+#  )
+#fixedvector <- unlist(fixedvector)
 
 for (i in 1:length(master$imports)){
 example <- list()
@@ -329,7 +333,9 @@ example[[1]] <- master$imports[i] %>%
   unlist() %>%
   stri_replace_all_regex(pattern = "/", replacement = " ") %>%
   str_replace_all(pattern = "\\(", replacement = "") %>%
-  str_replace_all(pattern = "\\)", replacement = "")
+  str_replace_all(pattern = "\\)", replacement = "") %>%
+  stri_replace_all_regex(pattern = "'", replacement = "") %>%
+  stri_replace_all_regex(pattern = ",", replacement = "")
 master$imports[i] <- example
 }
 
@@ -385,6 +391,32 @@ master %>%
 ```
 
 ////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////
 
 #Shortlist top 100.
 ```{r}
