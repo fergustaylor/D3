@@ -98,6 +98,7 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
     line.tension(this.value / 100);
     path.attr("d", function(d, i) { return line(splines[i]); });
   });
+  endload();
 });
 
 d3.select(window)
