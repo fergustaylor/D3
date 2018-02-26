@@ -1,0 +1,42 @@
+---
+title: "BNF Sections"
+---
+
+```{r}
+library(readr)
+chemicalcodes <- read_csv("~/Dropbox/D3/T201110CHEM SUBS.CSV")
+chemicalcodes <- chemicalcodes %>%
+  rename('title' = 'NAME')
+chemicalcodes <- chemicalcodes[c(1,2)]
+```
+
+```{r}
+attempt <- master %>%
+  dplyr::left_join(chemicalcodes, by = "title")
+
+
+grep(value = TRUE)
+
+attempt2 <- attempt %>%
+  filter(!is.na(`CHEM SUB`))
+
+attemptna <- attempt %>%
+  filter(is.na(`CHEM SUB`))
+
+failedvector <- attemptna$title
+
+failedvector[1] %>%
+  grep(x=chemicalcodes$title)
+
+for (i in 1:length(failedvector)){
+  print(paste("The year is", i))
+}
+
+chemicalcodes[2569,]
+chemicalcodes[2570,]
+
+duplicatevector <- attempt$title[duplicated(attempt$title)]
+
+filter(attempt, title %in% duplicatevector)
+```
+

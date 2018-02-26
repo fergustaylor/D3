@@ -60,7 +60,8 @@ var insert2 = document.createElement("script");
 insert2.setAttribute("src", "js/insert2.js");
 document.body.appendChild(insert2);
 
-$( document ).ready(function() {
-    endload()
-});
+////////still firing too early.
+//$( document ).ready(function() {
+//    endload()
+//});
 }
