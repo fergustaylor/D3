@@ -291,7 +291,8 @@ document.querySelectorAll(".showSingle")[i]
 ////
 
 //show bottom
-jQuery('.bottom').show();
+//hide until it's fixed to particular selections
+//jQuery('.bottom').show();
 //open sidebar
 jQuery('.sidebar').show();
 jQuery('.hoveroverlap').show();
