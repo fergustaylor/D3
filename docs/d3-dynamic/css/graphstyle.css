@@ -321,3 +321,19 @@ div.notice {
     top: 26px;
     left: 20px;
 }
+
+.graphic {
+    z-index: -1;
+}
+
+.notice {
+    z-index: 1000000;
+}
+
+.sidebar2 {
+    z-index: 1000000;
+}
+
+div#tensionbar {
+    z-index: 1000000;
+}
