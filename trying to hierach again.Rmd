@@ -1,8 +1,7 @@
 ---
 title: "BNF Sections"
 ---
-
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(readr)
 chemicalcodes <- read_csv("~/Dropbox/D3/T201110CHEM SUBS.CSV")
 chemicalcodes <- chemicalcodes %>%
@@ -11,29 +10,134 @@ chemicalcodes <- chemicalcodes[c(1,2)]
 ```
 
 ```{r}
-attempt <- master %>%
-  dplyr::left_join(chemicalcodes, by = "title")
+#Create a new database
+master <- dataframe %>%
+  select('Title', 'Interactions', 'Severity', 'Evidence', 'Interactions Info') %>%
+  rename(name = 'Title',
+         imports = 'Interactions')
+master$title <- master$name
+
+#Added an unlabled column
+master$importstitle <- master$imports
+
+##remove odd characters in $name
+faultycharacters <- str_detect(master$name, "\\(") | str_detect(master$name, string="\\)") | grepl(pattern = "/", x = master$name) | grepl(pattern = "'", x = master$name) | grepl(pattern = ",", x = master$name)
+faultyvalues <- master$name[faultycharacters]
+faultyvaluesindex <- which(faultycharacters)
+
+##remove odd characters in $name
+for (i in faultyvaluesindex){
+ master$name[i] <- master$name[i] %>%
+  stri_replace_all_regex(pattern = "/", replacement = " ") %>%
+  str_replace_all(pattern = "\\(", replacement = "") %>%
+  str_replace_all(pattern = "\\)", replacement = "") %>%
+  stri_replace_all_regex(pattern = "'", replacement = "") %>%
+  stri_replace_all_regex(pattern = ",", replacement = "")
+}
+
+##remove odd characters in $imports
+for (i in 1:length(master$imports)){
+example <- list()
+example[[1]] <- master$imports[i] %>%
+  unlist() %>%
+  stri_replace_all_regex(pattern = "/", replacement = " ") %>%
+  str_replace_all(pattern = "\\(", replacement = "") %>%
+  str_replace_all(pattern = "\\)", replacement = "") %>%
+  stri_replace_all_regex(pattern = "'", replacement = "") %>%
+  stri_replace_all_regex(pattern = ",", replacement = "")
+master$imports[i] <- example
+}
 ```
 
+```{r}
+uniquechemical <- chemicalcodes[!duplicated(chemicalcodes$title),]
+
+attempt <- master %>%
+  dplyr::left_join(uniquechemical, by = "title")
+
+requiresmanual <- attempt %>%
+  filter(is.na(`CHEM SUB`))
+failedvector <- requiresmanual$title
+
+for (i in 1:length(failedvector)){
+options <- failedvector[i] %>%
+  grep(x=chemicalcodes$title, value=TRUE)
+optionsrow <- chemicalcodes %>%
+  filter(title == options[1])
+result <- optionsrow$`CHEM SUB`
+indexno <- which(attempt$title == failedvector[i])
+if (!is_empty(result)) {
+attempt$`CHEM SUB`[indexno] <- result
+} else {
+  attempt$`CHEM SUB`[indexno] <- "NA"
+}
+##create df of substitutions
+}
+
+attempt$key <- attempt$name
+
+attempt <- attempt %>%
+  mutate('firstorder' = str_c("BNFsection", substr(attempt$`CHEM SUB`, start = 1, stop = 2)))
+#Relabel 'name'
+attempt$name <- str_c("BNF.", attempt$firstorder, ".", attempt$name) %>%
+  str_replace_all(pattern=" ", replacement="")
+```
 
 ```{r}
+for (i in 1:length(attempt$imports)){
+  example <- attempt[i,]$imports %>%
+    unlist()
+  result <- list()
+  result[[1]] <- attempt$name[match(example, attempt$key)]
+  attempt[i,]$imports <- result
+}
+```
 
+#Add totals to attemptjson
+```{r}
+attemptjson <- attemptjson %>%
+  mutate(mildtot = str_count(attemptjson$Severity, "Mild")) %>%
+  mutate(modtot = str_count(attemptjson$Severity, "Moderate")) %>%
+  mutate(sevtot = str_count(attemptjson$Severity, "Severe")) %>%
+  mutate(nstot = str_count(attemptjson$Severity, "NotSet") + 
+           str_count(attemptjson$Severity, "Unknown"))
 
-grep(value = TRUE)
+attemptjson <- attemptjson %>%
+  mutate(studytot = str_count(attemptjson$Evidence, "Study")) %>%
+  mutate(anectot = str_count(attemptjson$Evidence, "Anecdotal")) %>%
+  mutate(theorettot = str_count(attemptjson$Evidence, "Theoretical")) %>%
+  mutate(nsetot = str_count(attemptjson$Evidence, "NotSet"))
+```
 
-attempt2 <- attempt %>%
-  filter(!is.na(`CHEM SUB`))
+```{r}
+#Export
+attemptjson$Stamp <- Timestamp
 
-attemptna <- attempt %>%
+attemptjson %>%
+  jsonlite::toJSON() %>%
+  write(file="archive/attemptjson.json")
+
+jsonName <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "attemptjson.json")
+
+attemptjson %>%
+  jsonlite::toJSON() %>%
+  write(file = jsonName)
+```
+
+```{r}
+##Not everything got a match
+requiresmanual2 <- attempt %>%
   filter(is.na(`CHEM SUB`))
+failedvector2 <- requiresmanual2$title
 
-failedvector <- attemptna$title
+failedvector2 %>%
+  stri_replace_all_fixed(" ", "")
 
-failedvector[1] %>%
+failedvector2[1] %>%
   grep(x=chemicalcodes$title, value=TRUE)
 
-failedvector[1] %>%
-  grep(x=chemicalcodes$title, value=FALSE)
+
+###############################################
 
 comparisons <- data.frame()
 for (i in 1:length(failedvector)){
@@ -42,7 +146,8 @@ for (i in 1:length(failedvector)){
   comparisons <- rbind(comparisons, result)
 }
 
- as.vector(failedvector[1], grep(failedvector[1], x=chemicalcodes$title, value=TRUE))
+
+as.vector(failedvector[1], grep(failedvector[1], x=chemicalcodes$title, value=TRUE))
 
 c(failedvector[1], grep(failedvector[1], x=chemicalcodes$title, value=TRUE))
 
@@ -64,4 +169,3 @@ duplicatevector <- attempt$title[duplicated(attempt$title)]
 
 filter(attempt, title %in% duplicatevector)
 ```
-
