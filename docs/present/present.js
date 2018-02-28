@@ -2,7 +2,7 @@
   var previous = d3.select("#previous"),
       current = d3.select("#current"),
       next = d3.select("#next"),
-      query = "?" + Date.now(),
+      //query = "?" + Date.now(),
       previousIndex,
       currentIndex = +location.hash.substring(1) || 0,
       nextIndex;
