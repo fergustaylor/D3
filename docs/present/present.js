@@ -78,8 +78,8 @@
       previousIndex = currentIndex <= 0 ? slides.length - 1 : currentIndex - 1;
     }
     location.hash = currentIndex;
-    previous.transition().delay(750).duration(0).attr("src", slides[previousIndex] + query);
-    current.transition().delay(250).duration(0).attr("src", slides[currentIndex] + query);
-    next.transition().delay(750).duration(0).attr("src", slides[nextIndex] + query);
+    previous.transition().delay(750).duration(0).attr("src", slides[previousIndex]);
+    current.transition().delay(250).duration(0).attr("src", slides[currentIndex]);
+    next.transition().delay(750).duration(0).attr("src", slides[nextIndex]);
   }
 })();
