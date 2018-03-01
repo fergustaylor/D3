@@ -1,6 +1,4 @@
 function endload () {
-  //hide loading graphic
-  document.querySelectorAll("div.loading")[0].style.display = "none"
 
   //new css
   var newcss = document.createElement("link");
@@ -8,10 +6,18 @@ function endload () {
   newcss.setAttribute("href", "css/graphstyle.css");
   document.head.appendChild(newcss);
 
+  //hide loading graphic
+  document.querySelectorAll("div.loading")[0].style.display = "none"
+
   //unhide elements
   document.getElementById("open").style.display = "";
+
+  //hide the tensionbaritself
+  document.querySelector('#tensionbar > input[type="range"]').style = "display:none;";
+  //continue to unhide elements
+  document.getElementById("tensionbar").style = "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;";
+
   document.getElementsByClassName("notice")[0].style.display = "";
-  //document.getElementById("tensionbar").style = "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;";
   document.getElementsByClassName("graphic")[0].style.display = "";
 }
 
