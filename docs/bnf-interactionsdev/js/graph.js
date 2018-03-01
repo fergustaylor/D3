@@ -11,8 +11,14 @@ function endload () {
 
   //unhide elements
   document.getElementById("open").style.display = "";
+
+
+  //hide the tensionbaritself
+  document.querySelector('#tensionbar > input[type="range"]').style = "display:none;";
+  //
+  document.getElementById("tensionbar").style = "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;";
+
   document.getElementsByClassName("notice")[0].style.display = "";
-  //document.getElementById("tensionbar").style = "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;";
   document.getElementsByClassName("graphic")[0].style.display = "";
 }
 
