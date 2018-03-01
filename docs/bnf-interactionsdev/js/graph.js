@@ -1,12 +1,13 @@
 function endload () {
-  //hide loading graphic
-  document.querySelectorAll("div.loading")[0].style.display = "none"
 
   //new css
   var newcss = document.createElement("link");
   newcss.setAttribute("rel", "stylesheet");
   newcss.setAttribute("href", "css/graphstyle.css");
   document.head.appendChild(newcss);
+
+  //hide loading graphic
+  document.querySelectorAll("div.loading")[0].style.display = "none"
 
   //unhide elements
   document.getElementById("open").style.display = "";
