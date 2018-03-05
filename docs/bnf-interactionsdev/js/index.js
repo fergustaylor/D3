@@ -134,5 +134,5 @@ function buildlist () {
   for (i = 0; i < selected.length; i++) {
     druginputarray.push(selected[i].value);
   }
-  //listit(druginputarray);
+  listit(druginputarray);
 }
