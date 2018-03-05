@@ -27,9 +27,6 @@ function graphit (druginputarray) {
 document.body.innerHTML = '';
 document.head.innerHTML = '';
 
-//hide everything
-//document.body.style.display = "none";
-
 //css
 var nodeloading = document.createElement("link");
 nodeloading.setAttribute("rel", "stylesheet");
@@ -56,9 +53,4 @@ document.body.appendChild(textscriptjs);
 var insert2 = document.createElement("script");
 insert2.setAttribute("src", "js/insert2.js");
 document.body.appendChild(insert2);
-
-////////still firing too early.
-//$( document ).ready(function() {
-//    endload()
-//});
 }
