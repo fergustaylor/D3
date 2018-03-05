@@ -113,8 +113,46 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
     }
   };
 
-  var nodes = cluster.nodes(packages.root(classes2)),
-      links = packages.imports(nodes),
-      splines = bundle(links);
+  var drugslist = document.createElement("div");
+      drugslist.setAttribute("class", "inputlist");
+    for (q = 0; q < classes2.length; q++) {
+      var eachdrug = document.createElement("p");
+      var eachdrug5 = document.createTextNode(classes2[q].title);
+      eachdrug.appendChild(eachdrug5);
+      drugslist.appendChild(eachdrug)
+    }
+document.body.appendChild(drugslist);
+
+  var mynode = document.createElement("div");
+      mynode.setAttribute("class", "interactionlist");
+
+  for (q = 0; q < classes2.length; q++) {
+    var eachdrug = document.createElement("div");
+    eachdrug.setAttribute("id", "eachdrug-"+classes2[q].title);
+
+    //var eachtitle = document.createElement("p");
+    // eachtitle.setAttribute("class", "title");
+
+    //var eachtitle5 = document.createTextNode(classes2[q].title);
+    //eachtitle.appendChild(eachtitle5);
+    //eachdrug.appendChild(eachtitle);
+
+    for (ii = 0; ii < classes2[q].importstitle.length; ii++) {
+      for (iii = 0; iii < druginputarray.length; iii++) {
+        if (classes2[q].imports[ii].substring(i = classes2[q].imports[ii].lastIndexOf(".") + 1) == druginputarray[iii]) {
+             var eachinteraction = document.createElement("p");
+             var eachinteraction5 = document.createTextNode(classes2[q]["Interactions Info"][ii]);
+             eachinteraction.appendChild(eachinteraction5);
+             eachdrug.appendChild(eachinteraction);
+           }
+         }
+       }
+
+  mynode.appendChild(eachdrug);
+  }
+document.body.appendChild(mynode);
+
+
+
 });
 }

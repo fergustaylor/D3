@@ -1,5 +1,12 @@
+p {
+  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+div.inputlist {
+    display: flex;
+    flex-wrap: wrap;
+
 div.notice p {
-    font: 300 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
     fill: #bbb;
     margin: 2px;
     padding-top: 2px;
@@ -14,4 +21,9 @@ div.notice {
 
 .notice {
     z-index: 1000000;
+}
+
+p.title {
+    font-size: larger;
+    font-weight: bolder;
 }
