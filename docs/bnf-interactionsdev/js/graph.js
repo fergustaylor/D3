@@ -60,6 +60,14 @@ jQuery('.showSingle').click(function(){
   jQuery('#div'+$(this).attr('target')).show();
         });
 
+jQuery('#showall').click(function(){
+  jQuery('.targetDiv').show();
+        });
+
+jQuery('#hideall').click(function(){
+  jQuery('.targetDiv').hide();
+        });
+
 function listit (druginputarray) {
 
 //Clear previous HTML
@@ -124,11 +132,21 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
       var eachdrug = document.createElement("p");
       eachdrug.setAttribute("class", "showSingle");
       eachdrug.setAttribute("target", q+1);
-
       var eachdrug5 = document.createTextNode(classes2[q].title);
       eachdrug.appendChild(eachdrug5);
       drugslist.appendChild(eachdrug)
     }
+
+  duv = document.createElement("a");
+  duv.appendChild(document.createTextNode("List All"));
+  duv.id = "showall";
+  drugslist.appendChild(duv);
+
+  duv = document.createElement("a");
+  duv.appendChild(document.createTextNode("Hide All"));
+  duv.id = "hideall";
+  drugslist.appendChild(duv);
+
 document.body.appendChild(drugslist);
 
   var mynode = document.createElement("div");
