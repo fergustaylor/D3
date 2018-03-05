@@ -5,6 +5,12 @@ p {
 div.inputlist {
     display: flex;
     flex-wrap: wrap;
+  }
+
+div.inputlist p {
+      margin: 4px;
+      font-weight: bolder;
+  }
 
 div.notice p {
     fill: #bbb;
@@ -16,7 +22,7 @@ div.notice p {
 div.notice {
     position: absolute;
     top: 26px;
-    left: 20px;
+    right: 20px;
 }
 
 .notice {

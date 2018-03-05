@@ -55,6 +55,11 @@ insert2.setAttribute("src", "js/insert2.js");
 document.body.appendChild(insert2);
 }
 
+jQuery('.showSingle').click(function(){
+  jQuery('.targetDiv').hide();
+  jQuery('#div'+$(this).attr('target')).show();
+        });
+
 function listit (druginputarray) {
 
 //Clear previous HTML
@@ -71,7 +76,7 @@ node40.setAttribute("class", "notice");
 document.body.appendChild(node40);
 
 var node41 = document.createElement("p");
-var node42 = document.createTextNode("This graph is based on ");
+var node42 = document.createTextNode("This list is based on ");
 node41.appendChild(node42);
 
 var node43 = document.createElement("a");
@@ -117,6 +122,9 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
       drugslist.setAttribute("class", "inputlist");
     for (q = 0; q < classes2.length; q++) {
       var eachdrug = document.createElement("p");
+      eachdrug.setAttribute("class", "showSingle");
+      eachdrug.setAttribute("target", q+1);
+
       var eachdrug5 = document.createTextNode(classes2[q].title);
       eachdrug.appendChild(eachdrug5);
       drugslist.appendChild(eachdrug)
@@ -128,22 +136,24 @@ document.body.appendChild(drugslist);
 
   for (q = 0; q < classes2.length; q++) {
     var eachdrug = document.createElement("div");
-    eachdrug.setAttribute("id", "eachdrug-"+classes2[q].title);
-
-    //var eachtitle = document.createElement("p");
-    // eachtitle.setAttribute("class", "title");
-
-    //var eachtitle5 = document.createTextNode(classes2[q].title);
-    //eachtitle.appendChild(eachtitle5);
-    //eachdrug.appendChild(eachtitle);
+    eachdrug.setAttribute("id", "div"+(q+1));
+    eachdrug.setAttribute("class", "targetDiv");
 
     for (ii = 0; ii < classes2[q].importstitle.length; ii++) {
       for (iii = 0; iii < druginputarray.length; iii++) {
         if (classes2[q].imports[ii].substring(i = classes2[q].imports[ii].lastIndexOf(".") + 1) == druginputarray[iii]) {
-             var eachinteraction = document.createElement("p");
-             var eachinteraction5 = document.createTextNode(classes2[q]["Interactions Info"][ii]);
-             eachinteraction.appendChild(eachinteraction5);
-             eachdrug.appendChild(eachinteraction);
+
+          var eachtitle = document.createElement("p");
+              eachtitle.setAttribute("class", "title");
+
+          var eachtitle5 = document.createTextNode(classes2[q].title);
+              eachtitle.appendChild(eachtitle5);
+              eachdrug.appendChild(eachtitle);
+
+          var eachinteraction = document.createElement("p");
+          var eachinteraction5 = document.createTextNode(classes2[q]["Interactions Info"][ii]);
+              eachinteraction.appendChild(eachinteraction5);
+              eachdrug.appendChild(eachinteraction);
            }
          }
        }
