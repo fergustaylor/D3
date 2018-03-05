@@ -162,7 +162,10 @@ var eachtitle = document.createElement("p");
 
 var eachtitle5 = document.createTextNode(classes2[q].title);
     eachtitle.appendChild(eachtitle5);
-    eachdrug.appendChild(eachtitle);
+
+  eachdrug.insertBefore(eachtitle, eachdrug.childNodes[0])
+
+  //eachdrug.appendChild(eachtitle);
 }
 
   mynode.appendChild(eachdrug);
@@ -170,6 +173,8 @@ var eachtitle5 = document.createTextNode(classes2[q].title);
 document.body.appendChild(mynode);
 
 });
+}
+
 jQuery('.showSingle').click(function(){
   jQuery('.targetDiv').hide();
   jQuery('#div'+$(this).attr('target')).show();
@@ -182,4 +187,3 @@ jQuery('#showall').click(function(){
 jQuery('#hideall').click(function(){
   jQuery('.targetDiv').hide();
         });
-}
