@@ -155,9 +155,8 @@ document.body.appendChild(drugslist);
            }
          }
        }
-//
 
-if (eachdrug.children = 0) {
+if (eachdrug.childElementCount > 0) {
 var eachtitle = document.createElement("p");
     eachtitle.setAttribute("class", "title");
 
@@ -165,7 +164,7 @@ var eachtitle5 = document.createTextNode(classes2[q].title);
     eachtitle.appendChild(eachtitle5);
     eachdrug.appendChild(eachtitle);
 }
-//
+
   mynode.appendChild(eachdrug);
   }
 document.body.appendChild(mynode);
