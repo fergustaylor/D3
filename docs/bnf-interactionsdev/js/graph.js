@@ -55,19 +55,6 @@ insert2.setAttribute("src", "js/insert2.js");
 document.body.appendChild(insert2);
 }
 
-jQuery('.showSingle').click(function(){
-  jQuery('.targetDiv').hide();
-  jQuery('#div'+$(this).attr('target')).show();
-        });
-
-jQuery('#showall').click(function(){
-  jQuery('.targetDiv').show();
-        });
-
-jQuery('#hideall').click(function(){
-  jQuery('.targetDiv').hide();
-        });
-
 function listit (druginputarray) {
 
 //Clear previous HTML
@@ -161,13 +148,6 @@ document.body.appendChild(drugslist);
       for (iii = 0; iii < druginputarray.length; iii++) {
         if (classes2[q].imports[ii].substring(i = classes2[q].imports[ii].lastIndexOf(".") + 1) == druginputarray[iii]) {
 
-          var eachtitle = document.createElement("p");
-              eachtitle.setAttribute("class", "title");
-
-          var eachtitle5 = document.createTextNode(classes2[q].title);
-              eachtitle.appendChild(eachtitle5);
-              eachdrug.appendChild(eachtitle);
-
           var eachinteraction = document.createElement("p");
           var eachinteraction5 = document.createTextNode(classes2[q]["Interactions Info"][ii]);
               eachinteraction.appendChild(eachinteraction5);
@@ -175,12 +155,32 @@ document.body.appendChild(drugslist);
            }
          }
        }
+//
 
+if (eachdrug.children = 0) {
+var eachtitle = document.createElement("p");
+    eachtitle.setAttribute("class", "title");
+
+var eachtitle5 = document.createTextNode(classes2[q].title);
+    eachtitle.appendChild(eachtitle5);
+    eachdrug.appendChild(eachtitle);
+}
+//
   mynode.appendChild(eachdrug);
   }
 document.body.appendChild(mynode);
 
-
-
 });
+jQuery('.showSingle').click(function(){
+  jQuery('.targetDiv').hide();
+  jQuery('#div'+$(this).attr('target')).show();
+        });
+
+jQuery('#showall').click(function(){
+  jQuery('.targetDiv').show();
+        });
+
+jQuery('#hideall').click(function(){
+  jQuery('.targetDiv').hide();
+        });
 }
