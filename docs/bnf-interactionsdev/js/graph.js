@@ -137,12 +137,12 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
       drugslist.appendChild(eachdrug)
     }
 
-  duv = document.createElement("a");
+  duv = document.createElement("p");
   duv.appendChild(document.createTextNode("List All"));
   duv.id = "showall";
   drugslist.appendChild(duv);
 
-  duv = document.createElement("a");
+  duv = document.createElement("p");
   duv.appendChild(document.createTextNode("Hide All"));
   duv.id = "hideall";
   drugslist.appendChild(duv);
