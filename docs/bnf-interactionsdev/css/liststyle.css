@@ -5,6 +5,7 @@ p {
 div.inputlist {
     display: flex;
     flex-wrap: wrap;
+    background-color: turquoise;
   }
 
 div.inputlist p {
@@ -30,6 +31,5 @@ div.notice {
 }
 
 p.title {
-    font-size: larger;
     font-weight: bolder;
 }

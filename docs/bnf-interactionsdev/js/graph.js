@@ -124,6 +124,12 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
       drugslist.appendChild(eachdrug)
     }
 
+  duv = document.createElement("br");
+  drugslist.appendChild(duv);
+
+  duv = document.createElement("br");
+  drugslist.appendChild(duv);
+
   duv = document.createElement("p");
   duv.appendChild(document.createTextNode("List All"));
   duv.id = "showall";
@@ -164,8 +170,6 @@ var eachtitle5 = document.createTextNode(classes2[q].title);
     eachtitle.appendChild(eachtitle5);
 
   eachdrug.insertBefore(eachtitle, eachdrug.childNodes[0])
-
-  //eachdrug.appendChild(eachtitle);
 }
 
   mynode.appendChild(eachdrug);
@@ -173,16 +177,20 @@ var eachtitle5 = document.createTextNode(classes2[q].title);
 document.body.appendChild(mynode);
 
 });
-jQuery('.showSingle').click(function(){
-  jQuery('.targetDiv').hide();
-  jQuery('#div'+$(this).attr('target')).show();
-        });
 
-jQuery('#showall').click(function(){
-  jQuery('.targetDiv').show();
-        });
+$(function() {
+  jQuery('.showSingle').click(function(){
+    jQuery('.targetDiv').hide();
+    jQuery('#div'+$(this).attr('target')).show();
+          });
 
-jQuery('#hideall').click(function(){
-  jQuery('.targetDiv').hide();
-        });
+  jQuery('#showall').click(function(){
+    jQuery('.targetDiv').show();
+          });
+
+  jQuery('#hideall').click(function(){
+    jQuery('.targetDiv').hide();
+          });
+});
+
 }
