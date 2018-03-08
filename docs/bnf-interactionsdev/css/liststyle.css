@@ -21,9 +21,10 @@ div.notice p {
 }
 
 div.notice {
-    position: absolute;
     top: 26px;
     right: 20px;
+    text-align: right;
+    margin: 10px;
 }
 
 .notice {

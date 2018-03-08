@@ -68,7 +68,6 @@ document.body.appendChild(insertjs);
 
 var node40 = document.createElement("div");
 node40.setAttribute("class", "notice");
-document.body.appendChild(node40);
 
 var node41 = document.createElement("p");
 var node42 = document.createTextNode("This list is based on ");
@@ -87,6 +86,8 @@ node45.setAttribute("id", "disclaimer")
 var node46 = document.createTextNode("This data was last updated X.")
 node45.appendChild(node46);
 node40.appendChild(node45);
+
+document.body.appendChild(node40);
 
 //new css
 var newcss = document.createElement("link");
