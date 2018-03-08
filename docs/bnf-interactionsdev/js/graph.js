@@ -191,8 +191,6 @@ $(function() {
 //
           });
 
-
-
   jQuery('#showall').click(function(){
     jQuery('.targetDiv').show();
           });
