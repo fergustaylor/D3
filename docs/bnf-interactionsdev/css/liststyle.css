@@ -5,7 +5,9 @@ p {
 div.inputlist {
     display: flex;
     flex-wrap: wrap;
-    background-color: turquoise;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
   }
 
 div.inputlist p {
@@ -17,14 +19,18 @@ div.notice p {
     fill: #bbb;
     margin: 2px;
     padding-top: 2px;
-    padding-left: 2px;
+    width: fit-content;
 }
 
 div.notice {
-    top: 26px;
+    /*top: 26px;
     right: 20px;
-    text-align: right;
-    margin: 10px;
+    text-align: left;*/
+    padding: 10px;
+    width: fit-content;
+    margin-left: auto;
+    background-color: lightskyblue;
+    color: white;
 }
 
 .notice {
