@@ -181,7 +181,17 @@ $(function() {
   jQuery('.showSingle').click(function(){
     jQuery('.targetDiv').hide();
     jQuery('#div'+$(this).attr('target')).show();
+//lets try to add a no drugs notice
+    if (!jQuery('#div'+$(this).attr('target'))[0].childElementCount > 0) {
+    var notice = document.createElement("p");
+    var notice2 = document.createTextNode("This drug has no interactions with the other drugs you've selected.");
+    notice.appendChild(notice2);
+    jQuery('#div'+$(this).attr('target'))[0].appendChild(notice);
+    }
+//
           });
+
+
 
   jQuery('#showall').click(function(){
     jQuery('.targetDiv').show();
