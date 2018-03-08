@@ -177,8 +177,6 @@ var eachtitle5 = document.createTextNode(classes2[q].title);
   }
 document.body.appendChild(mynode);
 
-});
-
 $(function() {
   jQuery('.showSingle').click(function(){
     jQuery('.targetDiv').hide();
@@ -192,6 +190,8 @@ $(function() {
   jQuery('#hideall').click(function(){
     jQuery('.targetDiv').hide();
           });
+});
+
 });
 
 }
