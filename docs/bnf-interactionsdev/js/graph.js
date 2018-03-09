@@ -147,7 +147,6 @@ document.body.appendChild(drugslist);
 ////add the severity checkbox
 var node33 = document.createElement("div");
 node33.setAttribute("id", "severitybox");
-node33.setAttribute("style", "display:none;");
 
 var node34 = document.createElement("form");
 node34.setAttribute("name", "cssbox");
