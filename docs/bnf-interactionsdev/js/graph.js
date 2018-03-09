@@ -182,6 +182,8 @@ document.body.appendChild(node33);
 
           var eachinteraction = document.createElement("p");
           ///
+          eachinteraction.setAttribute('severity', document.createTextNode(classes2[q].Severity[ii]));
+          eachinteraction.setAttribute('evidence', document.createTextNode(classes2[q].Evidence[ii]));
           ///
           var eachinteraction5 = document.createTextNode(classes2[q]["Interactions Info"][ii]);
               eachinteraction.appendChild(eachinteraction5);
