@@ -44,3 +44,9 @@ p.title {
 form * {
     display: inline-block;
 }
+
+div#severitybox {
+    width: fit-content;
+    margin-left: auto;
+    padding-top: 10px;
+}
