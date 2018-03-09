@@ -40,3 +40,7 @@ div.notice {
 p.title {
     font-weight: bolder;
 }
+
+form * {
+    display: inline-block;
+}

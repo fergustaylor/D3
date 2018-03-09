@@ -143,6 +143,31 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
 
 document.body.appendChild(drugslist);
 
+///
+////add the severity checkbox
+var node33 = document.createElement("div");
+node33.setAttribute("id", "severitybox");
+node33.setAttribute("style", "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;");
+
+var node34 = document.createElement("form");
+node34.setAttribute("name", "cssbox");
+node33.appendChild(node34);
+
+var node35 = document.createElement("input");
+node35.setAttribute("type", "checkbox");
+node35.setAttribute("name", "cssbox");
+node35.setAttribute("onchange", "toggleCheckbox(this)");
+node34.appendChild(node35);
+
+var node36 = document.createElement("p");
+var node37 = document.createTextNode("Colour the severe drug interactions");
+node36.appendChild(node37);
+node34.appendChild(node36);
+
+document.body.appendChild(node33);
+////
+///
+
   var mynode = document.createElement("div");
       mynode.setAttribute("class", "interactionlist");
 
@@ -156,6 +181,8 @@ document.body.appendChild(drugslist);
         if (classes2[q].imports[ii].substring(i = classes2[q].imports[ii].lastIndexOf(".") + 1) == druginputarray[iii]) {
 
           var eachinteraction = document.createElement("p");
+          ///
+          ///
           var eachinteraction5 = document.createTextNode(classes2[q]["Interactions Info"][ii]);
               eachinteraction.appendChild(eachinteraction5);
               eachdrug.appendChild(eachinteraction);
