@@ -232,3 +232,20 @@ $(function() {
 });
 
 }
+
+function toggleCheckbox(element)
+ {
+   if (document.cssbox.cssbox.checked==true) {
+   var x = document.querySelectorAll("p[severity='Severe']");
+   for (i = 0; i < x.length; i++) {
+       x[i].style.backgroundColor = "crimson";
+     };
+   }
+   if (document.cssbox.cssbox.checked==false) {
+   var x = document.querySelectorAll("p[severity='Severe']");
+   var i;
+   for (i = 0; i < x.length; i++) {
+       x[i].style.backgroundColor = "";
+     };
+   }
+ }
