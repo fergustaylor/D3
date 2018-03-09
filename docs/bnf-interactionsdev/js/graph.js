@@ -15,7 +15,7 @@ function endload () {
   //hide the tensionbaritself
   document.querySelector('#tensionbar > input[type="range"]').style = "display:none;";
   //continue to unhide elements
-  document.getElementById("tensionbar").style = "display:none;";
+  document.getElementById("tensionbar").style = "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;";
 
   document.getElementsByClassName("notice")[0].style.display = "";
   document.getElementsByClassName("graphic")[0].style.display = "";
@@ -147,7 +147,7 @@ document.body.appendChild(drugslist);
 ////add the severity checkbox
 var node33 = document.createElement("div");
 node33.setAttribute("id", "severitybox");
-node33.setAttribute("style", "position:fixed;bottom:0;left:0;padding-left:20px;padding-bottom:20px;font-size:18px;");
+node33.setAttribute("style", "display:none;");
 
 var node34 = document.createElement("form");
 node34.setAttribute("name", "cssbox");
