@@ -231,10 +231,10 @@ severityinfo2 = []
 
 /// add severity totals
 //mildtotal = d.mildtot
-mildtotal = document.querySelectorAll("[value~="+d.title+"][severity~=Mild]").length
-modtotal = document.querySelectorAll("[value~="+d.title+"][severity~=Moderate]").length
-sevtotal = document.querySelectorAll("[value~="+d.title+"][severity~=Severe]").length
-natotal = document.querySelectorAll("[value~="+d.title+"][severity~=NotSet]").length + document.querySelectorAll("[value~="+d.title+"][severity~=Unknown]").length
+mildtotal = document.querySelectorAll("[value~="+d.key+"][severity~=Mild]").length
+modtotal = document.querySelectorAll("[value~="+d.key+"][severity~=Moderate]").length
+sevtotal = document.querySelectorAll("[value~="+d.key+"][severity~=Severe]").length
+natotal = document.querySelectorAll("[value~="+d.key+"][severity~=NotSet]").length + document.querySelectorAll("[value~="+d.key+"][severity~=Unknown]").length
 
 /// add evidence totals
 studytotal = d.studytot
