@@ -71,7 +71,7 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
       //.attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key + " " + d.source.Severity[d.source.importstitle.indexOf(d.target.key)];})
       //.attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key + " " + d.source.Severity[d.source.importstitle.indexOf(d.target.title)];})
       .attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key;})
-      .attr("value", function(d) {return d.source.key})
+      .attr("value", function(d) {return d.source.title})
       .attr("severity", function(d) {return d.source.Severity[d.source.importstitle.indexOf(d.target.title)];})
       //.attr("interaction", function(d) {return d.source["Interactions Info"][d.source.importstitle.indexOf(d.target.key)];})
       .attr("interaction", function(d) {return d.source["Interactions Info"][d.source.importstitle.indexOf(d.target.title)];})
@@ -231,10 +231,10 @@ severityinfo2 = []
 
 /// add severity totals
 //mildtotal = d.mildtot
-mildtotal = document.querySelectorAll("[value~="+d.key+"][severity~=Mild]").length
-modtotal = document.querySelectorAll("[value~="+d.key+"][severity~=Moderate]").length
-sevtotal = document.querySelectorAll("[value~="+d.key+"][severity~=Severe]").length
-natotal = document.querySelectorAll("[value~="+d.key+"][severity~=NotSet]").length + document.querySelectorAll("[value~="+d.key+"][severity~=Unknown]").length
+mildtotal = document.querySelectorAll("[value~="+d.title+"][severity~=Mild]").length
+modtotal = document.querySelectorAll("[value~="+d.title+"][severity~=Moderate]").length
+sevtotal = document.querySelectorAll("[value~="+d.title+"][severity~=Severe]").length
+natotal = document.querySelectorAll("[value~="+d.title+"][severity~=NotSet]").length + document.querySelectorAll("[value~="+d.title+"][severity~=Unknown]").length
 
 /// add evidence totals
 studytotal = d.studytot

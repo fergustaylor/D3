@@ -126,3 +126,13 @@ function buildgraph() {
   }
   graphit(druginputarray);
 }
+
+
+function buildlist () {
+  var selected = $('div#checklist>span>input:checked');
+  //create array
+  for (i = 0; i < selected.length; i++) {
+    druginputarray.push(selected[i].value);
+  }
+  listit(druginputarray);
+}
