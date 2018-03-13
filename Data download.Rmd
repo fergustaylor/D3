@@ -1,7 +1,6 @@
 ---
 title: "Plotting BNF Interactions"
 ---
-
 ```{r, warning=FALSE, message=FALSE}
 library(rvest)
 library(magrittr)
@@ -58,15 +57,33 @@ drugs_list[] <- lapply(drugs_list, as.character)
 drugs_listDatestamp <- Sys.Date()
 ```
 
+#Compare to last drugslist
+```{r}
+example <- read_csv("archive/drugs_list.csv")
+newdrugs <- setdiff(trimws(drugs_list$Title, "both"), example$Title)
+rm(example)
+```
+
+#If newdrugs > 0
+# haven't worked out what will happen if drug is removed yet
+```{r}
+if (length(newdrugs) > 0) {
+  newdrugName <- str_c("archive/newdrugs/", drugs_listDatestamp) %>%
+  str_replace_all(" ", "") %>%
+  str_c("drugchange.csv")
+write.csv(newdrugs, newdrugName)
+}
+```
+
 #Export Drugs_list
 ```{r, eval=FALSE}
 drugs_listName <- str_c("archive/", drugs_listDatestamp) %>%
-str_replace_all(" ", "") %>%
-str_c("drugs_list.csv")
-
+  str_replace_all(" ", "") %>%
+  str_c("drugs_list.csv")
 write.csv(drugs_list, drugs_listName)
 
-head(drugs_list, 5)
+#overwrite as the most recent drugs_list 
+write.csv(drugs_list, "archive/drugs_list.csv")
 ```
 
 #Scrape Data
@@ -94,15 +111,6 @@ alli <- lapply(data,
                     html_text()
                 })
 
-##All Severity
-##severityi <- lapply(data,
-##                function(url){
-##                    url %>% 
-##                    html_nodes(css = "div.span9.interaction-messages > div") %>%
-##                    html_attr("class") %>%
-##                    str_replace_all("interaction-message  ", "")
-##                })
-
 #Set ordinal factor for severity
 severity <- c("NotSet", "Unknown", "Mild", "Moderate", "Severe")
 severity <- factor(severity, levels=c("NotSet", "Unknown", "Mild", "Moderate", "Severe"), ordered=TRUE)
@@ -129,17 +137,6 @@ if (length(sections[[x1]]) > 1) {
 unlist()
 })
 
-data[[52]] %>%
-  html_nodes("div.span9.interaction-messages")
-
-##Evidence
-#evidencei <- lapply(data,
-#                function(url){
-#                    url %>% 
-#                    html_nodes(css = "dd~ dd") %>%
-#                    html_text()
-#                })
-
 #All Evidence
 evidencei2 <- lapply(1:length(data), function(x) {
 sections <- html_nodes(data[[x]], "div.span9.interaction-messages")
@@ -159,16 +156,6 @@ if (length(sections[[x1]] %>%
 ) %>%
 unlist()
 })
-
-##Interactions Info
-#infoi <- lapply(data,
-#                function(url){
-#                    url %>% 
-#                    html_nodes(css = ".interaction-message div") %>%
-#                    html_text() %>%
-#                    str_replace_all("\n", replacement="") %>%
-#                    str_trim()
-#                })
 
 #Combine multiple divs under one interaction
 infoi2 <- lapply(1:length(data), function(x) {
@@ -201,6 +188,7 @@ dataframe <- cbind(dataframe,
                            data_frame(severityi2),
                            data_frame(evidencei2),
                            data_frame(infoi2))
+
 #Rename columns
 dataframe <-  dataframe %>%
   rename(Interactions = 'alli',
@@ -221,46 +209,14 @@ dataframe$'Evidence Total' <- lapply(1:nrow(dataframe), function(x){
 dataframe$'Interactions Info Total' <- lapply(1:nrow(dataframe), function(x){
                     unlist(length(dataframe$'Interactions Info'[[x]]))
                 })
-#rm(alli)
-#rm(severityi)
-#rm(evidencei)
-#rm(infoi)
-#rm(dataframe)
+rm(alli)
+rm(severityi)
+rm(evidencei)
+rm(infoi)
+rm(dataframe)
 ```
 
 #Check Data completion.
-##Incomplete Data
-```{r}
-dataframe$'Complete Severity' <- lapply(1:nrow(dataframe), function(x){
-                    if (dataframe$`Interaction Total`[[x]] == dataframe$`Severity Total`[[x]])
-                    {TRUE} else {FALSE}
-})
-#Count True/False
-unlist(dataframe$'Complete Severity') %>%
-  summary()
-```
-
-```{r}
-dataframe$'Complete Interactions Info' <- lapply(1:nrow(dataframe), function(x){
-                    if (dataframe$`Interaction Total`[[x]] == dataframe$`Interactions Info Total`[[x]])
-                    {TRUE} else {FALSE}
-})
-unlist(dataframe$'Complete Interactions Info') %>%
-  summary()
-```
-
-Evidence.
-```{r}
-dataframe$`Complete Evidence Info` <- lapply(1:nrow(dataframe), function(x){
-                    if (dataframe$`Interaction Total`[[x]] == dataframe$`Evidence Total`[[x]])
-                    {TRUE} else {FALSE}
-})
-unlist(dataframe$`Complete Evidence Info`) %>%
-  summary()
-```
-Used the min value, where 2 evidence levels are indicated. (Opposite of the severity).
-The rationale being that you should be more cautious, and more skeptical.
-
 ```{r}
 dataframe$'Complete Data' <- lapply(1:nrow(dataframe), function(x){
                     if (dataframe$`Interaction Total`[[x]] == dataframe$`Severity Total`[[x]] &
@@ -268,14 +224,11 @@ dataframe$'Complete Data' <- lapply(1:nrow(dataframe), function(x){
                         dataframe$`Interaction Total`[[x]] == dataframe$`Evidence Total`[[x]])
                     {TRUE} else {FALSE}
 })
-unlist(dataframe$'Complete Data') %>%
-  summary()
 ```
 
-Complete Data
-```{r, eval=FALSE}
-dataframe %>%
-  filter(dataframe$`Complete Data` == TRUE)
+Everything there?
+```{r}
+sum(unlist(dataframe$'Complete Data')) == nrow(dataframe)
 ```
 
 Export dataframe
@@ -283,11 +236,8 @@ Export dataframe
 dataframeName <- str_c("archive/", Datestamp) %>%
 str_replace_all(" ", "") %>%
 str_c("dataframe.Rda")
-
 save(dataframe, file=dataframeName)
 ```
-
-/////////////////////////////////////////////////////////////
 
 Make a databse for JSON Format
 ```{r}
@@ -374,7 +324,6 @@ master %>%
   write(file="archive/flare.json")
 
 jsonName <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "flare.json")
-
 master %>%
   jsonlite::toJSON() %>%
   write(file = jsonName)
