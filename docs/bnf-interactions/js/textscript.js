@@ -238,10 +238,10 @@ sevtotal = document.querySelectorAll("[value~="+d.key+"][severity~=Severe]").len
 natotal = document.querySelectorAll("[value~="+d.key+"][severity~=NotSet]").length + document.querySelectorAll("[value~="+d.key+"][severity~=Unknown]").length
 
 /// add evidence totals
-studytotal = d.studytot
-anectotal = d.anectot
-theototal = d.theorettot
-nsetotal = d.nsetot
+//studytotal = d.studytot
+//anectotal = d.anectot
+//theototal = d.theorettot
+//nsetotal = d.nsetot
 
 //Bottom
 document.getElementById('drugstotal').innerHTML = drugtotal+" Interactions Listed";

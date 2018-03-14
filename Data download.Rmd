@@ -255,6 +255,9 @@ master$importstitle <- master$imports
 master$name <- as.character(master$name)
 master$name <- trimws(master$name, "both")
 
+master$title <- as.character(master$title)
+master$title <- trimws(master$title, "both")
+
 ##remove odd characters in $name
 faultycharacters <- str_detect(master$name, "\\(") | str_detect(master$name, string="\\)") | grepl(pattern = "/", x = master$name) | grepl(pattern = "'", x = master$name) | grepl(pattern = ",", x = master$name)
 faultyvalues <- master$name[faultycharacters]
@@ -304,7 +307,7 @@ master$imports <- lapply(1:nrow(master), node.parent.child)
 ```
 
 #Add totals
-```{r}
+```{r, eval=FALSE}
 master <- master %>%
   mutate(mildtot = str_count(master$Severity, "Mild")) %>%
   mutate(modtot = str_count(master$Severity, "Moderate")) %>%
