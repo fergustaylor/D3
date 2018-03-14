@@ -67,9 +67,7 @@ d3.json("https://fergustaylor.github.io/D3/dev/flare.json", function(classes) {
   var path = svg.selectAll("path.link")
       .data(links)
       .enter().append("svg:path")
-      //add severity to each path by class
       .attr("class", function(d) { return "link source-" + d.source.key + " target-" + d.target.key;})
-      //.attr("value", function(d) {return d.source.title})
       .attr("value", function(d) {return d.source.key})
       .attr("severity", function(d) {return d.source.Severity[d.source.importstitle.indexOf(d.target.title)];})
       .attr("evidence", function(d) {return d.source.Evidence[d.source.importstitle.indexOf(d.target.title)];})
