@@ -73,6 +73,7 @@ if (length(newdrugs) > 0) {
   str_c("drugchange.csv")
 write.csv(newdrugs, newdrugName)
 }
+rm(newdrugs)
 ```
 
 #Export Drugs_list
@@ -210,10 +211,9 @@ dataframe$'Interactions Info Total' <- lapply(1:nrow(dataframe), function(x){
                     unlist(length(dataframe$'Interactions Info'[[x]]))
                 })
 rm(alli)
-rm(severityi)
-rm(evidencei)
-rm(infoi)
-rm(dataframe)
+rm(severityi2)
+rm(evidencei2)
+rm(infoi2)
 ```
 
 #Check Data completion.
@@ -250,6 +250,10 @@ master$title <- master$name
 
 #Added an unlabled column
 master$importstitle <- master$imports
+
+#master
+master$name <- as.character(master$name)
+master$name <- trimws(master$name, "both")
 
 ##remove odd characters in $name
 faultycharacters <- str_detect(master$name, "\\(") | str_detect(master$name, string="\\)") | grepl(pattern = "/", x = master$name) | grepl(pattern = "'", x = master$name) | grepl(pattern = ",", x = master$name)
