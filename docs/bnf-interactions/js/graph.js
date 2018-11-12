@@ -75,6 +75,7 @@ node41.appendChild(node42);
 
 var node43 = document.createElement("a");
 node43.setAttribute("href", "https://bnf.nice.org.uk/interaction/");
+node43.setAttribute("title", "© NICE 2018. BNF Interactions. Available from https://bnf.nice.org.uk/interaction/ All rights reserved. Subject to Notice of rights. NICE guidance is prepared for the National Health Service in England. All NICE guidance is subject to regular review and may be updated or withdrawn. NICE accepts no responsibility for the use of its content in this product/publication.");
 var node44 = document.createTextNode("the BNF.");
 node43.appendChild(node44);
 
