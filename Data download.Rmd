@@ -58,14 +58,14 @@ drugs_listDatestamp <- Sys.Date()
 ```
 
 #Compare to last drugslist
-```{r}
+```{r, message=FALSE, warning=FALSE}
 example <- read_csv("archive/drugs_list.csv")
 newdrugs <- setdiff(trimws(drugs_list$Title, "both"), example$Title)
 rm(example)
 ```
 
 #If newdrugs > 0
-# haven't worked out what will happen if drug is removed yet
+#Haven't worked out what will happen if drug is removed yet
 ```{r}
 if (length(newdrugs) > 0) {
   newdrugName <- str_c("archive/newdrugs/", drugs_listDatestamp) %>%
@@ -83,7 +83,7 @@ drugs_listName <- str_c("archive/", drugs_listDatestamp) %>%
   str_c("drugs_list.csv")
 write.csv(drugs_list, drugs_listName)
 
-#overwrite as the most recent drugs_list 
+#Overwrite as the most recent drugs_list 
 write.csv(drugs_list, "archive/drugs_list.csv")
 ```
 
@@ -304,22 +304,6 @@ node.parent.child <- function(x) {
   return(as.vector(example))
 }
 master$imports <- lapply(1:nrow(master), node.parent.child)
-```
-
-#Add totals
-```{r, eval=FALSE}
-master <- master %>%
-  mutate(mildtot = str_count(master$Severity, "Mild")) %>%
-  mutate(modtot = str_count(master$Severity, "Moderate")) %>%
-  mutate(sevtot = str_count(master$Severity, "Severe")) %>%
-  mutate(nstot = str_count(master$Severity, "NotSet") + 
-           str_count(master$Severity, "Unknown"))
-
-master <- master %>%
-  mutate(studytot = str_count(master$Evidence, "Study")) %>%
-  mutate(anectot = str_count(master$Evidence, "Anecdotal")) %>%
-  mutate(theorettot = str_count(master$Evidence, "Theoretical")) %>%
-  mutate(nsetot = str_count(master$Evidence, "NotSet"))
 ```
 
 ```{r}
