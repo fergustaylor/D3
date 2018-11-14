@@ -1,0 +1,28 @@
+---
+title: "Pie Chart"
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+evidence <- dataframe$Evidence %>%
+  unlist %>%
+  as.factor %>%
+  summary %>%
+  as.data.frame
+colnames(evidence) <- c("Total")
+write.csv(evidence, "docs/evidencesummary/evidence.csv")
+```
+
+```{r}
+severity <- dataframe$Severity %>%
+  unlist %>%
+  as.factor %>%
+  summary %>%
+  as.data.frame
+
+colnames(severity) <- c("Total")
+write.csv(severity, "docs/severitysummary/severity.csv")
+```
