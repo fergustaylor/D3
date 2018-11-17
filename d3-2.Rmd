@@ -2,6 +2,32 @@
 title: "d3-2 data (top 100 with classes)"
 ---
 
+//////////////
+Redo d3-2 to reconstruct totals without .json values
+Add links to sidebar
+
+Trying a new filtering technique.
+```{r, eval=FALSE}
+library(tidyverse)
+new100 <- read_csv(file="top102.csv", col_names = FALSE) %>%
+  rename('Title' = 'X1', 'Class' = 'X2')
+
+
+# However! How will this work if I'm building it to grouped drugs?
+
+#Export 100 as .json
+#new100 %>%
+#  jsonlite::toJSON() %>%
+#  write(file="archive/new100.json")
+
+#new100 %>%
+#  jsonlite::toJSON() %>%
+#  write(file="docs/dev/new100.json")
+```
+
+
+//////////////////
+
 This continues to use variables set in the workbook.rmd environment.
 
 ///////////////////////////////////////////////////////////////
